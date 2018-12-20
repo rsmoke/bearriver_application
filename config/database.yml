@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: bearriver_application_production
-  username: bearriver_application
-  password: <%= ENV['BEARRIVER_APPLICATION_DATABASE_PASSWORD'] %>
+  username: <%= Rails.application.credentials.PRODUCTION_DB_USERNAME %>
+  password: <%= Rails.application.credentials.PRODUCTION_DB_PASSWORD %>
