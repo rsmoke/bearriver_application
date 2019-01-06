@@ -13,6 +13,7 @@ import Turbolinks from 'turbolinks';
 import 'jquery';
 import 'bootstrap'
 import '../src/application.sass'
+require.context('../images', true, /\.(svg|png|jpg|gif)$/im);
 
 Rails.start();
 Turbolinks.start();
