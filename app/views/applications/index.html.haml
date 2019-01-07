@@ -1,0 +1,69 @@
+%h1 Listing applications
+
+%table
+  %thead
+    %tr
+      %th First name
+      %th Last name
+      %th Gender
+      %th Birth year
+      %th Street
+      %th Street2
+      %th City
+      %th State
+      %th Zip
+      %th Country
+      %th Phone
+      %th Email
+      %th Email confirmation
+      %th Workshop selection1
+      %th Workshop selection2
+      %th Workshop selection3
+      %th Lodging selection
+      %th Partner registration selection
+      %th Partner first name
+      %th Partner last name
+      %th How did you hear
+      %th Accessibility requirements
+      %th Special lodging request
+      %th Food restrictions
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @applications.each do |application|
+      %tr
+        %td= application.first_name
+        %td= application.last_name
+        %td= application.gender
+        %td= application.birth_year
+        %td= application.street
+        %td= application.street2
+        %td= application.city
+        %td= application.state
+        %td= application.zip
+        %td= application.country
+        %td= application.phone
+        %td= application.email
+        %td= application.email_confirmation
+        %td= application.workshop_selection1
+        %td= application.workshop_selection2
+        %td= application.workshop_selection3
+        %td= application.lodging_selection
+        %td= application.partner_registration_selection
+        %td= application.partner_first_name
+        %td= application.partner_last_name
+        %td= application.how_did_you_hear
+        %td= application.accessibility_requirements
+        %td= application.special_lodging_request
+        %td= application.food_restrictions
+        %td= application.user
+        %td= link_to 'Show', application
+        %td= link_to 'Edit', edit_application_path(application)
+        %td= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Application', new_application_path

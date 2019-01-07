@@ -1,0 +1,81 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @application.first_name
+%p
+  %b Last name:
+  = @application.last_name
+%p
+  %b Gender:
+  = @application.gender
+%p
+  %b Birth year:
+  = @application.birth_year
+%p
+  %b Street:
+  = @application.street
+%p
+  %b Street2:
+  = @application.street2
+%p
+  %b City:
+  = @application.city
+%p
+  %b State:
+  = @application.state
+%p
+  %b Zip:
+  = @application.zip
+%p
+  %b Country:
+  = @application.country
+%p
+  %b Phone:
+  = @application.phone
+%p
+  %b Email:
+  = @application.email
+%p
+  %b Email confirmation:
+  = @application.email_confirmation
+%p
+  %b Workshop selection1:
+  = @application.workshop_selection1
+%p
+  %b Workshop selection2:
+  = @application.workshop_selection2
+%p
+  %b Workshop selection3:
+  = @application.workshop_selection3
+%p
+  %b Lodging selection:
+  = @application.lodging_selection
+%p
+  %b Partner registration selection:
+  = @application.partner_registration_selection
+%p
+  %b Partner first name:
+  = @application.partner_first_name
+%p
+  %b Partner last name:
+  = @application.partner_last_name
+%p
+  %b How did you hear:
+  = @application.how_did_you_hear
+%p
+  %b Accessibility requirements:
+  = @application.accessibility_requirements
+%p
+  %b Special lodging request:
+  = @application.special_lodging_request
+%p
+  %b Food restrictions:
+  = @application.food_restrictions
+%p
+  %b User:
+  = @application.user
+
+= link_to 'Edit', edit_application_path(@application)
+\|
+= link_to 'Back', applications_path

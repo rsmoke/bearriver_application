@@ -1,0 +1,85 @@
+= form_for @application do |f|
+  - if @application.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@application.errors.count, "error")} prohibited this application from being saved:"
+      %ul
+        - @application.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :gender
+    = f.text_field :gender
+  .field
+    = f.label :birth_year
+    = f.number_field :birth_year
+  .field
+    = f.label :street
+    = f.text_field :street
+  .field
+    = f.label :street2
+    = f.text_field :street2
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :zip
+    = f.text_field :zip
+  .field
+    = f.label :country
+    = f.text_field :country
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :email_confirmation
+    = f.text_field :email_confirmation
+  .field
+    = f.label :workshop_selection1
+    = f.text_field :workshop_selection1
+  .field
+    = f.label :workshop_selection2
+    = f.text_field :workshop_selection2
+  .field
+    = f.label :workshop_selection3
+    = f.text_field :workshop_selection3
+  .field
+    = f.label :lodging_selection
+    = f.text_field :lodging_selection
+  .field
+    = f.label :partner_registration_selection
+    = f.text_field :partner_registration_selection
+  .field
+    = f.label :partner_first_name
+    = f.text_field :partner_first_name
+  .field
+    = f.label :partner_last_name
+    = f.text_field :partner_last_name
+  .field
+    = f.label :how_did_you_hear
+    = f.text_field :how_did_you_hear
+  .field
+    = f.label :accessibility_requirements
+    = f.text_area :accessibility_requirements
+  .field
+    = f.label :special_lodging_request
+    = f.text_area :special_lodging_request
+  .field
+    = f.label :food_restrictions
+    = f.text_area :food_restrictions
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions
+    = f.submit 'Save'
