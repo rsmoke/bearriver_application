@@ -10,31 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_07_214622) do
+ActiveRecord::Schema.define(version: 2019_01_07_230006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "payments", force: :cascade do |t|
-    t.string "transactionType"
-    t.string "transactionStatus"
-    t.string "transactionId"
-    t.string "transactionTotalAmount"
-    t.string "transactionDate"
-    t.string "transactionAcountType"
-    t.string "transactionResultCode"
-    t.string "transactionResultMessage"
-    t.string "orderNumber"
-    t.string "payerFullName"
-    t.string "timestamp"
-    t.string "transactionHash"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "registration_id"
-    t.index ["registration_id"], name: "index_payments_on_registration_id"
-  end
-
-  create_table "registrations", force: :cascade do |t|
+  create_table "applications", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
@@ -59,8 +40,47 @@ ActiveRecord::Schema.define(version: 2019_01_07_214622) do
     t.text "accessibility_requirements"
     t.text "special_lodging_request"
     t.text "food_restrictions"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "transactionType"
+    t.string "transactionStatus"
+    t.string "transactionId"
+    t.string "transactionTotalAmount"
+    t.string "transactionDate"
+    t.string "transactionAcountType"
+    t.string "transactionResultCode"
+    t.string "transactionResultMessage"
+    t.string "orderNumber"
+    t.string "payerFullName"
+    t.string "timestamp"
+    t.string "transactionHash"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "transaction_types", force: :cascade do |t|
+    t.string "transactionStatus"
+    t.string "transactionId"
+    t.string "transactionTotalAmount"
+    t.string "transactionDate"
+    t.string "transactionAcountType"
+    t.string "transactionResultCode"
+    t.string "transactionResultMessage"
+    t.string "orderNumber"
+    t.string "payerFullName"
+    t.string "timestamp"
+    t.string "transactionHash"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_transaction_types_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,5 +95,7 @@ ActiveRecord::Schema.define(version: 2019_01_07_214622) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "payments", "registrations"
+  add_foreign_key "applications", "users"
+  add_foreign_key "payments", "users"
+  add_foreign_key "transaction_types", "users"
 end

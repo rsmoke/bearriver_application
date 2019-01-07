@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :payments
+  resources :transaction_types
+  resources :applications
   devise_for :users
   root 'static_pages#index'
   get '/about', to: 'static_pages#about'
