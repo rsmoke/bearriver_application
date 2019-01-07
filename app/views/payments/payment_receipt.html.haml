@@ -1,0 +1,14 @@
+- provide(:title, 'Payment Receipt')
+
+%h1 Payment_receipt
+
+%h4
+  = @current_payment.transactionResultMessage
+
+%h6
+  = "#{current_user.email},"
+%p
+  = "Your payment of the Bearriver Application fee (Confirmation Number: #{@current_payment.transactionId}) has been recorded into your account"
+%p.text-muted
+  You will also receive an email confirmation from 'MerchantCreditCard&#64;umich.edu'
+%h5
