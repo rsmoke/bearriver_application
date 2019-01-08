@@ -1,7 +1,10 @@
 %footer.footer.fixed-bottom
   .container-responsive
     .row.justify-content-around
-      .footer-col-rt.col-md-4
+      .footer-col-rt.col-3
+        %a{:href => "https://lsa.umich.edu/bearriver/"}
+          %span{:style => "color: rgb(255,203,5);"} Bear River Writers' Conference
+      .footer-col-rt.col-4
         %i.fa.fa-map-marker
         %a{:href => "http://campusinfo.umich.edu/campusmap", :target => "_blank"}
           435 S. State Street
@@ -14,12 +17,8 @@
         .email
           %i.fa.fa-envelope
           %a{:href => "bearriver-questions@umich.eduu"} bearriver-questions@umich.edu
-        %div
-          %a{:href => "https://lsa.umich.edu/bearriver/"}
-            %span{:style => "color: rgb(255,203,5);"} Bear River Writers' Conference
 
-
-      .footer-col-lf.col-md-4.text-right
+      .footer-col-lf.col-4.text-right
         %label.sr-only{:for => "deptPhone"} Click to call 734.763.2342
         #deptPhone.phone{:title => "Call New England Literature Program"}
           %i.fa.fa-phone
@@ -29,6 +28,6 @@
           734.763.3128
 
     .row
-      .copyright.col-md-12.text-center
+      .copyright.col.text-center
         &copy; Regents of the University of Michigan
         = Date.today.year
