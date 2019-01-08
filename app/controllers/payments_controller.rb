@@ -2,6 +2,7 @@
   require 'time'
 
   class PaymentsController < ApplicationController
+    before_action :authenticate_user!
     before_action :current_user,   only: %i[payment_receipt make_payment]
 
     def payment_receipt

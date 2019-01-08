@@ -1,4 +1,5 @@
 class ApplicationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_application, only: [:show, :edit, :update, :destroy]
 
   # GET /applications
@@ -25,7 +26,8 @@ class ApplicationsController < ApplicationController
   # POST /applications.json
   def create
     @application = Application.new(application_params)
-
+    @application.email = current_user.email
+    @application.user = current_user
     respond_to do |format|
       if @application.save
         format.html { redirect_to @application, notice: 'Application was successfully created.' }
