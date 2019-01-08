@@ -1,4 +1,4 @@
-%p#notice= notice
+%h3 Confirm your information
 
 %p
   %b First name:
@@ -72,10 +72,7 @@
 %p
   %b Food restrictions:
   = @application.food_restrictions
-%p
-  %b User:
-  = @application.user
 
 = link_to 'Edit', edit_application_path(@application)
 \|
-= link_to 'Back', applications_path
+= link_to 'Cancel', root_path

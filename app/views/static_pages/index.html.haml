@@ -1,3 +1,27 @@
 - provide(:title, 'Home')
 
-%h1 Registration
+%h1 Bearriver Conference Registration
+
+
+- if user_signed_in?
+  %h6 A non-refundable deposit of $100 is required to complete your registration
+  %p
+    After you complete your application you will be redirected to our credit
+    card processing page where you will be asked to make your deposit payment
+    of $100. Payments are securely processed via
+    %em
+      Quickpay,
+    the preferred gateway
+    service provider of the University of Michigan.
+  .row.justify-content-center
+    .col-2
+      = link_to 'Apply', new_application_path, class: 'btn btn-success'
+- else
+  %p
+    You will be required to Sign up or Log in before you can register for
+    the conference.
+  .row.justify-content-center
+    .col-4
+      = link_to "Sign up", new_user_registration_path, class: 'btn btn-primary'
+      |
+      = link_to "Login", new_user_session_path, class: 'btn btn-info'
