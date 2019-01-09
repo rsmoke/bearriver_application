@@ -73,24 +73,6 @@ ActiveRecord::Schema.define(version: 2019_01_08_235243) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
-  create_table "transaction_types", force: :cascade do |t|
-    t.string "transactionStatus"
-    t.string "transactionId"
-    t.string "transactionTotalAmount"
-    t.string "transactionDate"
-    t.string "transactionAcountType"
-    t.string "transactionResultCode"
-    t.string "transactionResultMessage"
-    t.string "orderNumber"
-    t.string "payerFullName"
-    t.string "timestamp"
-    t.string "transactionHash"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_transaction_types_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

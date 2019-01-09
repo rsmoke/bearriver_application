@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  root 'static_pages#index'
+
   resources :lodgings
   resources :workshops
   resources :payments
-  resources :transaction_types
-  resources :applications
+  resources :applications do
+    resources :lodgings
+    resources :workshops
+  end
+
   devise_for :users
-  root 'static_pages#index'
+
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   get '/privacy', to: 'static_pages#privacy'
