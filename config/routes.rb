@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lodgings
+  resources :workshops
   resources :payments
   resources :transaction_types
   resources :applications

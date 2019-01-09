@@ -1,3 +1,63 @@
+%h5 Lodging Options:
+%hr
+%h6 NOTE: Prices below include a required $100 deposit.
+
+%h6
+  Plan A:
+  .text-muted Includes tuition, lodging and all meals. Lodging options and pricing for Plan A are listed below.
+
+%ul
+  %li.font-weight-bold
+    Private Room and Private Bath: $905 per person
+
+  %li.font-weight-bold
+    Semi-Private Room and Shared Bath: $850 per person
+    .text-muted (Queen Bed/Shared Bath with 1-3 others)
+
+  %li.font-weight-bold
+    Bunk room: $740 per person
+    .text-muted (Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others)
+
+%h6
+  Plan B:
+  %small.font-weight-bold $640 per person
+  .text-muted Includes tuition and all meals, but not lodging for those who live in the Petoskey area. In addition, there are many hotels and motels available within twenty minutes of the conference for those who prefer greater privacy
+
+%hr.col-8
+%h6
+  Attending with a spouse/partner:
+  %small.text-muted It is possible to include a spouse/partner when registering for any of the options in Plan A or B for an additional fee ($440 to attend the conference only, $570 to attend the conference and readings). Please do not register your spouse/partner separately unless they also wish to attend the worshops. If your spouse/partner does want to attend the workshops they will need to register separately. We also highly recommend the "Private Room, Private Bath" option if you intend to bring your spouse/partner.
+
+%h6 Plan A with a spouse/partner:
+
+%ul
+  %li.font-weight-bold Private Room and Private Bath:
+  %ul
+    %li $1475 w/partner attending conference AND readings
+    %li $1345 w/partner attending conference ONLY
+
+  %li.font-weight-bold Semi-Private Room and Shared Bath:
+  .text-muted (Queen Bed/Shared Bath with 1-3 others)
+  %ul
+    %li $1420 w/partner attending conference AND readings
+    %li $1290 w/partner attending conference ONLY
+
+  %li.font-weight-bold Bunk Room
+  .text-muted (Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others)
+  %ul
+    %li $1310 w/partner attending conference AND readings
+    %li $1180 w/partner attending conference ONLY
+
+%h6 Plan B with a spouse/partner:
+%ul
+  %li $1215 w/partner attending conference AND readings
+  %li $1085 w/partner attending conference ONLY
+
+%h6
+  Register early to secure your workshop choice:
+  %small.text-muted Workshops will be assigned on a first come first serve basis. In the unlikely event of a workshop cancellation, your entire payment will be refunded upon request if you do not wish to enroll in an alternate workshop.
+
+
 = form_for @application do |f|
   - if @application.errors.any?
     #error_explanation
@@ -5,6 +65,8 @@
       %ul
         - @application.errors.full_messages.each do |message|
           %li= message
+
+  %br
   %h5 Registrant Details:
   %hr
   .form-group.form-row
@@ -58,22 +120,26 @@
   %h5 Workshop Selection:
   %hr
   .form-group.row
-    = f.label :workshop_selection1, class: 'required'
-    = f.text_field :workshop_selection1
+    = f.label :workshop_selection1, class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.collection_select(:workshop_selection1, Workshop.all.order_by_lastname, :id, :instructor,
+                          prompt: "Pick one")
   .form-group.row
-    = f.label :workshop_selection2, class: 'required'
-    = f.text_field :workshop_selection2
+    = f.label :workshop_selection2, class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.collection_select(:workshop_selection2, Workshop.all, :id, :instructor,
+                          prompt: "Pick one")
   .form-group.row
-    = f.label :workshop_selection3, class: 'required'
-    = f.text_field :workshop_selection3
+    = f.label :workshop_selection3, class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.collection_select(:workshop_selection3, Workshop.all, :id, :instructor,
+                          prompt: "Pick one")
 
   %h5 Lodging Selection:
   %hr
   .form-group.row
-    = f.label :lodging_selection, class: 'required'
-    = f.text_field :lodging_selection
+    = f.label :lodging_selection, class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.collection_select(:lodging_selection, Lodging.all, :id, :description,
+                          prompt: "Pick one")
   .form-group.row
-    = f.label :partner_registration_selection, class: 'required'
+    = f.label :partner_registration_selection, class: 'col-sm-2 col-form-label col-form-label-sm required'
     = f.text_field :partner_registration_selection
   .form-row
     .form-group.col-md-4
@@ -100,5 +166,9 @@
     = f.label :food_restrictions, class: 'col-sm-2 col-form-label col-form-label-sm required'
     .col-sm-6
       = f.text_area :food_restrictions, class: 'form-control form-control-sm', cols: 80
+
+  .form-group.row
+    = f.label "Required items are marked with an asterisk", class: 'required'
+
   .actions
-    = f.submit 'Next', class: 'btn btn-secondary'
+    = f.submit 'Next', class: 'btn btn-success'
