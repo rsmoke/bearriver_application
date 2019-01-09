@@ -11,6 +11,7 @@ class ApplicationsController < ApplicationController
   # GET /applications/1
   # GET /applications/1.json
   def show
+    @workshops = @application.workshops
   end
 
   # GET /applications/new

@@ -36,18 +36,23 @@
 %p
   %b Email:
   = @application.email
+
 %p
-  %b Email confirmation:
-  = @application.email_confirmation
-%p
-  %b Workshop selection1:
-  = @application.workshop_selection1
-%p
-  %b Workshop selection2:
-  = @application.workshop_selection2
-%p
-  %b Workshop selection3:
-  = @application.workshop_selection3
+  %b Workshops you requested
+  %ul
+    - @workshops.each do |workshop|
+      %li
+        = workshop.instructor
+
+-# %p
+-#   %b Workshop selection1:
+-#   = @application.workshop_selection1
+-# %p
+-#   %b Workshop selection2:
+-#   = @application.workshop_selection2
+-# %p
+-#   %b Workshop selection3:
+-#   = @application.workshop_selection3
 %p
   %b Lodging selection:
   = @application.lodging_selection
@@ -73,6 +78,8 @@
   %b Food restrictions:
   = @application.food_restrictions
 
+= link_to 'Confirm and Pay Deposit', make_payment_path, class: 'btn btn-success'
+\|
 = link_to 'Edit', edit_application_path(@application)
 \|
 = link_to 'Cancel', root_path

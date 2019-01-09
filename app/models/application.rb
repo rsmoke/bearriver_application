@@ -16,6 +16,9 @@ class Application < ApplicationRecord
   validates :workshop_selection3, presence: true
   validates :lodging_selection, presence: true
   validates :partner_registration_selection, presence: true
-  
+
   belongs_to :user
+  has_many :enrollments, dependent: :destroy
+  has_many :workshops, through: :enrollments
+
 end

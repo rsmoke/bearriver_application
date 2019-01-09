@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_08_235243) do
+ActiveRecord::Schema.define(version: 2019_01_09_154707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2019_01_08_235243) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.bigint "application_id"
+    t.bigint "workshop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_id"], name: "index_enrollments_on_application_id"
+    t.index ["workshop_id"], name: "index_enrollments_on_workshop_id"
   end
 
   create_table "lodgings", force: :cascade do |t|
@@ -94,6 +103,7 @@ ActiveRecord::Schema.define(version: 2019_01_08_235243) do
   end
 
   add_foreign_key "applications", "users"
+  add_foreign_key "enrollments", "applications"
+  add_foreign_key "enrollments", "workshops"
   add_foreign_key "payments", "users"
-  add_foreign_key "transaction_types", "users"
 end
