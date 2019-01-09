@@ -17,8 +17,13 @@ class Application < ApplicationRecord
   validates :lodging_selection, presence: true
   validates :partner_registration_selection, presence: true
 
+  HOW_DID_YOU_HEAR = ['Word of Mouth', 'Magazine Advertisement', 'Online Advertisement', 'Newspaper Advertisement']
+
   belongs_to :user
   has_many :enrollments, dependent: :destroy
   has_many :workshops, through: :enrollments
+
+  has_one :reservation, dependent: :destroy
+  has_one :lodging, through: :reservation
 
 end

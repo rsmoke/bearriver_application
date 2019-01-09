@@ -120,15 +120,15 @@
   %h5 Workshop Selection:
   %hr
   .form-group.row
-    = f.label :workshop_selection1, class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.label :workshop_selection1, "First Choice", class: 'col-sm-2 col-form-label col-form-label-sm required'
     = f.collection_select(:workshop_selection1, Workshop.all.order_by_lastname, :id, :instructor,
                           prompt: "Pick one")
   .form-group.row
-    = f.label :workshop_selection2, class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.label :workshop_selection2, "Second Choice", class: 'col-sm-2 col-form-label col-form-label-sm required'
     = f.collection_select(:workshop_selection2, Workshop.all, :id, :instructor,
                           prompt: "Pick one")
   .form-group.row
-    = f.label :workshop_selection3, class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.label :workshop_selection3, "Third Choice", class: 'col-sm-2 col-form-label col-form-label-sm required'
     = f.collection_select(:workshop_selection3, Workshop.all, :id, :instructor,
                           prompt: "Pick one")
 
@@ -152,8 +152,8 @@
   %h5 Additional Information:
   %hr
   .form-group.row
-    = f.label :how_did_you_hear
-    = f.text_field :how_did_you_hear, class: 'form-control form-control-sm'
+    = f.label :how_did_you_hear, "How did you hear about the Bear River Writers' Conference?", class: 'col-sm-4 col-form-label col-form-label-sm'
+    = f.select :how_did_you_hear, Application::HOW_DID_YOU_HEAR, prompt: "Pick one"
   .form-group.row
     = f.label :accessibility_requirements, class: 'col-sm-2 col-form-label col-form-label-sm'
     .col-sm-6

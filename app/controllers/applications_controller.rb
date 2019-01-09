@@ -11,7 +11,11 @@ class ApplicationsController < ApplicationController
   # GET /applications/1
   # GET /applications/1.json
   def show
-    @workshops = @application.workshops
+    # @workshops = @application.workshops
+    @workshop1 = Workshop.find(@application.workshop_selection1).instructor
+    @workshop2 = Workshop.find(@application.workshop_selection2).instructor
+    @workshop3 = Workshop.find(@application.workshop_selection3).instructor
+    @lodging = Lodging.find(@application.lodging_selection).description
   end
 
   # GET /applications/new
@@ -21,6 +25,7 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/1/edit
   def edit
+    @application = Application.find(params[:id])
   end
 
   # POST /applications

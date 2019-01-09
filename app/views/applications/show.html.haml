@@ -38,24 +38,17 @@
   = @application.email
 
 %p
-  %b Workshops you requested
-  %ul
-    - @workshops.each do |workshop|
-      %li
-        = workshop.instructor
-
--# %p
--#   %b Workshop selection1:
--#   = @application.workshop_selection1
--# %p
--#   %b Workshop selection2:
--#   = @application.workshop_selection2
--# %p
--#   %b Workshop selection3:
--#   = @application.workshop_selection3
+  %b Workshops you requested:
+  %ol
+    %li
+      = @workshop1
+    %li
+      = @workshop2
+    %li
+      = @workshop3
 %p
   %b Lodging selection:
-  = @application.lodging_selection
+  = @lodging
 %p
   %b Partner registration selection:
   = @application.partner_registration_selection
@@ -66,7 +59,7 @@
   %b Partner last name:
   = @application.partner_last_name
 %p
-  %b How did you hear:
+  %b How did you hear about the Bear River Writers' Conference?
   = @application.how_did_you_hear
 %p
   %b Accessibility requirements:
