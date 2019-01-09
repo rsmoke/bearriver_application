@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
 
-  resources :lodgings
-  resources :workshops
   resources :payments
   resources :applications do
     resources :lodgings
