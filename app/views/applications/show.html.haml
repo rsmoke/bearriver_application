@@ -1,42 +1,48 @@
 %h3 Confirm your information
 
+.h5 Registration Details:
 %p
   %b First name:
   = @application.first_name
-%p
+  %br
   %b Last name:
   = @application.last_name
-%p
+  %br
   %b Gender:
   = @application.gender
-%p
+  %br
   %b Birth year:
   = @application.birth_year
+
+%hr
+.h5 Mailing Address:
 %p
   %b Street:
   = @application.street
-%p
+  %br
   %b Street2:
   = @application.street2
-%p
+  %br
   %b City:
   = @application.city
-%p
+  %br
   %b State:
   = @application.state
-%p
+  %br
   %b Zip:
   = @application.zip
-%p
+  %br
   %b Country:
   = @application.country
-%p
+  %br
   %b Phone:
   = @application.phone
-%p
+  %br
   %b Email:
   = @application.email
 
+%hr
+.h5 Workshop Selections:
 %p
   %b Workshops you requested:
   %ol
@@ -46,33 +52,58 @@
       = @workshop2
     %li
       = @workshop3
+
+%hr
+.h5 Lodging Selection
 %p
   %b Lodging selection:
   = @lodging
-%p
+  %br
   %b Partner registration selection:
-  = @application.partner_registration_selection
-%p
+  = @partner_description
+  %br
   %b Partner first name:
   = @application.partner_first_name
-%p
+  %br
   %b Partner last name:
   = @application.partner_last_name
+  %br
+  .h6
+  %b Total cost for selected options:
+  .h5
+    = number_to_currency(@total_cost)
+
+%hr
+.h5 Additional Details:
 %p
   %b How did you hear about the Bear River Writers' Conference?
   = @application.how_did_you_hear
-%p
+  %br
   %b Accessibility requirements:
   = @application.accessibility_requirements
-%p
+  %br
   %b Special lodging request:
   = @application.special_lodging_request
-%p
+  %br
   %b Food restrictions:
   = @application.food_restrictions
 
+%br
+%h5
+  NOTE:
+  .text-muted If you need to make a correction, please use the edit button below to return to the form.
+= link_to 'Edit', edit_application_path(@application), class: 'btn btn-sm btn-warning'
+
+%hr
+%h5
+  Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
+  %small.text-muted Upon submission of this form you will be redirected to our credit card processing page where you will be asked to make your deposit payment of $100. Payments are securely processed via QuikPAY, the preferred gateway service provider of the University of Michigan. QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No credit card information is stored on our servers.
+
 = link_to 'Confirm and Pay Deposit', make_payment_path, class: 'btn btn-success'
-\|
-= link_to 'Edit', edit_application_path(@application)
-\|
-= link_to 'Cancel', root_path
+
+%hr
+%h5
+  Cancel Registration
+  %small.text-muted A non-refundable deposit payment is required to complete your registration. If you are not prepared to make a payment at this time, please use the option below to cancel your registration and complete this process at a later date.
+
+= link_to 'Cancel', root_path, class: 'btn btn-danger'

@@ -1,0 +1,2 @@
+class PartnerRegistration < ApplicationRecord
+end

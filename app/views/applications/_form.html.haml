@@ -6,41 +6,41 @@
   Plan A:
   .text-muted Includes tuition, lodging and all meals. Lodging options and pricing for Plan A are listed below.
 
-%ul
-  %li.font-weight-bold
-    Private Room and Private Bath: $905 per person
+  %ul
+    %li.font-weight-bold
+      Private Room and Private Bath:
+      $905 per person
 
-  %li.font-weight-bold
-    Semi-Private Room and Shared Bath: $850 per person
-    .text-muted (Queen Bed/Shared Bath with 1-3 others)
+    %li.font-weight-bold
+      Semi-Private Room and Shared Bath: $850 per person
+      .text-muted (Queen Bed/Shared Bath with 1-3 others)
 
-  %li.font-weight-bold
-    Bunk room: $740 per person
-    .text-muted (Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others)
+    %li.font-weight-bold
+      Bunk room: $740 per person
+      .text-muted (Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others)
 
 %h6
   Plan B:
-  %small.font-weight-bold $640 per person
+  .font-weight-bold $640 per person
   .text-muted Includes tuition and all meals, but not lodging for those who live in the Petoskey area. In addition, there are many hotels and motels available within twenty minutes of the conference for those who prefer greater privacy
 
 %hr.col-8
-%h6
+%h5
   Attending with a spouse/partner:
-  %small.text-muted
-    It is possible to include a spouse/partner when registering for any of the
-    options in Plan A or B for an additional fee:
-%ul
-  %li.font-weight-bold
-    $440 to attend the conference only
-  %li.font-weight-bold
-    $570 to attend the conference and readings
-%h6
-  %small.text-muted
-    Please do not register your spouse/partner separately unless they also wish
-    to attend the worshops. If your spouse/partner does want to attend the
-    workshops they will need to register separately. We also highly recommend
-    the "Private Room, Private Bath" option if you intend to bring your
-    spouse/partner.
+.h6
+  It is possible to include a spouse/partner when registering for any of the
+  options in Plan A or B for an additional fee:
+  %ul
+    %li.font-weight-bold
+      $440 to attend the conference only
+    %li.font-weight-bold
+      $570 to attend the conference and readings`
+.h6
+  Please do not register your spouse/partner separately unless they also wish
+  to attend the worshops. If your spouse/partner does want to attend the
+  workshops they will need to register separately. We also highly recommend
+  the "Private Room, Private Bath" option if you intend to bring your
+  spouse/partner.
 
 %h6 Plan A with a spouse/partner:
 
@@ -147,14 +147,29 @@
                           prompt: "Pick one")
 
   %h5 Lodging Selection:
+  -# %hr
+  -# .form-group.row
+  -#   = f.label :lodging_selection, class: 'col-sm-2 col-form-label col-form-label-sm required'
+  -#   = f.collection_select(:lodging_selection, Lodging.all, :id, :description,
+  -#                         prompt: "Pick one")
+
   %hr
-  .form-group.row
-    = f.label :lodging_selection, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    = f.collection_select(:lodging_selection, Lodging.all, :id, :description,
-                          prompt: "Pick one")
-  .form-group.row
-    = f.label :partner_registration_selection, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    = f.text_field :partner_registration_selection
+  .h6
+    = f.label 'Please select a room type:', class: 'required'
+  .form-group
+    = f.collection_radio_buttons(:lodging_selection, Lodging.all, :id, :description) do |b|
+      .form-check
+      = b.radio_button(class: "form-check-input ml-3")
+      = b.label(class: "form-check-label  ml-5")
+
+  .h6
+    = f.label 'Please indicate whether your registration includes a spouse/partner:', class: 'required'
+  .form-group
+    = f.collection_radio_buttons(:partner_registration_selection, PartnerRegistration.all.order(cost: :asc), :id, :description) do |b|
+      .form-check
+      = b.radio_button(class: "form-check-input ml-3")
+      = b.label(class: "form-check-label  ml-5")
+
   .form-row
     .form-group.col-md-4
       = f.label :partner_first_name
