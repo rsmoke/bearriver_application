@@ -53,19 +53,20 @@ form label.required:after
 //     float: left
 //
 //
-//   div.field_with_errors
-//     display: inline
-//     label
-//       color: $errors-text-color
-//
-//     input, textarea, select
-//       background: $errors-background-color
-//
-//
-//
-//   p
-//     input
-//       display: inline-block
-//
-//     a.button
-//       padding: 10px 15px
+#error_explanation
+  background-color: $errors-background-color
+  border: solid $errors-text-color 1px
+  border-radius: 4px
+  padding: 20px
+  li
+    color: $errors-text-color
+    font-size: 1.2rem
+    padding-bottom: 2px
+
+.field_with_errors
+  display: inline
+  label
+    color: $errors-text-color
+    max-width: 160px;
+  input, textarea, select
+    background: $errors-background-color
