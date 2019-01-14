@@ -14,6 +14,11 @@ private
 
   helper_method :current_user_admin?
 
+  def user_has_application?(user)
+    return true unless Application.find_by(user_id: user).nil?
+  end
+
+  helper_method :user_has_application?
 
   def contest_is_closed?
     return false unless ApplicationSetting.current_app_settings && ApplicationSetting.current_app_settings.opendate > Time.now
@@ -22,7 +27,7 @@ private
   end
 
   def contest_is_full?
-    if ApplicationSetting.current_app_settings.application_buffer < Payment.where(transactionStatus: "1").count
+    if ApplicationSetting.current_app_settings.application_buffer <= Payment.where(transactionStatus: "1").count
       redirect_to conference_full_url
     end
   end

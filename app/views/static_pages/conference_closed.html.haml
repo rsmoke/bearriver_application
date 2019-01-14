@@ -1,10 +1,10 @@
 %h1 Conference Registration is Closed
 %h4
   Dear Writers:
-  = "Registration for the #{@current_year} conference will open:"
+  = "Registration for the #{@app_settings.contest_year} conference will open:"
   %p.m-3
-    = @opens_at
-  Please go to the
+    = @app_settings.opendate
+  Please return to the
   = link_to "registration page", root_url
   after that date and time.
 

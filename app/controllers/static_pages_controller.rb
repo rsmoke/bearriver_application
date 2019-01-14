@@ -19,8 +19,6 @@ class StaticPagesController < ApplicationController
   end
 
   def conference_closed
-    @current_year = @app_settings.contest_year
-    @opens_at = @app_settings.opendate
   end
 
   def conference_full

@@ -1,23 +1,30 @@
 - provide(:title, 'Home')
 
-%h1 Bearriver Conference Registration
+%h1 Bear River Conference Registration
 
 = "Time Now #{Time.now}"
 
 - if user_signed_in?
-  %h4
-    After you complete your application you will be redirected to our credit
-    card processing page where you will be asked to make your deposit payment
-    of $100. Payments are securely processed via
-    %em
-      Quickpay,
-    the preferred gateway
-    service provider of the University of Michigan.
+  - if user_has_application?(current_user)
+    %h4
+      You already filled out an application. We will contact you with further instructions.
+      %br
+      Return to the
+      = link_to "Bear River site", "https://lsa.umich.edu/bearriver", class: 'btn btn-sm btn-info'
+  - else
+    %h4
+      After you complete your application you will be redirected to our credit
+      card processing page where you will be asked to make your deposit payment
+      of $100. Payments are securely processed via
+      %em
+        Quickpay,
+      the preferred gateway
+      service provider of the University of Michigan.
 
-    %h5 A non-refundable deposit of $100 is required to complete your registration
-  .row.justify-content-center
-    .col-2
-      = link_to 'Apply', new_application_path, class: 'btn btn-success'
+      %h5 A non-refundable deposit of $100 is required to complete your registration
+    .row.justify-content-center
+      .col-2
+        = link_to 'Apply', new_application_path, class: 'btn btn-success'
 - else
   %h4
     You are required to have an account before you can register for
