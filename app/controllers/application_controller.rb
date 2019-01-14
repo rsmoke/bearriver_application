@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_filter :block_foreign_hosts
+
 private
   def require_admin
     unless current_user_admin?
@@ -23,5 +25,11 @@ private
     if ApplicationSetting.current_app_settings.application_buffer < Payment.where(transactionStatus: "1").count
       redirect_to conference_full_url
     end
+  end
+
+
+  def block_foreign_hosts
+    return false unless request.remote_ip.start_with?("141.213")
+    redirect_to "https://www.umich.edu"
   end
 end
