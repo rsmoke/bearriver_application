@@ -1,0 +1,15 @@
+%h1 Conference Registration is Closed
+%h4
+  Dear Writers:
+  = "Registration for the #{@current_year} conference will open:"
+  %p.m-3
+    = @opens_at
+  Please go to the
+  = link_to "registration page", root_url
+  after that date and time.
+
+  %br
+  %br
+  Thank you.
+  %br
+  The Bear River Staff

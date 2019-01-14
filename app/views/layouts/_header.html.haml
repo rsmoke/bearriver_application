@@ -19,27 +19,15 @@
         %p.navbar-text.pull-right
           - if user_signed_in?
             Logged in as
-            = succeed "." do
-              = current_user.email
-              %br
-              = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+            = current_user.email
+            %br
+            = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+            |
+            \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+            - if current_user.try(:admin?)
               |
-              \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+              \#{link_to "Admin", application_settings_path, :class => 'navbar-link'}
           - else
             = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
             |
             \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}
-
-
-          -# Use for login/logout control
-          -# - if logged_in?
-          -#   %li.nav-item.dropdown
-          -#     %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          -#       Your Account
-          -#       -# %b.caret
-          -#     %ul.dropdown-menu
-          -#       %li.nav-item
-          -#         = link_to "Transactions", current_user, :class => 'nav-link nav-link-header'
-          -#       %li.divider{:role => "separator"}
-          -#       %li.nav-item
-          -#         = link_to "Log out", logout_path, method: :delete, :class => 'nav-link nav-link-header'
