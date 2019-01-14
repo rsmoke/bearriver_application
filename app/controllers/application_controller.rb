@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :block_foreign_hosts
+  before_action :block_foreign_hosts
 
 private
   def require_admin
@@ -29,7 +29,6 @@ private
 
 
   def block_foreign_hosts
-    return false unless request.remote_ip.start_with?("141.213")
-    redirect_to "https://www.umich.edu"
+    redirect_to "https://www.umich.edu" unless request.remote_ip.start_with?("141.213")
   end
 end
