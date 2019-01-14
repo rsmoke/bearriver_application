@@ -1,0 +1,25 @@
+%h1 Listing of Application Settings
+
+%article
+  - @application_settings.each do |application_setting|
+    .card{:style => "width: 18rem;"}
+      .card-body.d-flex.flex-column
+        %h5.card-title
+          = application_setting.contest_year
+        %ul.list-group.list-group-flush
+          %li.list-group-item
+            Application will open on:
+            .font-weight-bold
+              = application_setting.opendate
+          %li.list-group-item
+            Maximum number of applications with deposits before application
+            switches:
+            .font-weight-bold
+              = application_setting.application_buffer
+        .align-self-center.mt-2{"aria-label" => "Manage Application Setting", :role => "group"}
+          = link_to 'Edit', edit_application_setting_path(application_setting), class: 'btn btn-sm btn-warning'
+          = link_to 'Delete', application_setting, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-link'
+
+
+%hr.col-4
+= link_to 'Setup a New Application', new_application_setting_path, class: 'btn btn-sm btn-light'
