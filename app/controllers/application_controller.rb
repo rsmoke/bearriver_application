@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :block_foreign_hosts
+  before_action :block_foreign_hosts
 
 private
   def require_admin
