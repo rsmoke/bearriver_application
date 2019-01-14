@@ -28,7 +28,13 @@ private
   end
 
   def block_foreign_hosts
-      redirect_to "https://www.umich.edu" unless request.remote_ip.start_with?("141.213")
+    if request.remote_ip == '::1'
+      return false
+    elsif request.remote_ip.start_with?("141.213")
+      return false
+    else
+      redirect_to "https://www.umich.edu"
+    end
   end
 
 end
