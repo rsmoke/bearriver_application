@@ -18,7 +18,7 @@ private
   def contest_is_closed?
     return false unless ApplicationSetting.current_app_settings && ApplicationSetting.current_app_settings.opendate > Time.now
       redirect_to conference_closed_url
-    end
+
   end
 
   def contest_is_full?
@@ -27,17 +27,8 @@ private
     end
   end
 
-  # def block_foreign_hosts
-  #   redirect_to "https://www.umich.edu" unless request.remote_ip.start_with?("141.213")
-  # end
-
-  def whitelisted?(ip)
-    return true if [141.211.27.245].include?(ip)
-    false
-  end
-
   def block_foreign_hosts
-    return false if whitelisted?(request.remote_ip)
-    redirect_to "https://www.umich.edu" unless request.remote_ip.start_with?("141.213.")
+      redirect_to "https://www.umich.edu" unless request.remote_ip.start_with?("141.213")
   end
+
 end
