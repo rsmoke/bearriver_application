@@ -26,6 +26,7 @@ class ApplicationsController < ApplicationController
   # GET /applications/new
   def new
     @application = Application.new
+    @lodgings = Lodging.all
   end
 
   # GET /applications/1/edit
