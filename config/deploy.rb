@@ -81,13 +81,21 @@ namespace :deploy do
   end
 
   desc 'Upload to shared/config'
-   task :upload do
-   on roles (:app) do
+  task :upload do
+    on roles (:app) do
      upload! "config/master.key",  "#{shared_path}/config/master.key"
      upload! "config/puma_prod.rb",  "#{shared_path}/config/puma.rb"
      upload! "config/nginx_prod.conf",  "#{shared_path}/config/nginx.conf"
-   end
+    end
   end
+
+
+  desc "reload the database with seed data"
+  task :seed do
+    puts "Seeding db with seed file located at db/seeds.rb"
+    run "cd #{current_path}; bin/rails db:seed RAILS_ENV=#{rails_env}"
+  end
+
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
