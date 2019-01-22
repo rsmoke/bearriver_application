@@ -95,12 +95,33 @@ Lodging.create!([
     description: 'Semi-Private Room and Shared Bath',
     cost: '850.0'
   },
-  {  plan: 'A',
+  {
+    plan: 'A',
     description: 'Bunk Room',
     cost: '740.0'
   },
-  { plan: 'B',
+  {
+    plan: 'B',
     description: 'No Lodging',
     cost: '645.0'
+  }
+])
+
+PartnerRegistration.create!([
+  {
+    description: 'My spouse/partner will not be attending the workshops, but will attend the conference AND readings',
+    cost: '570.0'
+  },
+  {
+    description: 'My spouse/partner will not be attending the workshops, but will attend the conference',
+    cost: '440.0'
+  },
+  {
+    description: 'I am attending the conference alone.',
+    cost: '0.0'
+  },
+  {
+    description: 'My spouse/partner will be registering separately for the conference and workshops.',
+    cost: '0.0'
   }
 ])
