@@ -2,6 +2,7 @@ class ApplicationsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :get_lodgings
 
   # GET /applications
   # GET /applications.json
@@ -26,7 +27,6 @@ class ApplicationsController < ApplicationController
   # GET /applications/new
   def new
     @application = Application.new
-    @lodgings = Lodging.all
   end
 
   # GET /applications/1/edit
@@ -84,5 +84,9 @@ class ApplicationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
       params.require(:application).permit(:first_name, :last_name, :gender, :birth_year, :street, :street2, :city, :state, :zip, :country, :phone, :email, :email_confirmation, :workshop_selection1, :workshop_selection2, :workshop_selection3, :lodging_selection, :partner_registration_selection, :partner_first_name, :partner_last_name, :how_did_you_hear, :accessibility_requirements, :special_lodging_request, :food_restrictions, :user_id)
+    end
+
+    def get_lodgings
+      @lodgings = Lodging.all
     end
 end
