@@ -32,5 +32,11 @@ yarn-debug.log*
 .yarn-integrity
 /working_files
 
-# add .idea files
+# Ignore simplecov results
+coverage
+
+# Ignore better errors config
+config/initializers/better_errors.rb
+
+# ignore rubymine bits
 .idea

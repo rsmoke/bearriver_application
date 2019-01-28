@@ -32,9 +32,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   # gem 'shoulda-matchers'
   gem "capybara"
-  gem 'selenium-webdriver', '~> 3.141'
-  gem "chromedriver-helper"
   gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -45,7 +45,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'meta_request'
-
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'meta_request'
   gem 'capistrano',         require: false
   gem 'capistrano-rbenv',   require: false
   gem 'capistrano-postgresql'
