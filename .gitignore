@@ -31,3 +31,6 @@
 yarn-debug.log*
 .yarn-integrity
 /working_files
+
+# add .idea files
+.idea
