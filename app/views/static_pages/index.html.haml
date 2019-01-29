@@ -2,7 +2,7 @@
 
 %h1 Bear River Conference Registration
 
-= "Time Now #{Time.now}"
+= "Time Now #{Time.now.to_s(:special_date)}"
 
 - if user_signed_in?
   - if user_has_application?(current_user)

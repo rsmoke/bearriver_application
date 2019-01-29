@@ -3,7 +3,7 @@
   Dear Writers:
   = "Registration for the #{@app_settings.contest_year} conference will open:"
   %p.m-3
-    = @app_settings.opendate
+    = @app_settings.opendate.to_s(:special_date)
   Please return to the
   = link_to "registration page", root_url
   after that date and time.
