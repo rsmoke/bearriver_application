@@ -2,17 +2,17 @@ class ApplicationController < ActionController::Base
   before_action :block_foreign_hosts
 
 private
-  def require_admin
-    unless current_user_admin?
-      redirect_to root_url, alert: "Unauthorized access!"
-    end
-  end
-
-  def current_user_admin?
-    current_user && current_user.admin?
-  end
-
-  helper_method :current_user_admin?
+  # def require_admin
+  #   unless current_user_admin?
+  #     redirect_to root_url, alert: "Unauthorized access!"
+  #   end
+  # end
+  #
+  # def current_user_admin?
+  #   current_user && current_user.admin?
+  # end
+  #
+  # helper_method :current_user_admin?
 
   def user_has_application?(user)
     return true unless Application.find_by(user_id: user).nil?
@@ -22,8 +22,10 @@ private
 
   def contest_is_closed?
     return false unless ApplicationSetting.current_app_settings && ApplicationSetting.current_app_settings.opendate > Time.now
-      redirect_to conference_closed_url
-
+    redirect_to conference_closed_url
+  rescue
+    # code that deals with some exception
+    redirect_to conference_closed_url
   end
 
   def contest_is_full?

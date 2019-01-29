@@ -9,11 +9,6 @@
 
 Workshop.create!([
   {
-    instructor: 'Laura Kasischke',
-    first_name: 'Laura',
-    last_name: 'Kasischke'
-  },
-  {
     instructor: 'X.J. Kennedy',
     first_name: 'X.J.',
     last_name: 'Kennedy'
@@ -44,16 +39,6 @@ Workshop.create!([
     last_name: 'Wing'
   },
   {
-    instructor: 'Polly Rosenwaike',
-    first_name: 'Polly',
-    last_name: 'Rosenwaike'
-  },
-  {
-    instructor: 'Cody Walker',
-    first_name: 'Cody',
-    last_name: 'Walker'
-  },
-  {
     instructor: 'Desiree Cooper',
     first_name: 'Desiree',
     last_name: 'Cooper'
@@ -77,11 +62,6 @@ Workshop.create!([
     instructor: 'Douglas Trevor',
     first_name: 'Douglas',
     last_name: 'Trevor'
-  },
-  {
-    instructor: 'Eric McHenry',
-    first_name: 'Eric',
-    last_name: 'McHenry'
   }
 ])
 Lodging.create!([
@@ -123,5 +103,14 @@ PartnerRegistration.create!([
   {
     description: 'My spouse/partner will be registering separately for the conference and workshops.',
     cost: '0.0'
+  }
+])
+
+ApplicationSetting.create!([
+  {
+    opendate: Time.now,
+    application_buffer: 50,
+    contest_year: Time.now.year,
+    time_zone: "EST",
   }
 ])

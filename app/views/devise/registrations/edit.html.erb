@@ -31,13 +31,6 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <% if current_user.try(:admin?) %>
-    <div class="field">
-      <%= f.check_box :admin %>
-      <%= f.label :admin, "Admin?" %> <i>(is the user an admin?)</i><br />
-    </div>
-  <% end %>
-
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
