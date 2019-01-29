@@ -10,22 +10,22 @@
       #   Rails.logger.warn "Param #{key}: #{value}"
       # end
       Payment.create(
-        transactionType: params['transactionType'],
-        transactionStatus: params['transactionStatus'],
-        transactionId: params['transactionId'],
-        transactionTotalAmount: params['transactionTotalAmount'],
-        transactionDate: params['transactionDate'],
-        transactionAcountType: params['transactionAcountType'],
-        transactionResultCode: params['transactionResultCode'],
-        transactionResultMessage: params['transactionResultMessage'],
-        orderNumber: params['orderNumber'],
-        payerFullName: @current_user.email,
+        transaction_type: params['transactionType'],
+        transaction_status: params['transactionStatus'],
+        transaction_id: params['transactionId'],
+        total_amount: params['transactionTotalAmount'],
+        transaction_date: params['transactionDate'],
+        account_type: params['transactionAcountType'],
+        result_code: params['transactionResultCode'],
+        result_message: params['transactionResultMessage'],
+        user_account: params['orderNumber'],
+        payer_identity: @current_user.email,
         timestamp: params['timestamp'],
-        transactionHash: params['hash'],
+        transaction_hash: params['hash'],
         user_id: current_user.id
       )
 
-      @current_payment = Payment.find_by(transactionId: params[:transactionId])
+      @current_payment = Payment.find_by(transaction_id: params[:transactionId])
 
     end
 
@@ -36,7 +36,7 @@
 
     private
       def generate_hash(current_user)
-        order_num = current_user.email.partition('@').first + '-' + current_user.id.to_s
+        user_account = current_user.email.partition('@').first + '-' + current_user.id.to_s
         redirect_url = 'https://lsa-english-bearriver.miserver.it.umich.edu/payment_receipt'
         amount_to_be_payed = 100
         if Rails.env.development? || current_user.id == 1
@@ -55,7 +55,7 @@
         }
         current_epoch_time = DateTime.now.strftime("%Q").to_i
         initial_hash = {
-          'orderNumber' => order_num,
+          'orderNumber' => user_account,
           'orderType' => 'English Department Online',
           'orderDescription' => 'Bearriver Conference Fees',
           'amountDue' => amount_to_be_payed * 100,

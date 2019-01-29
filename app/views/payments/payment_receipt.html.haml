@@ -2,14 +2,14 @@
 
 %h2 Your payment information
 %h4
-  = @current_payment.transactionResultMessage
+  = @current_payment.result_message
 
 %h5
   = "#{current_user.email},"
 %p
   Your payment of the Bearriver Application fee (
   %span.font-weight-bold Confirmation Number:
-  = @current_payment.transactionId
+  = @current_payment.transaction_id
   ) has been recorded into your account"
 
 .card{:style => "width: 18rem;"}
@@ -18,14 +18,14 @@
   %ul.list-group.list-group-flush
     %li.list-group-item
       %span.font-weight-bold Date:
-      = Time.parse(@current_payment.transactionDate).strftime("%B %e, %Y at %l:%M %p")
+      = Time.parse(@current_payment.transaction_date).strftime("%B %e, %Y at %l:%M %p")
     %li.list-group-item
       %span.font-weight-bold Amount:
       = format_total_payment(@current_payment)
 
     %li.list-group-item
       %span.font-weight-bold Credit Card:
-      = @current_payment.transactionAcountType
+      = @current_payment.account_type
 
 %p.text-muted
   You will also receive an email confirmation from 'MerchantCreditCard&#64;umich.edu'

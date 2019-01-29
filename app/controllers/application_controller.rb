@@ -27,13 +27,13 @@ private
   end
 
   def contest_is_full?
-    if ApplicationSetting.current_app_settings.application_buffer <= Payment.where(transactionStatus: "1").count
+    if ApplicationSetting.current_app_settings.application_buffer <= Payment.where(transaction_status: "1").count
       redirect_to conference_full_url
     end
   end
 
   def block_foreign_hosts
-    if request.remote_ip == '::1'
+    if Rails.env.development?
       return false
     elsif request.remote_ip.start_with?("141.213")
       return false
