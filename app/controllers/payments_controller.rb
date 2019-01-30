@@ -6,9 +6,6 @@
     before_action :current_user,   only: %i[payment_receipt make_payment]
 
     def payment_receipt
-      # params.each do |key,value|
-      #   Rails.logger.warn "Param #{key}: #{value}"
-      # end
       Payment.create(
         transaction_type: params['transactionType'],
         transaction_status: params['transactionStatus'],
@@ -30,15 +27,15 @@
     end
 
     def make_payment
-      processed_url = generate_hash(@current_user)
+      processed_url = generate_hash(@current_user, params['amount'])
       redirect_to processed_url
     end
 
     private
-      def generate_hash(current_user)
+      def generate_hash(current_user, amount=100)
         user_account = current_user.email.partition('@').first + '-' + current_user.id.to_s
         redirect_url = 'https://lsa-english-bearriver.miserver.it.umich.edu/payment_receipt'
-        amount_to_be_payed = 100
+        amount_to_be_payed = amount.to_i
         if Rails.env.development? || current_user.id == 1
            key_to_use = 'test_key'
            url_to_use = 'test_URL'
@@ -76,6 +73,6 @@
       end
 
       def url_params
-        params.permit(:transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash)
+        params.permit(:amount, :transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash)
       end
   end
