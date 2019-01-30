@@ -1,0 +1,26 @@
+- provide(:title, 'Payment Receipts')
+
+%h2 Your Payment Receipts
+- if @users_current_payments.count < 1
+  %h6 You have not made a payement yet
+- else
+  %h6
+    = "You have paid a total of #{pluralize(number_to_currency(@ttl_paid), 'dollar')} "
+  .row
+    .card-deck.ml-4
+    - @users_current_payments.each do |payment|
+      .card
+        .card-header
+          Transaction:
+          =payment.transaction_id
+        .card-body
+          %li.list-group-item
+            Credit Card:
+            =payment.account_type
+          %li.list-group-item
+            Amount:
+            ="#{number_to_currency(payment.total_amount.to_f / 100 )}"
+          %li.list-group-item
+            Date:
+            %br
+            = Time.parse(payment.transaction_date).strftime("%b %e, %Y at %l:%M %p")
