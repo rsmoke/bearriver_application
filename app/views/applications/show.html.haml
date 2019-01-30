@@ -99,11 +99,12 @@
   Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
   %small.text-muted Upon submission of this form you will be redirected to our credit card processing page where you will be asked to make your deposit payment of $100. Payments are securely processed via QuikPAY, the preferred gateway service provider of the University of Michigan. QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No credit card information is stored on our servers.
 
-= link_to 'Confirm and Pay Deposit', make_payment_path, class: 'btn btn-success'
+= button_to 'Confirm and Pay Deposit', make_payment_path, params: {amount: 100}, class: 'btn btn-success'
 
 %hr
 %h5
   Cancel Registration
   %small.text-muted A non-refundable deposit payment is required to complete your registration. If you are not prepared to make a payment at this time, please use the option below to cancel your registration and complete this process at a later date.
 
-= link_to 'Cancel', root_path, class: 'btn btn-danger'
+-# = link_to 'Cancel', root_path, class: 'btn btn-danger'
+= link_to 'Delete', application_path(@application), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
