@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :applications
+      resources :application_settings
+      resources :lodgings
+      resources :partner_registrations
+      resources :payments
+      resources :workshops
+
+      root to: "users#index"
+    end
   devise_for :users
   root 'static_pages#index'
 

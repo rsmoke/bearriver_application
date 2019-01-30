@@ -20,10 +20,4 @@ class Application < ApplicationRecord
   HOW_DID_YOU_HEAR = ['Word of Mouth', 'Magazine Advertisement', 'Online Advertisement', 'Newspaper Advertisement', 'Other']
 
   belongs_to :user
-  # has_many :enrollments, dependent: :destroy
-  # has_many :workshops, through: :enrollments
-
-  # has_one :reservation, dependent: :destroy
-  # has_one :lodging, through: :reservation
-
 end
