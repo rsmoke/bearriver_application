@@ -9,11 +9,6 @@
 
 Workshop.create!([
   {
-    instructor: 'X.J. Kennedy',
-    first_name: 'X.J.',
-    last_name: 'Kennedy'
-  },
-  {
     instructor: 'Jerry Dennis',
     first_name: 'Jerry',
     last_name: 'Dennis'
