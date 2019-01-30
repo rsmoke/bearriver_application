@@ -1,12 +1,10 @@
 - provide(:title, 'Payment Receipt')
 
-%h2 Your payment information
+%h2 Your Payment Information
 %h4
   = @current_payment.result_message
 
-%h5
-  = "#{current_user.email},"
-%p
+%h6
   Your payment of the Bearriver Application fee (
   %span.font-weight-bold Confirmation Number:
   = @current_payment.transaction_id
