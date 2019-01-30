@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'static_pages#index'
 
-  resources :payments
+  # resources :payments
   resources :applications
   resources :lodgings
   resources :workshops
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/conference_full', to: 'static_pages#conference_full'
 
   get 'payment_receipt', to: 'payments#payment_receipt'
+  get 'payment_show', to: 'payments#payment_show', as: 'all_payments'
   get 'make_payment', to: 'payments#make_payment'
   post 'make_payment', to: 'payments#make_payment'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
