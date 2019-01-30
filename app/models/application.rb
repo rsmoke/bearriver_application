@@ -10,7 +10,7 @@ class Application < ApplicationRecord
   validates :zip, presence: true
   validates :country, presence: true
   validates :phone, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :workshop_selection1, presence: true
   validates :workshop_selection2, presence: true
   validates :workshop_selection3, presence: true
