@@ -42,7 +42,7 @@ class ApplicationsController < ApplicationController
     @application.user = current_user
     respond_to do |format|
       if @application.save
-        format.html { redirect_to @application, notice: 'Application was successfully created.' }
+        format.html { redirect_to @application, notice: 'Confirm Your Application Details.' }
         format.json { render :show, status: :created, location: @application }
       else
         format.html { render :new }
@@ -70,7 +70,7 @@ class ApplicationsController < ApplicationController
   def destroy
     @application.destroy
     respond_to do |format|
-      format.html { redirect_to applications_url, notice: 'Application was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Application was successfully deleted.' }
       format.json { head :no_content }
     end
   end
