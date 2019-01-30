@@ -93,7 +93,7 @@ namespace :deploy do
   desc "reload the database with seed data"
   task :seed do
     puts "Seeding db with seed file located at db/seeds.rb"
-    run "cd #{current_path}; bin/rails db:seed RAILS_ENV=#{rails_env}"
+    run "cd #{current_path}; bin/rails db:seed RAILS_ENV=#{stage}"
   end
 
 
