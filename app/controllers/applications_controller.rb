@@ -7,13 +7,13 @@ class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
   def index
+    redirect_to root_url unless current_user_admin?
     @applications = Application.all
   end
 
   # GET /applications/1
   # GET /applications/1.json
   def show
-    # @workshops = @application.workshops
     @workshop1 = Workshop.find(@application.workshop_selection1).instructor
     @workshop2 = Workshop.find(@application.workshop_selection2).instructor
     @workshop3 = Workshop.find(@application.workshop_selection3).instructor
@@ -31,7 +31,6 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/1/edit
   def edit
-    @application = Application.find(params[:id])
   end
 
   # POST /applications
@@ -79,6 +78,7 @@ class ApplicationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_application
       @application = Application.find(params[:id])
+      redirect_to root_url, alert: 'Not Authorized!' unless @application.user === current_user || current_user_admin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
