@@ -28,8 +28,7 @@
           transaction_hash: params['hash'],
           user_id: current_user.id
         )
-
-        @current_payment = Payment.find_by(transaction_id: params[:transactionId])
+        redirect_to all_payments_path, notice: "Your Payment Was Successfully Recorded"
       end
     end
 
@@ -39,9 +38,8 @@
     end
 
     def payment_show
-      @users_current_payments = Payment.where(user_id: current_user, transaction_status: '1' )
-      @ttl_paid = Payment.where(user_id: current_user).pluck(:total_amount).map(&:to_f).sum / 100
-      # @all_payments = current_user.payments
+      @users_current_payments = Payment.where(user_id: current_user )
+      @ttl_paid = Payment.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
     end
 
     private
