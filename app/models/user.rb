@@ -6,5 +6,5 @@ class User < ApplicationRecord
          :validatable
 
   has_many :payments, dependent: :destroy
-  has_many :applications, dependent: :destroy
+  has_one :application #, dependent: :destroy
 end
