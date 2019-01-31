@@ -6,17 +6,21 @@
 - else
   %h6
     = "You have paid a total of #{pluralize(number_to_currency(@ttl_paid), 'dollar')} "
-  .row
-    .card-deck.ml-4
+
+  .card-deck
     - @users_current_payments.each do |payment|
-      .card
-        .card-header
-          Transaction:
+      .card{:class => ('border-danger' unless payment.transaction_status === "1")}
+        %h6.card-header
+          Transaction ID:
           =payment.transaction_id
-        .card-body
+        %ul.list-group.list-group-flush
           %li.list-group-item
             Credit Card:
             =payment.account_type
+          %li.list-group-item{:class => ('text-danger' unless payment.transaction_status === "1")}
+            Message:
+            %br
+            =payment.result_message
           %li.list-group-item
             Amount:
             ="#{number_to_currency(payment.total_amount.to_f / 100 )}"
@@ -24,3 +28,10 @@
             Date:
             %br
             = Time.parse(payment.transaction_date).strftime("%b %e, %Y at %l:%M %p")
+
+  %p.text-muted
+    You will receive an email confirmation from
+    'MerchantCreditCard&#64;umich.edu' for each transaction.
+  %h6.mt-4
+    If you have any questions please contact
+    = mail_to "bearriver-questions@umich.edu"
