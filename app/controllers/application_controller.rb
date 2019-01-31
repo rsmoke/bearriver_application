@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   # before_action :block_foreign_hosts
+  include AdminHelper
 
 private
   # def require_admin
@@ -29,7 +30,8 @@ private
   end
 
   def contest_is_full?
-    if ApplicationSetting.current_app_settings.application_buffer <= Payment.where(transaction_status: "1").count
+    # if ApplicationSetting.current_app_settings.application_buffer <= Payment.where(transaction_status: "1").count
+    if ApplicationSetting.current_app_settings.application_buffer <= Application.count
       redirect_to conference_full_url
     end
   end
