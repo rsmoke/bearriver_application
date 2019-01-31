@@ -7,7 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     include AdminHelper
-
+    # before_action :authenticate_admin
     before_action :authenticate_user!
     before_action :require_admin
 
