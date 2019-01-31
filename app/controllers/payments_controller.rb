@@ -5,6 +5,10 @@
     before_action :authenticate_user!
     before_action :current_user,   only: %i[payment_receipt make_payment payment_show]
 
+    def index
+      redirect_to root_url
+    end
+
     def payment_receipt
       if Payment.pluck(:transaction_id).include?(params['transactionId'])
         redirect_to all_payments_path
