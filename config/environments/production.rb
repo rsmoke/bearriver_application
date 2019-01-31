@@ -37,6 +37,21 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
+
+  # According to Rails Documentation, available log levels are:
+  # :debug, :info, :warn, :error, :fatal, and :unknown.
+  # Corresponding to these log level we can use numbers from 0 to 5 respectively.
+  #
+  # To set the log level, use
+  # config.log_level = :warn  #use on production for a stable release
+  # or
+  #
+  # Rails.logger.level = 0   # for debug
+  # Generally the logfiles in production can be use at debug level but once you release or get to a stable version, since we do not want our logfiles to flood our space, we should move it to :warn or :error log level
+  #
+  # config.log_level = :error  #use on production for a stable release
+  # For more info you can check documentation here
+
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
