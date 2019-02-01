@@ -32,9 +32,11 @@ class PaymentDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :user,
     :id,
-    :transaction_type,
+    :user,
+    :total_amount,
+    :transaction_date,
+    # :transaction_type,
     :transaction_status,
   ].freeze
 
@@ -64,10 +66,10 @@ class PaymentDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :user,
+    :total_amount,
     :transaction_type,
     :transaction_status,
     :transaction_id,
-    :total_amount,
     :transaction_date,
     :account_type,
     :result_code,

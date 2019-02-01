@@ -44,10 +44,11 @@ class ApplicationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :user,
-    :id,
     :first_name,
     :last_name,
+    :email,
+    # :user,
+    :id,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -100,7 +101,7 @@ class ApplicationDashboard < Administrate::BaseDashboard
     :country,
     :phone,
     :email,
-    :email_confirmation,
+    # :email_confirmation,
     :workshop_selection1,
     :workshop_selection2,
     :workshop_selection3,
@@ -120,4 +121,7 @@ class ApplicationDashboard < Administrate::BaseDashboard
   # def display_resource(application)
   #   "Application ##{application.id}"
   # end
+  def display_resource(application)
+    "#{application.first_name} #{application.last_name}"
+  end
 end

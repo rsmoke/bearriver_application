@@ -24,7 +24,7 @@ class PartnerRegistrationDashboard < Administrate::BaseDashboard
     :id,
     :description,
     :cost,
-    :created_at,
+    # :created_at,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
