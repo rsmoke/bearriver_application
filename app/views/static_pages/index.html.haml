@@ -2,7 +2,8 @@
 
 %h1 Bear River Conference Registration
 
-= "Time Now #{Time.now.to_s(:special_date)}"
+%h6.pl-3
+  = "Time Now #{Time.now.to_s(:special_date)}"
 %hr.w-75
 
 - if user_signed_in?
@@ -29,9 +30,11 @@
         = link_to 'Apply', new_application_path, class: 'btn btn-success'
 - else
   %h6
-    You are required to have an account before you can register for
-    the conference. Please click the Sign up button to enter your email address
-    and a password.
+    You are required to have an account to register for
+    the conference.
+    %br
+    Please click the Sign up button and enter your email address
+    and create a password.
   .row.justify-content-center
     .col-4
       = link_to "Sign up", new_user_registration_path, class: 'btn btn-primary'
