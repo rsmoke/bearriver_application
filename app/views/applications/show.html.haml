@@ -2,7 +2,15 @@
   %h3 Confirm your information
 - else
   %h3 Your Application
+  %h6.mt-4
+    Thank you for your Bear River Writers' Conference Registration. In March,
+    you will be emailed with your workshop and housing placement. You will also
+    be sent a prompt to continue paying your conference dues at that time.
+    Registrants have until Tuesday, April 30, 2019 to pay your conference balance
+    in full. You may email any questions to
+    = mail_to "bearriver-questions@umich.edu"
 
+%hr.w-75
 .h5 Registration Details:
 %p
   %b First name:
@@ -95,27 +103,48 @@
 - if @application.user.payments.size < 1
   %h6
     NOTE:
-    %small.text-muted If you need to make a correction, please use the edit button below to return to the form.
+    %small.text-muted If you need to make a correction, please use the edit
+    button below to return to the form.
   = link_to 'Edit', edit_application_path(@application), class: 'btn btn-sm btn-warning'
 
   %hr
-  %h6
-    Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
-    %small.text-muted Upon submission of this form you will be redirected to our credit card processing page where you will be asked to make your deposit payment of $100. Payments are securely processed via QuikPAY, the preferred gateway service provider of the University of Michigan. QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No credit card information is stored on our servers.
+  - if application_quota_full?
+    %h5
+      Dear Writer: We have had an unprecedented demand for the Bear River
+      conference this year. We are sorry to say that the
+      = "#{@application_settings.contest_year} Bear River Writers' Conference is full."
+    %h5
+      Thank you for your interest and your completed application has been
+      added to our waitlist. The conference coordinators will contact you if
+      space becomes available.
+    %h5
+      Return to the
+      = link_to 'Bear River', 'https://lsa.umich.edu/bearriver/'
+      conference site.
+  - else
+    %h6
+      Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
+      %small.text-muted Upon submission of this form you will be redirected to
+      our credit card processing page where you will be asked to make your
+      non-refundable deposit payment of $100. Payments are securely processed via QuikPAY,
+      the preferred gateway service provider of the University of Michigan.
+      QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
+      credit card information is stored on our servers.
 
-  = button_to 'Confirm and Pay Deposit', make_payment_path, params: {amount: 100}, class: 'btn btn-success'
+    = button_to 'Confirm and Pay Deposit', make_payment_path, params: {amount: 100}, class: 'btn btn-success'
 
   %hr
   %h6
     Cancel Registration
     .text-muted
-      A non-refundable deposit payment is required to complete your registration.
-      %small If you are not prepared to make a payment at this time, please use the option below to cancel your registration and complete this process at a later date.
+      If you are not prepared to submit your application at this time, please
+      use the option below to cancel your registration.
 
   -# = link_to 'Cancel', root_path, class: 'btn btn-danger'
   = link_to 'Delete', application_path(@application), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
 - else
   %h6.mt-4
-    If you have any questions or would to request a change to your application selections please contact
+    Note: If you have any questions or would like to request a change to your
+    application selections please contact the conference coordinators at
     = mail_to "bearriver-questions@umich.edu"
