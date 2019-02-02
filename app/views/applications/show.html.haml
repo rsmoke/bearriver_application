@@ -1,4 +1,7 @@
-%h3 Confirm your information
+- if @application.user.payments.size < 1
+  %h3 Confirm your information
+- else
+  %h3 Your Application
 
 .h5 Registration Details:
 %p
@@ -88,13 +91,13 @@
   %b Food restrictions:
   = @application.food_restrictions
 
-%br
-%h6
-  NOTE:
-  %small.text-muted If you need to make a correction, please use the edit button below to return to the form.
-= link_to 'Edit', edit_application_path(@application), class: 'btn btn-sm btn-warning'
-
+%hr
 - if @application.user.payments.size < 1
+  %h6
+    NOTE:
+    %small.text-muted If you need to make a correction, please use the edit button below to return to the form.
+  = link_to 'Edit', edit_application_path(@application), class: 'btn btn-sm btn-warning'
+
   %hr
   %h6
     Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
@@ -111,3 +114,8 @@
 
   -# = link_to 'Cancel', root_path, class: 'btn btn-danger'
   = link_to 'Delete', application_path(@application), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+- else
+  %h6.mt-4
+    If you have any questions or would to request a change to your application selections please contact
+    = mail_to "bearriver-questions@umich.edu"
