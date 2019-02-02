@@ -2,11 +2,10 @@
 %h4
   Dear Writers: We have had an unprecedented demand for the Bear River
   conference this year. We are sorry to say that the
-  = @app_settings.contest_year
+  = @application_settings.contest_year
   Bear River Writers'
   Conference is full.
 
-%br
 %br
 %h6
   Please email us at
@@ -14,15 +13,19 @@
   if you would like to be placed on our waitlist. You will be notified first
   come, first served of any openings.
 
-  %br
-  %br
+%h6
   NOTE: Please do NOT email the
-  = mail_to "beariver@umich.edu"
+  = mail_to "bearriver@umich.edu"
   address or any other Bear River addresses as we cannot guarantee a response
   from those addresses.
 
-  %br
-  %br
+%h6
   Thank you.
   %br
   The Bear River Staff
+  
+%hr.w-75
+%h6
+  Return to the
+  = link_to 'Bear River', 'https://lsa.umich.edu/bearriver/'
+  conference site.
