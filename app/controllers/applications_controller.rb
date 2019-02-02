@@ -27,6 +27,9 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/new
   def new
+    if application_quota_full?
+      redirect_to conference_full_url unless user_has_payments?(current_user)
+    end
     @application = Application.new
   end
 
