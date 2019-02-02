@@ -14,18 +14,20 @@
             = link_to "Privacy", privacy_path, :class => 'nav-link'
           %li.nav-item
             = link_to "Terms of Use", terms_of_service_path, :class => 'nav-link'
-
-
+          - if user_signed_in?
+            %li.nav-item.dropdown
+              %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Your Details
+              .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
+                = link_to "Your Payments", all_payments_path, class: 'dropdown-item'
+                = link_to 'Your Application', application_path(current_user.application), class: 'dropdown-item'
+                = link_to 'Your Account', edit_user_registration_path, class: 'dropdown-item'
         %p.navbar-text.pull-right
           - if user_signed_in?
             Logged in as
             = current_user.email
             %br
-            = link_to 'Your Account', edit_user_registration_path, :class => 'navbar-link'
-            |
-            = link_to "Your Payments", all_payments_path
-            |
-            \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+            = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
             - if current_user.try(:admin?)
               |
               \#{link_to "ADMIN", admin_root_path, :class => 'navbar-link'}
