@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :set_application_settings
+  # before_action :set_application_settings
   before_action :contest_is_closed?, only: [:index]
   before_action :contest_is_full?, only: [:index]
 
@@ -27,7 +27,7 @@ class StaticPagesController < ApplicationController
 
 private
 
-  def set_application_settings
-    @app_settings = ApplicationSetting.current_app_settings
-  end
+  # def set_application_settings
+  #   @app_settings = ApplicationSetting.current_app_settings
+  # end
 end
