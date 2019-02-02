@@ -17,15 +17,16 @@
         .text-danger
           = "#{'balance_due'.humanize.ljust(22, '.')} #{number_to_currency(@balance_due).rjust(12,'.')}"
     .card-footer
-      =form_with url: make_payment_path, local: true do |f|
-        .form-row.align-items-center
-          .col-auto
-            .input-group.ml-4
-              .input-group-prepend
-                .input-group-text
-                  $
-              = f.number_field :amount, value: "#{@balance_due.to_i}", within: 1..2000, required: true
-              = f.submit "Pay Now", class: 'btn btn-sm btn-success ml-2'
+      - if payments_open?
+        =form_with url: make_payment_path, local: true do |f|
+          .form-row.align-items-center
+            .col-auto
+              .input-group.ml-4
+                .input-group-prepend
+                  .input-group-text
+                    $
+                = f.number_field :amount, value: "#{@balance_due.to_i}", within: 1..2000, required: true
+                = f.submit "Pay Now", class: 'btn btn-sm btn-success ml-2'
 
   %hr.w-75
   %h6 Your transactions:

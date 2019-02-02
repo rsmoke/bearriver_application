@@ -13,6 +13,7 @@ class ApplicationSettingDashboard < Administrate::BaseDashboard
     application_buffer: Field::Number,
     contest_year: Field::Number,
     time_zone: Field::String,
+    allow_payments: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -27,6 +28,7 @@ class ApplicationSettingDashboard < Administrate::BaseDashboard
     :contest_year,
     :opendate,
     :application_buffer,
+    :allow_payments,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,6 +39,7 @@ class ApplicationSettingDashboard < Administrate::BaseDashboard
     :application_buffer,
     :contest_year,
     :time_zone,
+    :allow_payments,
     :created_at,
     :updated_at,
   ].freeze
@@ -49,6 +52,7 @@ class ApplicationSettingDashboard < Administrate::BaseDashboard
     :application_buffer,
     :contest_year,
     :time_zone,
+    :allow_payments,
   ].freeze
 
   # Overwrite this method to customize how application settings are displayed

@@ -36,6 +36,12 @@ private
     end
   end
 
+  def payments_open?
+    ApplicationSetting.current_app_settings.allow_payments
+  end
+
+  helper_method :payments_open?
+
   def block_foreign_hosts
     if Rails.env.development?
       return false
