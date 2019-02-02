@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # before_action :block_foreign_hosts
   include AdminHelper
+  before_action :get_current_application_settings
 
 private
   # def require_admin
@@ -15,11 +16,31 @@ private
   #
   # helper_method :current_user_admin?
 
+  def get_current_application_settings
+    @application_settings = ApplicationSetting.current_app_settings
+  end
+
   def user_has_application?(user)
-    return true unless Application.find_by(user_id: user).nil?
+    # return true unless Application.find_by(user_id: user).nil?
+    if Application.find_by(user_id: user).nil?
+      false
+    else
+      true
+    end
   end
 
   helper_method :user_has_application?
+
+  def user_has_payments?(user)
+    # return true unless Payment.find_by(user_id: user).nil?
+    if Payment.find_by(user_id: user).nil?
+      false
+    else
+      true
+    end
+  end
+
+  helper_method :user_has_payments?
 
   def contest_is_closed?
     return false unless ApplicationSetting.current_app_settings && ApplicationSetting.current_app_settings.opendate > Time.now
@@ -41,6 +62,12 @@ private
   end
 
   helper_method :payments_open?
+
+  def application_quota_full?
+    ApplicationSetting.current_app_settings.application_buffer <= Application.count
+  end
+
+  helper_method :application_quota_full?
 
   def block_foreign_hosts
     if Rails.env.development?
