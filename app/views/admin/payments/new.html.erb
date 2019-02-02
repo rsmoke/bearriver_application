@@ -106,6 +106,16 @@ to do the heavy lifting.
           </div>
         </div>
 
+      <% elsif attribute.name === 'result_message' %>
+        <div class="field-unit field-unit--<%= attribute.html_class %>">
+          <div class="field-unit__label">
+            <%= f.label attribute.attribute %>
+          </div>
+          <div class="field-unit__field">
+            <%= f.text_field attribute.attribute, value: "This was manually entered by #{current_user.email.split("@").first}" %>
+          </div>
+        </div>
+
       <% elsif attribute.name === 'timestamp' %>
         <div class="field-unit field-unit--<%= attribute.html_class %>">
           <div class="field-unit__label">
