@@ -88,66 +88,66 @@
   %br
   %h5 Registrant Details:
   %hr
-  .form-group.form-row
-    = f.label :first_name, class: 'col-sm-2 col-form-label col-form-label-sm required required'
-    .col-sm-4
-      = f.text_field :first_name, autofocus: true, class: 'form-control form-control-sm'
   .form-group.row
-    = f.label :last_name, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :last_name, class: 'form-control form-control-sm'
+    = f.label :first_name, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :first_name, autofocus: true, class: 'form-control'
   .form-group.row
-    = f.label :gender, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :gender, class: 'form-control form-control-sm'
+    = f.label :last_name, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :last_name, class: 'form-control'
   .form-group.row
-    = f.label :birth_year, 'Year of Birth', class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.number_field :birth_year, class: 'form-control form-control-sm'
+    = f.label :gender, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :gender, class: 'form-control'
+  .form-group.row
+    = f.label :birth_year, 'Year of Birth', class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.number_field :birth_year, class: 'form-control'
 
   %h5 Mailing Address:
   %hr
   .form-group.row
-    = f.label :street, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :street, class: 'form-control form-control-sm'
+    = f.label :street, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :street, class: 'form-control'
   .form-group.row
-    = f.label :street2, class: 'col-sm-2 col-form-label col-form-label-sm'
-    .col-sm-4
-      = f.text_field :street2, class: 'form-control form-control-sm'
+    = f.label :street2, class: 'col-sm-3 col-form-label'
+    .col-sm-9
+      = f.text_field :street2, class: 'form-control'
   .form-group.row
-    = f.label :city, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :city, class: 'form-control form-control-sm'
+    = f.label :city, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :city, class: 'form-control'
   .form-group.row
-    = f.label :state, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :state, class: 'form-control form-control-sm'
+    = f.label :state, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :state, class: 'form-control'
   .form-group.row
-    = f.label :zip, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :zip, class: 'form-control form-control-sm'
+    = f.label :zip, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :zip, class: 'form-control'
   .form-group.row
-    = f.label :country, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :country, class: 'form-control form-control-sm'
+    = f.label :country, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :country, class: 'form-control'
   .form-group.row
-    = f.label :phone, class: 'col-sm-2 col-form-label col-form-label-sm required'
-    .col-sm-4
-      = f.text_field :phone, class: 'form-control form-control-sm'
+    = f.label :phone, class: 'col-sm-3 col-form-label required'
+    .col-sm-9
+      = f.text_field :phone, class: 'form-control'
 
   %h5 Workshop Selection:
   %hr
   .form-group.row
-    = f.label :workshop_selection1, "First Choice", class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.label :workshop_selection1, "First Choice", class: 'col-sm-4 col-form-label required'
     = f.collection_select(:workshop_selection1, Workshop.all.order_by_lastname, :id, :instructor,
                           prompt: "Pick one")
   .form-group.row
-    = f.label :workshop_selection2, "Second Choice", class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.label :workshop_selection2, "Second Choice", class: 'col-sm-4 col-form-label required'
     = f.collection_select(:workshop_selection2, Workshop.all, :id, :instructor,
                           prompt: "Pick one")
   .form-group.row
-    = f.label :workshop_selection3, "Third Choice", class: 'col-sm-2 col-form-label col-form-label-sm required'
+    = f.label :workshop_selection3, "Third Choice", class: 'col-sm-4 col-form-label required'
     = f.collection_select(:workshop_selection3, Workshop.all, :id, :instructor,
                           prompt: "Pick one")
 
@@ -169,35 +169,37 @@
       = b.radio_button(class: "form-check-input ml-3")
       = b.label(class: "form-check-label  ml-5")
 
-  %p.pl-2 if you are bringing a partner please enter their name:
+  %p.pl-3 if you are bringing a partner please enter their name:
   .form-row
-    .form-group.col-md-4.offset-md-1
+    .form-group.col-4.offset-1
       = f.label :partner_first_name
-      = f.text_field :partner_first_name, class: 'form-control form-control-sm'
-    .form-group.col-md-4
+      = f.text_field :partner_first_name, class: 'form-control'
+    .form-group.col-4
       = f.label :partner_last_name
-      = f.text_field :partner_last_name, class: 'form-control form-control-sm'
+      = f.text_field :partner_last_name, class: 'form-control'
 
   %h5 Additional Information:
   %hr
-  .form-group.row
-    = f.label :how_did_you_hear, "How did you hear about the Bear River Writers' Conference?", class: 'col-sm-4 col-form-label col-form-label-sm'
-    = f.select :how_did_you_hear, Application::HOW_DID_YOU_HEAR, prompt: "Pick one"
-  .form-group.row
-    = f.label :accessibility_requirements, class: 'col-sm-2 col-form-label col-form-label-sm'
-    .col-sm-6
-      = f.text_area :accessibility_requirements, class: 'form-control form-control-sm', cols: 80
-  .form-group.row
-    = f.label :special_lodging_request, class: 'col-sm-2 col-form-label col-form-label-sm'
-    .col-sm-6
-      = f.text_area :special_lodging_request, class: 'form-control form-control-sm', cols: 80
-  .form-group.row
-    = f.label :food_restrictions, class: 'col-sm-2 col-form-label col-form-label-sm'
-    .col-sm-6
-      = f.text_area :food_restrictions, class: 'form-control form-control-sm', cols: 80
 
   .form-group.row
-    = f.label "Required items are marked with an asterisk", class: 'required'
+    = f.label :accessibility_requirements, class: 'col-sm-3 col-form-label'
+    .col-sm-9
+      = f.text_area :accessibility_requirements, class: 'form-control', cols: 80
+  .form-group.row
+    = f.label :special_lodging_request, class: 'col-sm-3 col-form-label'
+    .col-sm-9
+      = f.text_area :special_lodging_request, class: 'form-control', cols: 80
+  .form-group.row
+    = f.label :food_restrictions, class: 'col-sm-3 col-form-label'
+    .col-sm-9
+      = f.text_area :food_restrictions, class: 'form-control', cols: 80
+  .form-row
+    .form-group
+      = f.label :how_did_you_hear, "How did you hear about the Bear River Writers' Conference?"
+      = f.select :how_did_you_hear, Application::HOW_DID_YOU_HEAR, prompt: "Pick one"
+
+  .form-group.row
+    = f.label "Required items are marked with an asterisk", class: 'text-muted required'
 
   .actions
     = f.submit 'Next', class: 'btn btn-success'
