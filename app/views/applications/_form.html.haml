@@ -1,45 +1,48 @@
-%h5 Lodging Options:
 %hr
+%h5 Lodging Options:
 %h6 NOTE: Prices below include a required $100 deposit.
-
-%h6
+%hr.w-75
+%h5
   Plan A:
-  .text-muted Includes tuition, lodging and all meals. Lodging options and pricing for Plan A are listed below.
-
+  %small.text-muted Includes tuition, lodging and all meals. Lodging options and pricing for Plan A are listed below.
+%ul
   - @lodgings.each do | lodge |
     - if lodge.plan == 'A'
       %li.font-weight-bold
         = "#{lodge.description} ( #{number_to_currency(lodge.cost.to_f)} )"
       - if lodge.description.include?("Semi-Private")
-        .text-muted.ml-4 (Queen Bed/Shared Bath with 1-3 others)
+        .text-muted.ml-2 Queen Bed/Shared Bath with 1-3 others
       - if lodge.description.include?("Bunk")
-        .text-muted.ml-4 (Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others)
-%h6
+        .text-muted.ml-2 Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others
+%h5
   Plan B:
-  .text-muted Includes tuition and all meals, but not lodging for those who live in the Petoskey area. In addition, there are many hotels and motels available within twenty minutes of the conference for those who prefer greater privacy
+  %small.text-muted Includes tuition and all meals, but not lodging for those who live in the Petoskey area. In addition, there are many hotels and motels available within twenty minutes of the conference for those who prefer greater privacy
+%ul
   - @lodgings.each do | lodge |
     - if lodge.plan == 'B'
       %li.font-weight-bold
         = "#{lodge.description} ( #{number_to_currency(lodge.cost.to_f)} )"
-%hr.col-8
+%hr.w-75
 %h5
   Attending with a spouse/partner:
-.h6
-  It is possible to include a spouse/partner when registering for any of the
-  options in Plan A or B for an additional fee:
-  %ul
-    %li.font-weight-bold
-      $440 to attend the conference only
-    %li.font-weight-bold
-      $570 to attend the conference and readings`
-.h6
+  %small.text-muted
+    It is possible to include a spouse/partner when registering for any of the options in Plan A or B for an
+    %mark additional fee:
+%ul
+  %li.font-weight-bold
+    spouse/partner to attend the conference only ( $440 )
+  %li.font-weight-bold
+    spouse/partner to attend the conference and readings ( $570 )
+%p
   Please do not register your spouse/partner separately unless they also wish
   to attend the worshops. If your spouse/partner does want to attend the
   workshops they will need to register separately. We also highly recommend
   the "Private Room, Private Bath" option if you intend to bring your
   spouse/partner.
 
-%h6 Plan A with a spouse/partner:
+%h5
+  Plan A
+  %small.text-muted with a spouse/partner:
 
 %ul
   %li.font-weight-bold Private Room and Private Bath:
@@ -48,23 +51,28 @@
     %li $1345 w/partner attending conference ONLY
 
   %li.font-weight-bold Semi-Private Room and Shared Bath:
-  .text-muted (Queen Bed/Shared Bath with 1-3 others)
+  .text-muted.ml-2 Queen Bed/Shared Bath with 1-3 others
   %ul
     %li $1420 w/partner attending conference AND readings
     %li $1290 w/partner attending conference ONLY
 
   %li.font-weight-bold Bunk Room
-  .text-muted (Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others)
+  .text-muted.ml-2 Single bunk bed in a 4-bunk bedroom shared with 1-3 others/shared bath with 1-3 others
   %ul
     %li $1310 w/partner attending conference AND readings
     %li $1180 w/partner attending conference ONLY
 
-%h6 Plan B with a spouse/partner:
+%h5
+  Plan B
+  %small.text-muted with a spouse/partner:
 %ul
-  %li $1215 w/partner attending conference AND readings
-  %li $1085 w/partner attending conference ONLY
+  %li.font-weight-bold No lodging
+  %ul
+    %li $1215 w/partner attending conference AND readings
+    %li $1085 w/partner attending conference ONLY
 
-%h6
+%hr.w-75
+%h5
   Register early to secure your workshop choice:
   %small.text-muted Workshops will be assigned on a first come first serve basis. In the unlikely event of a workshop cancellation, your entire payment will be refunded upon request if you do not wish to enroll in an alternate workshop.
 
