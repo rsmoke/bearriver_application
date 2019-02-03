@@ -29,9 +29,9 @@
     .card-footer
       - if payments_open? && @balance_due > 0
         =form_with url: make_payment_path, local: true do |f|
-          .form-row.align-items-center
-            .col-auto
-              .input-group.ml-4
+          .row
+            .form-group.align-items-around.ml-4
+              .input-group
                 .input-group-prepend
                   .input-group-text
                     $
@@ -62,10 +62,6 @@
     You will receive an email confirmation from
     'MerchantCreditCard&#64;umich.edu' for each transaction.
 
-  %h6.mt-4
-    Thank you for your Bear River Writers' Conference Registration. In March,
-    you will be emailed with your workshop and housing placement. You will also
-    be sent a prompt to continue paying your conference dues at that time.
-    Registrants have until Tuesday, April 30, 2019 to pay your conference balance
-    in full. You may email any questions to
+  %h6
+    You may email any questions to
     = mail_to "bearriver-questions@umich.edu"
