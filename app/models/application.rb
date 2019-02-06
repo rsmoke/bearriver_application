@@ -20,4 +20,25 @@ class Application < ApplicationRecord
   HOW_DID_YOU_HEAR = ['Word of Mouth', 'Magazine Advertisement', 'Online Advertisement', 'Newspaper Advertisement', 'Other']
 
   belongs_to :user
+
+  def first_workshop_instructor
+    Workshop.find(self.workshop_selection1).instructor
+  end
+
+  def second_workshop_instructor
+    Workshop.find(self.workshop_selection2).instructor
+  end
+
+  def third_workshop_instructor
+    Workshop.find(self.workshop_selection3).instructor
+  end
+
+  def lodging_description
+    Lodging.find(self.lodging_selection).description 
+  end
+
+  def partner_registration_description
+    PartnerRegistration.find(self.partner_registration_selection).description 
+  end
+
 end
