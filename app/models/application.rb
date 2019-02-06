@@ -41,4 +41,9 @@ class Application < ApplicationRecord
     PartnerRegistration.find(self.partner_registration_selection).description 
   end
 
+  # def total_due
+  #   cost_lodging = Lodging.find(self.lodging_selection).cost.to_f
+  #   cost_partner = PartnerRegistration.find(self.partner_registration_selection).cost.to_f
+  #   cost_lodging + cost_partner 
+  # end
 end
