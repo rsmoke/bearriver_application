@@ -25,6 +25,7 @@ class UserDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     total_paid: Field::Number,
+    total_cost: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -38,11 +39,14 @@ class UserDashboard < Administrate::BaseDashboard
     :application,
     :payments,
     :total_paid,
+    :total_cost,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :total_paid,
+    :total_cost,
     :payments,
     :application,
     :id,

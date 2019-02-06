@@ -66,7 +66,7 @@ to display a collection of resources in an HTML table.
               <a href="<%= polymorphic_path([namespace, resource]) -%>"
                  class="action-show"
                  >
-                <% if attribute.name === 'total_paid' %>
+                <% if attribute.name === 'total_paid' || attribute.name === 'total_cost' %>
                   <%= number_to_currency(attribute) %>
                 <% else %>
                   <%= render_field attribute %>

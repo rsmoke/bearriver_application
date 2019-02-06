@@ -42,8 +42,14 @@ as well as a link to its edit page.
       ) %>
       </dt>
 
-      <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
-          ><%= render_field attribute, page: page %></dd>
+      <dd class="attribute-data attribute-data--<%=attribute.html_class%>">
+        <% if attribute.name === 'total_paid' || attribute.name === 'total_cost' %>
+          <%= number_to_currency(attribute) %>
+        <% else %>
+          <%= render_field attribute, page: page %>
+        <% end %>
+          <%# <%= render_field attribute, page: page %>
+      </dd>
     <% end %>
   </dl>
 </section>
