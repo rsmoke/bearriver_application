@@ -24,6 +24,7 @@ class UserDashboard < Administrate::BaseDashboard
     admin: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    total_paid: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -36,6 +37,7 @@ class UserDashboard < Administrate::BaseDashboard
     :email,
     :application,
     :payments,
+    :total_paid,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
