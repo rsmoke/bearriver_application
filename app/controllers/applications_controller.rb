@@ -10,6 +10,11 @@ class ApplicationsController < ApplicationController
   def index
     redirect_to root_url unless current_user_admin?
     @applications = Application.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @applications.to_csv, filename: "users-#{Date.today}.csv" }
+    end
   end
 
   # GET /applications/1

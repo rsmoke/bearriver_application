@@ -23,6 +23,7 @@ gem "administrate"
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'haml-rails'
+gem 'csv'
 
 group :development, :test do
   gem 'pry-rails', '~> 0.3.8'
