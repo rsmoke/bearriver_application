@@ -1,8 +1,25 @@
 <h2>Forgot your password?</h2>
 
-<h5>
-  Contact
-  <%=  mail_to "bearriver-questions@umich.edu" %>
-  to receive password reset instructions.
-</h5>
+<% if Rails.env.development? %>  
+  
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group w-50 pl-3">
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Send me reset password instructions", class: 'btn btn-info' %>
+    </div>
+  <% end %>
+
+<% else %>
+  <h5>
+  <%= "Contact #{mail_to 'bearriver-questions@umich.edu'} to receive password reset instructions." %>
+  </h5>
+
+<% end %>
 <%= render "devise/shared/links" %>

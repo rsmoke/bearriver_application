@@ -56,5 +56,4 @@ class Application < ApplicationRecord
   def partner_registration_description
     PartnerRegistration.find(partner_registration_selection).description
   end
-
 end
