@@ -22,7 +22,7 @@ class Application < ApplicationRecord
   belongs_to :user
 
   def self.to_csv
-    attributes = %w{id  first_name last_name gender birth_year street street2 city state zip country phone email first_workshop_instructor second_workshop_instructor third_workshop_instructor lodging_description partner_registration_description partner_first_name partner_last_name how_did_you_hear accessibility_requirements special_lodging_request food_restrictions user_id total_user_paid created_at updated_at}
+    attributes = %w{id  first_name last_name gender birth_year street street2 city state zip country phone email first_workshop_instructor second_workshop_instructor third_workshop_instructor lodging_description partner_registration_description partner_first_name partner_last_name how_did_you_hear accessibility_requirements special_lodging_request food_restrictions user_id total_user_has_paid created_at updated_at}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
