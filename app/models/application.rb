@@ -22,7 +22,7 @@ class Application < ApplicationRecord
   belongs_to :user
 
   def self.to_csv
-    attributes = %w{id  first_name last_name gender birth_year street street2 city state zip country phone email workshop1_instructor workshop2_instructor workshop3_instructor lodging_description partner_registration_description partner_first_name partner_last_name how_did_you_hear accessibility_requirements special_lodging_request food_restrictions user_id created_at updated_at}
+    attributes = %w{id  first_name last_name gender birth_year street street2 city state zip country phone email first_workshop_instructor second_workshop_instructor third_workshop_instructor lodging_description partner_registration_description partner_first_name partner_last_name how_did_you_hear accessibility_requirements special_lodging_request food_restrictions user_id created_at updated_at}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
@@ -37,15 +37,15 @@ class Application < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def workshop1_instructor
+  def first_workshop_instructor
     Workshop.find(workshop_selection1).instructor
   end
 
-  def workshop2_instructor
+  def second_workshop_instructor
     Workshop.find(workshop_selection2).instructor
   end
 
-  def workshop3_instructor
+  def third_workshop_instructor
     Workshop.find(workshop_selection3).instructor
   end
 
