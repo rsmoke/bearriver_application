@@ -12,7 +12,7 @@ class UserDashboard < Administrate::BaseDashboard
     application: Field::HasOne,
     id: Field::Number,
     email: Field::String,
-    encrypted_password: Field::String,
+    # encrypted_password: Field::String,
     reset_password_token: Field::String,
     reset_password_sent_at: Field::DateTime,
     remember_created_at: Field::DateTime,
@@ -51,7 +51,7 @@ class UserDashboard < Administrate::BaseDashboard
     :application,
     :id,
     :email,
-    :encrypted_password,
+    # :encrypted_password,
     :reset_password_token,
     :reset_password_sent_at,
     :remember_created_at,
@@ -69,10 +69,10 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :payments,
-    :application,
+    # :payments,
+    # :application,
     :email,
-    :encrypted_password,
+    # :encrypted_password,
     :reset_password_token,
     :reset_password_sent_at,
     :remember_created_at,
