@@ -8,7 +8,7 @@ class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
   def index
-    redirect_to root_url unless current_user_admin?
+    redirect_to root_url and return unless current_user_admin?
     @applications = Application.all
 
     respond_to do |format|
