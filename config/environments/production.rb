@@ -69,7 +69,7 @@ Rails.application.configure do
   # configure mailer to user Postfix
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "umich.edu",
+    address: "lsa-english-bearriver.miserver.it.umich.edu",
     port: 25,
     domain: "umich.edu",
   }
