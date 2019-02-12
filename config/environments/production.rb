@@ -66,6 +66,15 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "bearriver_application_#{Rails.env}"
 
+  # configure mailer to user Postfix
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "umich.edu",
+    port: 25,
+    domain: "umich.edu",
+  }
+
+
   # Devise setting - Ensure you have defined default url options
   config.action_mailer.default_url_options = { host: 'lsa-english-bearriver.miserver.it.umich.edu', port: 3000 }
 
