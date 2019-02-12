@@ -67,12 +67,15 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "bearriver_application_#{Rails.env}"
 
   # configure mailer to user Postfix
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "lsa-english-bearriver.miserver.it.umich.edu",
-    port: 25,
-    domain: "umich.edu",
-  }
+  # https://stackoverflow.com/questions/24443920/how-to-setup-postfix-for-ruby-on-rails-to-send-email
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   location: '/usr/sbin/sendmail',
+  #   arguments: '-i -t'
+  # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_options = {from: 'beariver-app-admins@umich.edu'}
 
 
   # Devise setting - Ensure you have defined default url options
@@ -82,7 +85,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
