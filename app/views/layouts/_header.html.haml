@@ -14,21 +14,6 @@
             = link_to "Privacy", privacy_path, :class => 'nav-link'
           %li.nav-item
             = link_to "Terms of Use", terms_of_service_path, :class => 'nav-link'
-          - if user_signed_in? && user_has_payments?(current_user)
-            %li.nav-item.dropdown
-              %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                Your Details
-              .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
-                - if user_has_application?(current_user)
-                  = link_to "Your Payments", all_payments_path, class: 'dropdown-item'
-                  = link_to 'Your Application', application_path(current_user.application), class: 'dropdown-item'
-                = link_to 'Your Login', edit_user_registration_path, class: 'dropdown-item'
-            - if !user_has_application?(current_user)
-              %li.nav-item
-                _
-              %li.nav-item
-                = link_to "Submit an Application", new_application_path, :class => 'btn btn-sm btn-outline-success'
-
 
         %p.navbar-text.pull-right
           - if user_signed_in?
