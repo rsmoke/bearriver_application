@@ -11,8 +11,8 @@ import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 // import '../src/js/your_js_filename';
 import 'jquery';
-import 'bootstrap'
-import '../src/application.sass'
+import 'bootstrap';
+import '../src/application.sass';
 require.context('../images', true, /\.(svg|png|jpg|gif)$/im);
 
 Rails.start();
