@@ -4,17 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :get_current_application_settings
 
 private
-  # def require_admin
-  #   unless current_user_admin?
-  #     redirect_to root_url, alert: "Unauthorized access!"
-  #   end
-  # end
-  #
-  # def current_user_admin?
-  #   current_user && current_user.admin?
-  # end
-  #
-  # helper_method :current_user_admin?
 
   def get_current_application_settings
     @application_settings = ApplicationSetting.current_app_settings
@@ -43,7 +32,7 @@ private
   helper_method :user_has_payments?
 
   def contest_is_closed?
-    return false unless ApplicationSetting.current_app_settings && ApplicationSetting.current_app_settings.opendate > Time.now
+    return false unless @application_settings.present? && ApplicationSetting.current_app_settings.opendate > Time.now
     redirect_to conference_closed_url
   rescue
     # code that deals with some exception
@@ -52,7 +41,7 @@ private
 
   def contest_is_full?
     # if ApplicationSetting.current_app_settings.application_buffer <= Payment.where(transaction_status: "1").count
-    if ApplicationSetting.current_app_settings.application_buffer <= Application.count
+    if application_quota_full?
       redirect_to conference_full_url
     end
   end
@@ -64,7 +53,7 @@ private
   helper_method :payments_open?
 
   def application_quota_full?
-    ApplicationSetting.current_app_settings.application_buffer <= Application.count
+    ApplicationSetting.current_app_settings.application_buffer <= Application.where("created_at > ?", @application_settings.opendate).count
   end
 
   helper_method :application_quota_full?
