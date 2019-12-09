@@ -3,12 +3,19 @@
 - else
   %h3 Your Application
   %h6.mt-4
-    Thank you for your Bear River Writers' Conference Registration. In March,
+    Thank you for your Bear River Writers' Conference application. You will
+    will recieve an email after the close of the Application Window notifiying
+    if you have been admitted to the conference.
+  %h6.mt-4
+    If your application is accepted, in March,
     you will be emailed with your workshop and housing placement. You will also
     be sent a prompt to continue paying your conference dues at that time.
-    Registrants have until Tuesday, April 30, 2019 to pay your conference balance
-    in full. You may email any questions to
-    = mail_to "bearriver-questions@umich.edu"
+    Registrants have until April 30,
+    = @application_settings.contest_year
+    to pay your conference balance
+    in full. You may email any questions to:
+    %br
+      = mail_to "bearriver-questions@umich.edu"
 
 %hr.w-75
 .h5 Registration Details:
@@ -108,30 +115,31 @@
   = link_to 'Edit', edit_application_path(@application), class: 'btn btn-sm btn-warning'
 
   %hr
-  - if application_quota_full?
-    %h5
-      Dear Writer: We have had an unprecedented demand for the Bear River
-      conference this year. We are sorry to say that the
-      = "#{@application_settings.contest_year} Bear River Writers' Conference is full."
-    %h5
-      Thank you for your interest and your completed application has been
-      added to our waitlist. The conference coordinators will contact you if
-      space becomes available.
-    %h5
-      Return to the
-      = link_to 'Bear River', 'https://lsa.umich.edu/bearriver/'
-      conference site.
-  - else
-    %h6
-      Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
-      %small.text-muted Upon submission of this form you will be redirected to
-      our credit card processing page where you will be asked to make your
-      non-refundable deposit payment of $100. Payments are securely processed via QuikPAY,
-      the preferred gateway service provider of the University of Michigan.
-      QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
-      credit card information is stored on our servers.
+  = link_to 'Submit Application', root_path, class: 'btn btn-sm btn-success'
+  / - if application_quota_full?
+  /   %h5
+  /     Dear Writer: We have had an unprecedented demand for the Bear River
+  /     conference this year. We are sorry to say that the
+  /     = "#{@application_settings.contest_year} Bear River Writers' Conference is full."
+  /   %h5
+  /     Thank you for your interest and your completed application has been
+  /     added to our waitlist. The conference coordinators will contact you if
+  /     space becomes available.
+  /   %h5
+  /     Return to the
+  /     = link_to 'Bear River', 'https://lsa.umich.edu/bearriver/'
+  /     conference site.
+  / - else
+  /   %h6
+  /     Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
+  /     %small.text-muted Upon submission of this form you will be redirected to
+  /     our credit card processing page where you will be asked to make your
+  /     non-refundable deposit payment of $100. Payments are securely processed via QuikPAY,
+  /     the preferred gateway service provider of the University of Michigan.
+  /     QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
+  /     credit card information is stored on our servers.
 
-    = button_to 'Confirm and Pay Deposit', make_payment_path, params: {amount: 100}, class: 'btn btn-success'
+  /   = button_to 'Confirm and Pay Deposit', make_payment_path, params: {amount: 100}, class: 'btn btn-success'
 
   %hr
   %h6

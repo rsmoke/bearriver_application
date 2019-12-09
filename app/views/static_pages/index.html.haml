@@ -4,6 +4,11 @@
 
 %h6.pl-3
   = "Time Now #{Time.now.to_s(:special_date)}"
+%h5.pl-3
+  The window for registering to attend the Bear River Conference will be open
+  for 48 hours starting
+  = "#{@application_settings.opendate.to_s(:special_date)} and ending #{(@application_settings.opendate + 2.days).to_s(:special_date)}"
+
 %hr.w-75
 
 - if user_signed_in?
@@ -16,15 +21,15 @@
       = link_to "Bear River site", "https://lsa.umich.edu/bearriver"
   - else
     %h6
-      After you complete your application you will be redirected to our credit
-      card processing page where you will be asked to make your deposit payment
-      of $100. Payments are securely processed via
-      %em
-        Quickpay,
-      the preferred gateway
-      service provider of the University of Michigan.
+      After you complete your application you will be placed in a randomized
+      selection process which will determine the attendees at this years
+      conference. This has been done to improve the fairness in the selection
+      process.
 
-      %h5 A non-refundable deposit of $100 is required to complete your registration
+    %h6
+      After the window for accepting applications is closed, if your
+      application is selected a non-refundable deposit of $35 is
+      required to confirm your application and complete the registration.
     .row.justify-content-center
       .col-2
         = link_to 'Apply', new_application_path, class: 'btn btn-success'

@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
   before_action :contest_is_full?, only: [:index]
 
   def index
+
   end
 
   def about
