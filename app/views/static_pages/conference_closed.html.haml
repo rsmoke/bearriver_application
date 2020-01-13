@@ -1,12 +1,18 @@
 %h1 Conference Registration is Closed
 %h4
   Dear Writers:
-  = "Registration for the #{@application_settings.contest_year} conference will open:"
-  %p.m-3
-    = @application_settings.opendate.to_s(:special_date)
-  Please return to the
-  = link_to "registration page", root_url
-  after that date and time.
+  %br
+  - if @application_settings.opendate > Time.now
+    = "Registration for the #{@application_settings.contest_year} conference will be open:"
+    %p.m-3
+      = @application_settings.opendate.to_s(:special_date)
+      until
+      = (@application_settings.opendate + 2.days).to_s(:special_date)
+    Please return to the
+    = link_to "registration page", root_url
+    after that date and time.
+  - else
+    = "The registration window has closed and we are no longer accepting applications for the #{@application_settings.contest_year} conference."
 
   %br
   %br

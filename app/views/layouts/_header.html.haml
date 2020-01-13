@@ -21,11 +21,8 @@
             = current_user.email
             %br
             = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
-            - if current_user.try(:admin?)
-              |
-              \#{link_to "ADMIN", admin_root_path, :class => 'navbar-link'}
           - else
-            - if @application_settings.opendate < Time.now
+            - if @application_open
               = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
               |
               \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}

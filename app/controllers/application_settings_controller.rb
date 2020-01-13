@@ -1,5 +1,5 @@
 class ApplicationSettingsController < ApplicationController
-  before_action :require_admin
+  before_action :authenticate_admin_user!
   before_action :set_application_setting, only: [:show, :edit, :update, :destroy]
 
   # GET /application_settings
@@ -11,7 +11,8 @@ class ApplicationSettingsController < ApplicationController
   # GET /application_settings/1
   # GET /application_settings/1.json
   def show
-    @current_settings_in_use = ApplicationSetting.current_app_settings
+    # @current_settings_in_use = ApplicationSetting.current_app_settings
+
   end
 
   # GET /application_settings/new
