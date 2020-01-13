@@ -5,7 +5,7 @@ ActiveAdmin.register Workshop do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :instructor, :last_name, :first_name
+  permit_params :instructor, :last_name, :first_name
   #
   # or
   #

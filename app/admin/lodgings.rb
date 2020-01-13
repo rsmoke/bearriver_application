@@ -5,7 +5,7 @@ ActiveAdmin.register Lodging do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :plan, :description, :cost
+  permit_params :plan, :description, :cost
   #
   # or
   #

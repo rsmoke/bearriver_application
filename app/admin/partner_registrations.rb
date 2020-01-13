@@ -5,7 +5,7 @@ ActiveAdmin.register PartnerRegistration do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :description, :cost
+  permit_params :description, :cost
   #
   # or
   #
