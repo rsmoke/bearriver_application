@@ -8,19 +8,12 @@ class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
   def index
-    redirect_to root_url and return unless current_user_admin?
-    @applications = Application.all
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @applications.to_csv, filename: "users-#{Date.today}.csv" }
-    end
+    redirect_to root_url
   end
 
   # GET /applications/1
   # GET /applications/1.json
   def show
-    @application_setting = ApplicationSetting.find(2)
     @workshop1 = Workshop.find(@application.workshop_selection1).instructor
     @workshop2 = Workshop.find(@application.workshop_selection2).instructor
     @workshop3 = Workshop.find(@application.workshop_selection3).instructor
@@ -33,9 +26,6 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/new
   def new
-    # if application_quota_full?
-    #   redirect_to conference_full_url unless user_has_payments?(current_user)
-    # end
     @application = Application.new
   end
 
