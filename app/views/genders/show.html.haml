@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @gender.name
+%p
+  %b Description:
+  = @gender.description
+
+= link_to 'Edit', edit_gender_path(@gender)
+\|
+= link_to 'Back', genders_path
