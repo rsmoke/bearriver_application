@@ -17,4 +17,8 @@ class User < ApplicationRecord
     cost_partner = PartnerRegistration.find(self.application.partner_registration_selection).cost.to_f
     cost_lodging + cost_partner 
   end
+
+  def display_name
+    self.email # or whatever column you want
+  end
 end
