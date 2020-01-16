@@ -2,18 +2,7 @@ Rails.application.routes.draw do
   resources :genders
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  # namespace :admin do
-  #     resources :users
-  #     resources :applications
-  #     resources :application_settings
-  #     resources :lodgings
-  #     resources :partner_registrations
-  #     resources :payments
-  #     resources :workshops
 
-  #     root to: "users#index"
-  #   end
   devise_for :users
   root 'static_pages#index'
 
