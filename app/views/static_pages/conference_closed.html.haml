@@ -12,7 +12,8 @@
     = link_to "registration page", root_url
     after that date and time.
   - else
-    = "The registration window has closed and we are no longer accepting applications for the #{current_application_settings.contest_year} conference."
+    - if current_application_settings.application_closed_directions.present?
+      = current_application_settings.application_closed_directions
 
   %br
   %br
