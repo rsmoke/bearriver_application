@@ -28,7 +28,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'listen', '>= 3.0.5', '< 3.2'
 
 gem 'haml-rails'
-gem 'csv'
+
+gem 'activeadmin_quill_editor'
+
+gem 'country_select', '~> 4.0'
 
 group :development, :test do
   gem 'pry-doc'

@@ -97,9 +97,8 @@
     .col-sm-9
       = f.text_field :last_name, class: 'form-control'
   .form-group.row
-    = f.label :gender, class: 'col-sm-3 col-form-label required'
-    .col-sm-9
-      = f.text_field :gender, class: 'form-control'
+    = f.label :gender, class: 'col-sm-4 col-form-label required'
+    = f.collection_select(:gender, Gender.all, :id, :name, prompt: "Pick one")
   .form-group.row
     = f.label :birth_year, 'Year of Birth', class: 'col-sm-3 col-form-label required'
     .col-sm-9
@@ -122,7 +121,7 @@
   .form-group.row
     = f.label :state, class: 'col-sm-3 col-form-label required'
     .col-sm-9
-      = f.text_field :state, class: 'form-control'
+      = f.select :state, us_states, {}, include_blank: "-- Please Select --", class: 'form-control'
   .form-group.row
     = f.label :zip, class: 'col-sm-3 col-form-label required'
     .col-sm-9
@@ -130,7 +129,7 @@
   .form-group.row
     = f.label :country, class: 'col-sm-3 col-form-label required'
     .col-sm-9
-      = f.text_field :country, class: 'form-control'
+      = f.country_select  :country, priority_countries: ["US"], include_blank: "-- Please Select --", class: 'form-control'
   .form-group.row
     = f.label :phone, class: 'col-sm-3 col-form-label required'
     .col-sm-9

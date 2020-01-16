@@ -17,3 +17,6 @@ require.context('../images', true, /\.(svg|png|jpg|gif)$/im);
 
 Rails.start();
 Turbolinks.start();
+
+require("trix")
+require("@rails/actiontext")

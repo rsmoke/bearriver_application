@@ -1,51 +1,44 @@
 - provide(:title, 'Home')
 
 %h1 Bear River Conference Registration
-
-%h6.pl-3
+%h6.pl-3.text-muted
   = "Time Now #{Time.now.to_s(:special_date)}"
-%h5.pl-3
-  The window for registering to attend the Bear River Conference will be open
-  for 48 hours
-  %br
-  starting:
-  = current_application_settings.opendate.to_s(:special_date)
-  %br
-  ending:
-  = (current_application_settings.opendate + 2.days).to_s(:special_date)
 
-%hr.w-75
+- if current_application_settings.application_open_directions.present?
+  = current_application_settings.application_open_directions
 
-- if user_signed_in?
-  - if user_has_application?(current_user)
-    %h6
-      You have already filled out an application for this year's conference. We will
-      contact you soon with further instructions.
-    %h6
-      Return to the
-      = link_to "Bear River site", "https://lsa.umich.edu/bearriver"
-  - else
-    %h6
-      After you complete your application you will be placed in a randomized
-      selection process which will determine the attendees at this years
-      conference. This has been done to improve the fairness in the selection
-      process.
-
-    %h6
-      After the window for accepting applications is closed, if your
-      application is selected a non-refundable deposit of $35 is
-      required to confirm your application and complete the registration.
-    .row.justify-content-center
-      .col-2
-        = link_to 'Apply', new_application_path, class: 'btn btn-success'
-- else
-  %h6
-    You are required to have an account to register for
-    the conference.
+.card.text-center
+  .card-header
+    The window for registering to attend the Bear River Conference will be open
+    for
+    = current_application_settings.application_open_period
+    hours
+  .card-body
+    Starting:
+    = current_application_settings.opendate.to_s(:special_date)
     %br
-    If you already have an account
-    = link_to "Login", new_user_session_path, class: 'btn btn-xs btn-info'
-    and create an application
-    %br
-    If you need to setup an account please click the
-    = link_to "Sign up", new_user_registration_path, class: 'btn btn-xs btn-primary'
+    Ending:
+    = (current_application_settings.opendate + current_application_settings.application_open_period.hours).to_s(:special_date)
+
+  .card-footer
+
+    - if user_signed_in?
+      - if user_has_application?(current_user)
+        %h6.alert.alert-warning
+          You have already filled out an application for this year's conference. We will
+          contact you soon with further instructions.
+        %br
+          Return to the
+          = link_to "Bear River Conference site", "https://lsa.umich.edu/bearriver"
+      - else
+        .row.justify-content-center
+          .col-2
+            = link_to 'Apply', new_application_path, class: 'btn btn-sm btn-success'
+    - else
+      %h6
+        You are required to have an account to register for
+        the conference.
+        %br
+        = link_to "Login", new_user_session_path, class: 'btn btn-sm btn-info'
+        or
+        = link_to "Sign up", new_user_registration_path, class: 'btn btn-sm btn-primary'
