@@ -6,6 +6,6 @@ class ApplicationSetting < ApplicationRecord
   # validates :active_application, presence: true
 
   # scope :current_app_settings, -> { find_by(contest_year: Date.today.cwyear) }
-  scope :current_app_settings, -> { where("active_application = ?", true).max }
+  scope :get_current_app_settings, -> { where("active_application = ?", true).max }
 
 end

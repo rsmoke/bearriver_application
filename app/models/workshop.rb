@@ -7,4 +7,7 @@ class Workshop < ApplicationRecord
     order('last_name asc')
   end
 
+  def display_name
+    self.instructor # or whatever column you want
+  end
 end

@@ -6,8 +6,13 @@
   = "Time Now #{Time.now.to_s(:special_date)}"
 %h5.pl-3
   The window for registering to attend the Bear River Conference will be open
-  for 48 hours starting
-  = "#{@application_settings.opendate.to_s(:special_date)} and ending #{(@application_settings.opendate + 2.days).to_s(:special_date)}"
+  for 48 hours
+  %br
+  starting:
+  = current_application_settings.opendate.to_s(:special_date)
+  %br
+  ending:
+  = (current_application_settings.opendate + 2.days).to_s(:special_date)
 
 %hr.w-75
 
@@ -38,9 +43,9 @@
     You are required to have an account to register for
     the conference.
     %br
-    Please click the Sign up button and enter your email address
-    and create a password.
-  .row.justify-content-center
-    .col-4
-      = link_to "Sign up", new_user_registration_path, class: 'btn btn-primary'
-      = link_to "Login", new_user_session_path, class: 'btn btn-info'
+    If you already have an account
+    = link_to "Login", new_user_session_path, class: 'btn btn-xs btn-info'
+    and create an application
+    %br
+    If you need to setup an account please click the
+    = link_to "Sign up", new_user_registration_path, class: 'btn btn-xs btn-primary'

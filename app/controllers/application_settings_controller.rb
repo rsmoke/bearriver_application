@@ -11,8 +11,6 @@ class ApplicationSettingsController < ApplicationController
   # GET /application_settings/1
   # GET /application_settings/1.json
   def show
-    # @current_settings_in_use = ApplicationSetting.current_app_settings
-
   end
 
   # GET /application_settings/new

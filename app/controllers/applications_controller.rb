@@ -3,7 +3,7 @@ class ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_application, only: [:show, :edit, :update, :destroy]
   before_action :get_lodgings
-  before_action :contest_is_closed?, only: [:new]
+  # before_action :contest_is_closed?, only: [:new]
 
   # GET /applications
   # GET /applications.json
@@ -20,6 +20,7 @@ class ApplicationsController < ApplicationController
   # GET /applications/1
   # GET /applications/1.json
   def show
+    @application_setting = ApplicationSetting.find(2)
     @workshop1 = Workshop.find(@application.workshop_selection1).instructor
     @workshop2 = Workshop.find(@application.workshop_selection2).instructor
     @workshop3 = Workshop.find(@application.workshop_selection3).instructor
@@ -32,9 +33,9 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/new
   def new
-    if application_quota_full?
-      redirect_to conference_full_url unless user_has_payments?(current_user)
-    end
+    # if application_quota_full?
+    #   redirect_to conference_full_url unless user_has_payments?(current_user)
+    # end
     @application = Application.new
   end
 
