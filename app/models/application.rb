@@ -1,5 +1,7 @@
 class Application < ApplicationRecord
 
+  before_create :set_contest_year
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :gender, presence: true
@@ -21,17 +23,17 @@ class Application < ApplicationRecord
 
   belongs_to :user
 
-  def self.to_csv
-    attributes = %w{id  first_name last_name gender birth_year street street2 city state zip country phone email first_workshop_instructor second_workshop_instructor third_workshop_instructor lodging_description partner_registration_description partner_first_name partner_last_name how_did_you_hear accessibility_requirements special_lodging_request food_restrictions user_id total_user_has_paid created_at updated_at}
+  # def self.to_csv
+  #   attributes = %w{id  first_name last_name gender birth_year street street2 city state zip country phone email first_workshop_instructor second_workshop_instructor third_workshop_instructor lodging_description partner_registration_description partner_first_name partner_last_name how_did_you_hear accessibility_requirements special_lodging_request food_restrictions user_id total_user_has_paid created_at updated_at}
 
-    CSV.generate(headers: true) do |csv|
-      csv << attributes
+  #   CSV.generate(headers: true) do |csv|
+  #     csv << attributes
 
-      all.each do |user|
-        csv << attributes.map{ |attr| user.send(attr) }
-      end
-    end
-  end
+  #     all.each do |user|
+  #       csv << attributes.map{ |attr| user.send(attr) }
+  #     end
+  #   end
+  # end
 
   def name
     "#{first_name} #{last_name}"
@@ -60,4 +62,9 @@ class Application < ApplicationRecord
   def partner_registration_description
     PartnerRegistration.find(partner_registration_selection).description
   end
+
+  private
+    def set_contest_year
+      self.conf_year = ApplicationSetting.get_current_app_settings.contest_year
+    end
 end
