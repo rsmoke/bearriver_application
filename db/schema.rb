@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_185648) do
+ActiveRecord::Schema.define(version: 2020_01_19_200427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 2020_01_16_185648) do
     t.text "application_open_directions"
     t.text "application_closed_directions"
     t.integer "application_open_period", default: 48, null: false
+    t.integer "lottery_result", array: true
+    t.datetime "lottery_run_date"
   end
 
   create_table "applications", force: :cascade do |t|
@@ -118,6 +120,10 @@ ActiveRecord::Schema.define(version: 2020_01_16_185648) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "conf_year"
+    t.integer "lottery_position"
+    t.string "offer_status"
+    t.boolean "result_email_sent", default: false, null: false
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
