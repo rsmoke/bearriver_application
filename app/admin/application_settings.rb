@@ -23,8 +23,8 @@ ActiveAdmin.register ApplicationSetting do
       f.input :opendate
       f.input :application_open_period, label: "Length in Hours Application will be Open"
 
-      f.input :application_open_directions, as: :quill_editor
-      f.input :application_closed_directions, as: :quill_editor
+      f.input :application_open_directions
+      f.input :application_closed_directions
 
       f.input :lottery_buffer
       f.input :application_buffer

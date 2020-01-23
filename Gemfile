@@ -29,14 +29,14 @@ gem 'listen', '>= 3.0.5', '< 3.2'
 
 gem 'haml-rails'
 
-gem 'activeadmin_quill_editor'
+# gem 'activeadmin_quill_editor'
 
 gem 'country_select', '~> 4.0'
 
 group :development, :test do
-  gem 'pry-doc'
+  # gem 'pry-doc'
   gem 'pry-rails', '~> 0.3.8'
-  gem "pry-byebug"
+  gem "pry-byebug", '~> 3.7.0'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
