@@ -11,7 +11,7 @@
     you will be emailed with your workshop and housing placement. You will also
     be sent a prompt to continue paying your conference dues at that time.
     Registrants have until April 30,
-    = @application_settings.contest_year
+    = current_application_settings.contest_year
     to pay your conference balance
     in full. You may email any questions to:
     %br
@@ -107,7 +107,7 @@
   = @application.food_restrictions
 
 %hr
-- if @application.user.payments.size < 1
+- if @application.offer_status.nil?
   %h6
     NOTE:
     %small.text-muted If you need to make a correction, please use the edit
