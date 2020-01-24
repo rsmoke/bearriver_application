@@ -9,6 +9,24 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    if (current_application_settings.opendate + current_application_settings.application_open_period.hours) < Time.now
+      if current_application_settings.lottery_result.nil?
+        div do
+          span do
+            button_to "Run Lottery", run_lotto_path
+          end
+        end
+      end
+    end
+   
+    # flash.each do |type, msg|
+    #   div class: "alert alert-info" do
+    #     span do
+    #       msg
+    #     end
+    #   end
+    # end
+
     # Here is an example of a simple dashboard with columns and panels.
     #
     # columns do
