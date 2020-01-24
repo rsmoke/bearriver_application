@@ -62,9 +62,13 @@ class Application < ApplicationRecord
   def partner_registration_description
     PartnerRegistration.find(partner_registration_selection).description
   end
+ 
+  scope :active_conference_applications, -> { where("conf_year = ?", ApplicationSetting.get_current_app_settings.contest_year) }
 
-  private
+
+private
     def set_contest_year
       self.conf_year = ApplicationSetting.get_current_app_settings.contest_year
     end
+
 end
