@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_200427) do
+ActiveRecord::Schema.define(version: 2020_01_23_205041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_01_19_200427) do
     t.integer "lottery_position"
     t.string "offer_status"
     t.boolean "result_email_sent", default: false, null: false
+    t.datetime "offer_status_date"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
