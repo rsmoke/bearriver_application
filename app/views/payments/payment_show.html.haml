@@ -1,8 +1,20 @@
 - provide(:title, 'Payment Receipts')
 
 %h2 Your Payment Receipts
-- if @users_current_payments.count < 1
+- if @users_current_payments.count < 1 # && user has offer
   %h6 You have not made a payment yet
+  %h6
+    Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
+    %small.text-muted Upon submission of this form you will be redirected to
+    our credit card processing page where you will be asked to make your
+    non-refundable deposit payment of 
+    = "#{number_to_currency(current_application_settings.registration_fee)}."
+    Payments are securely processed via QuikPAY,
+    the preferred gateway service provider of the University of Michigan.
+    QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
+    credit card information is stored on our servers.
+
+  = button_to 'Confirm and Pay Deposit', make_payment_path, params: {amount: current_application_settings.registration_fee}, class: 'btn btn-success'
 - else
 
   %h6.mt-4
@@ -18,14 +30,16 @@
     %h6.card-header.bg-success.text-white
       Account Summary
     .card-body
-      .h6{:style => "font-family: Lucida Console;"}
-        = "#{'total_cost'.humanize.ljust(24, '.')} #{number_to_currency(@total_cost).rjust(12,'.')}"
+      - if payments_open?
+        .h6{:style => "font-family: Lucida Console;"}
+          = "#{'total_cost'.humanize.ljust(24, '.')} #{number_to_currency(@total_cost).rjust(12,'.')}"
       .h6{:style => "font-family: Lucida Console;"}
         = "#{'amount_paid'.humanize.ljust(20, '.')} #{number_to_currency(@ttl_paid).rjust(12,'.')}"
       %hr
-      .h6{:style => "font-family: Lucida Console;"}
-        .text-danger
-          = "#{'balance_due'.humanize.ljust(22, '.')} #{number_to_currency(@balance_due).rjust(12,'.')}"
+      - if payments_open?
+        .h6{:style => "font-family: Lucida Console;"}
+          .text-danger
+            = "#{'balance_due'.humanize.ljust(22, '.')} #{number_to_currency(@balance_due).rjust(12,'.')}"
     .card-footer
       - if payments_open? && @balance_due > 0
         =form_with url: make_payment_path, local: true do |f|
