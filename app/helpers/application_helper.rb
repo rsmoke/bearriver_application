@@ -9,7 +9,15 @@ module ApplicationHelper
     end
   end
 
-  def us_states
+  def self.offer_status 
+    [
+      ['Registration Offered','registration_offered'],
+      ['Registration Declined','registration_declined'],
+      ['Not Offered','not_offered']
+    ]
+  end
+
+  def self.us_states
   [
     ['Select', ''],
     ['Alabama', 'AL'],
