@@ -25,5 +25,7 @@ Rails.application.routes.draw do
   get 'payment_show', to: 'payments#payment_show', as: 'all_payments'
   get 'make_payment', to: 'payments#make_payment'
   post 'make_payment', to: 'payments#make_payment'
+
+  post 'run_lotto', to: 'application_settings#run_lottery'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
