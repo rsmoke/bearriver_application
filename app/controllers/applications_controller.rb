@@ -78,7 +78,7 @@ class ApplicationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_application
       @application = Application.find(params[:id])
-      redirect_to root_url, alert: 'Not Authorized!' unless @application.user === current_user || current_user_admin?
+      redirect_to root_url, alert: 'Not Authorized!' unless @application.user === current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
