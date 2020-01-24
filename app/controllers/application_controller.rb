@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     helper_method :user_has_payments?
 
     def payments_open?
-      ApplicationSetting.current_app_settings.allow_payments
+      current_application_settings.allow_payments
     end
 
     helper_method :payments_open?
