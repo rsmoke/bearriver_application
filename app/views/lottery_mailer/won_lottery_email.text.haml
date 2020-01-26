@@ -1,12 +1,8 @@
+
 Congratulations #{@application.first_name} #{@application.last_name}! 
 
 You have been selected by lottery for a place in the #{@current_application_settings.contest_year} Bear River Writers’ Conference.
 
-Please proceed to the application payment portal at this link:
-
-#{@url}
-
-to pay your #{number_to_currency(@current_application_settings.registration_fee)} application fee to reserve your spot 
-in this year's conference. If this is not done within 48 hours then your spot will be forfeited to an individual on the waitlist.
+Please login at this link: #{accept_offer_url} to pay your #{number_to_currency(@current_application_settings.registration_fee)} application fee to reserve your spot in this year's conference. If this is not done within 48 hours then your spot will be forfeited to an individual on the waitlist.
 
 We look forward to you joining us at Bear River!

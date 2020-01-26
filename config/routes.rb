@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/terms_of_service', to: 'static_pages#terms_of_use'
   get '/conference_closed', to: 'static_pages#conference_closed'
   get '/conference_full', to: 'static_pages#conference_full'
+  get '/accept_offer', to: 'static_pages#accept_offer'
 
   get 'payments', to: 'payments#index'
   get 'payment_receipt', to: 'payments#payment_receipt'
@@ -27,5 +28,7 @@ Rails.application.routes.draw do
   post 'make_payment', to: 'payments#make_payment'
 
   post 'run_lotto', to: 'application_settings#run_lottery'
+
+  post '/send_offer/:id', to: 'application_settings#send_offer', as: 'send_offer'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

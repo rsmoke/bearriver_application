@@ -14,6 +14,11 @@ ActiveAdmin.register Application do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  action_item :send_offer, only: :show do
+      button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
+  end
+
   index do 
     selectable_column
     column :id do |id|

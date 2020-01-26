@@ -88,6 +88,13 @@ class ApplicationSettingsController < ApplicationController
     
   end
 
+  def send_offer
+    @application = Application.find(params[:id])
+    @application.update(offer_status: "registration_offered", offer_status_date: Time.now, result_email_sent: true)
+    LotteryMailer.with(application: @application).won_lottery_email.deliver_now
+    redirect_to admin_application_path(@application)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_application_setting
