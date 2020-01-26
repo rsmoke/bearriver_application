@@ -28,6 +28,7 @@
           transaction_hash: params['hash'],
           user_id: current_user.id
         )
+        current_user.application.update(offer_status: "registration_accepted")
         redirect_to all_payments_path, notice: "Your Payment Was Successfully Recorded"
       end
     end

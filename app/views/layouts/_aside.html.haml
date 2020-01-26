@@ -1,5 +1,5 @@
 - if user_signed_in? && user_has_application?(current_user)
-  - if current_user.application.offer_status == "registration_offered"
+  - if current_user.application.offer_status == "registration_offered" || current_user.application.offer_status == "registration_accepted"
     %aside#sidebar-layout
       .container
         %h4.text-success Your Details

@@ -15,7 +15,7 @@
 
   - else
     -if user_signed_in? && user_has_application?(current_user)
-      - if current_user.application.offer_status == "registration_offered" 
+      - if current_user.application.offer_status == "registration_offered" || current_user.application.offer_status == "registration_accepted"
         - if !user_has_payments?(current_user)
           %p
             To accept your offer  
@@ -23,6 +23,9 @@
         - else
           %p
             You may use the links in the 'Your Details' box to the right to view or manage your payments.
+      - else
+        - if current_application_settings.application_closed_directions.present?
+          = current_application_settings.application_closed_directions
     - else
       - if current_application_settings.application_closed_directions.present?
         = current_application_settings.application_closed_directions
