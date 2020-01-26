@@ -1,0 +1,15 @@
+- provide(:title, 'Congratulations on your Offer')
+
+%h1 
+  = "Congratulation on being selected to attend the #{current_application_settings.contest_year} Bear River Conference!"
+%p
+  = link_to "Login", new_user_session_path, :class => 'btn btn-sm btn-success'
+%h4
+  Dear Writer:
+  %br
+  = current_application_settings.registration_acceptance_directions
+  %br
+  %br
+  Thank you.
+  %br
+  The Bear River Staff

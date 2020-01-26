@@ -1,28 +1,19 @@
 - provide(:title, 'Payment Receipts')
 
 %h2 Your Payment Receipts
-- if @users_current_payments.count < 1 # && user has offer
-  %h6 You have not made a payment yet
-  %h6
-    Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
-    %small.text-muted Upon submission of this form you will be redirected to
-    our credit card processing page where you will be asked to make your
-    non-refundable deposit payment of 
-    = "#{number_to_currency(current_application_settings.registration_fee)}."
-    Payments are securely processed via QuikPAY,
-    the preferred gateway service provider of the University of Michigan.
-    QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
-    credit card information is stored on our servers.
-
-  = button_to 'Confirm and Pay Deposit', make_payment_path, params: {amount: current_application_settings.registration_fee}, class: 'btn btn-success'
-- else
-
+- if user_has_payments?(current_user) # && user has offer
   %h6.mt-4
-    Thank you for your Bear River Writers' Conference Registration. In March,
-    you will be emailed with your workshop and housing placement. You will also
-    be sent a prompt to continue paying your conference dues at that time.
-    Registrants have until Tuesday, April 30, 2019 to pay your conference balance
-    in full. You may email any questions to
+    = current_application_settings.payments_directions 
+  %p
+    Pay by Credit Card (Visa, Mastercard, Discover, AMEX)
+    %small.text-muted 
+      Upon submission of this form you will be redirected to
+      our credit card processing page. Payments are securely processed via QuikPAY,
+      the preferred gateway service provider of the University of Michigan.
+      QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
+      credit card information is stored on our servers.
+  %p 
+    You may email any questions to
     = mail_to "bearriver-questions@umich.edu"
   %hr.w-75
 
@@ -78,4 +69,9 @@
 
   %h6
     You may email any questions to
+    = mail_to "bearriver-questions@umich.edu"
+
+- else
+  %p 
+    You have not made any payments. If this is incorrect please contact
     = mail_to "bearriver-questions@umich.edu"

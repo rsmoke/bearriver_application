@@ -6,7 +6,7 @@ ActiveAdmin.register ApplicationSetting do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :opendate, :application_buffer, :contest_year, :time_zone, :allow_payments, :active_application, :allow_lottery_winner_emails, :allow_lottery_loser_emails, :registration_fee, :lottery_buffer, :application_open_directions, :application_closed_directions, :application_open_period
+  permit_params :opendate, :application_buffer, :contest_year, :time_zone, :allow_payments, :active_application, :allow_lottery_winner_emails, :allow_lottery_loser_emails, :registration_fee, :lottery_buffer, :application_open_directions, :application_closed_directions, :application_open_period, :registration_acceptance_directions, :payments_directions
   #
   # or
   #
@@ -25,6 +25,8 @@ ActiveAdmin.register ApplicationSetting do
 
       f.input :application_open_directions
       f.input :application_closed_directions
+      f.input :registration_acceptance_directions
+      f.input :payments_directions
 
       f.input :lottery_buffer
       f.input :application_buffer
