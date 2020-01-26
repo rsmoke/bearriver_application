@@ -23,4 +23,10 @@ class StaticPagesController < ApplicationController
   def conference_full
   end
 
+  def accept_offer
+    if current_application_open? 
+      redirect_to root_url
+    end
+  end
+
 end

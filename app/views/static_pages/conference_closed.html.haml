@@ -1,4 +1,5 @@
-%h1 Conference Registration is Closed
+- provide(:title, 'Conference Information')
+
 %h4
   Dear Writers:
   %br
@@ -11,9 +12,20 @@
     Please return to the
     = link_to "registration page", root_url
     after that date and time.
+
   - else
-    - if current_application_settings.application_closed_directions.present?
-      = current_application_settings.application_closed_directions
+    -if user_signed_in? && user_has_application?(current_user)
+      - if current_user.application.offer_status == "registration_offered" 
+        - if !user_has_payments?(current_user)
+          %p
+            To accept your offer  
+            = button_to "Pay the Application Fee", make_payment_path(amount: current_application_settings.registration_fee), class: 'btn btn-success'
+        - else
+          %p
+            You may use the links in the 'Your Details' box to the right to view or manage your payments.
+    - else
+      - if current_application_settings.application_closed_directions.present?
+        = current_application_settings.application_closed_directions
 
   %br
   %br
