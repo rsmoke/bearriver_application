@@ -3,6 +3,7 @@ class ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_application, only: [:show, :edit, :update, :destroy]
   before_action :get_lodgings
+  before_action :get_partner_registrations
   # before_action :contest_is_closed?, only: [:new]
 
   # GET /applications
@@ -88,5 +89,9 @@ class ApplicationsController < ApplicationController
 
     def get_lodgings
       @lodgings = Lodging.all
+    end
+
+    def get_partner_registrations
+      @partner_registrations = PartnerRegistration.all.order(cost: :asc)
     end
 end
