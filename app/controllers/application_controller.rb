@@ -18,8 +18,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_application_open?
 
     def user_has_application?(user)
-      # return true unless Application.find_by(user_id: user).nil?
-      if Application.find_by(user_id: user).nil?
+      if Application.find_by(user_id: user, conf_year: current_application_settings.contest_year).nil?
         false
       else
         true
