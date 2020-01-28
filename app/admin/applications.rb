@@ -29,7 +29,9 @@ ActiveAdmin.register Application do
     column :offer_status
     column :first_name
     column :last_name
-    column :gender
+    column "gender" do |sex|
+      Gender.find(sex.gender).name
+    end
     column :birth_year
     column :street
     column :street2
@@ -40,11 +42,21 @@ ActiveAdmin.register Application do
     column :phone
     column :email
     column :email_confirmation
-    column :workshop_selection1
-    column :workshop_selection2
-    column :workshop_selection3
-    column :lodging_selection
-    column :partner_registration_selection
+    column "workshop_selection1" do |w1|
+      Workshop.find(w1.workshop_selection1).instructor
+    end
+    column "workshop_selection2" do |w2|
+      Workshop.find(w2.workshop_selection2).instructor
+    end
+    column "workshop_selection3" do |w3|
+      Workshop.find(w3.workshop_selection3).instructor
+    end
+    column "lodging_selection" do |lodge|
+      Lodging.find(lodge.lodging_selection).description
+    end
+    column "partner_registration_selection" do |partner|
+      PartnerRegistration.find(partner.partner_registration_selection).description
+    end
     column :partner_first_name
     column :partner_last_name
     column :how_did_you_hear
@@ -67,7 +79,9 @@ ActiveAdmin.register Application do
       row :result_email_sent
       row :first_name
       row :last_name
-      row :gender
+      row "gender" do |sex|
+        Gender.find(sex.gender).name
+      end
       row :birth_year
       row :street
       row :street2
@@ -78,11 +92,21 @@ ActiveAdmin.register Application do
       row :phone
       row :email
       row :email_confirmation
-      row :workshop_selection1
-      row :workshop_selection2
-      row :workshop_selection3
-      row :lodging_selection
-      row :partner_registration_selection
+      row "workshop_selection1" do |w1|
+        Workshop.find(w1.workshop_selection1).instructor
+      end
+      row "workshop_selection2" do |w2|
+        Workshop.find(w2.workshop_selection2).instructor
+      end
+      row "workshop_selection3" do |w3|
+        Workshop.find(w3.workshop_selection3).instructor
+      end
+      row "lodging_selection" do |lodge|
+        Lodging.find(lodge.lodging_selection).description
+      end
+      row "partner_registration_selection" do |partner|
+        PartnerRegistration.find(partner.partner_registration_selection).description
+      end
       row :partner_first_name
       row :partner_last_name
       row :how_did_you_hear
