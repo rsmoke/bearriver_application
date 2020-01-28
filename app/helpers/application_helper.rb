@@ -18,7 +18,7 @@ module ApplicationHelper
     ]
   end
 
-  def us_states
+  def self.us_states
   [
     ['Select', ''],
     ['Alabama', 'AL'],
