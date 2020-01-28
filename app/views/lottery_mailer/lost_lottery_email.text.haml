@@ -1,13 +1,5 @@
-We are sorry #{@application.first_name} #{@application.last_name},
+Hello #{@application.first_name} #{@application.last_name},
 
-Unfortunately you have not been selected by lottery for a place in 
-the #{@current_application_settings.contest_year} Bear River Writers’ 
-Conference. You have been placed on our waitlist. If a spot becomes 
-available we will go down the waitlist and notify according to the 
-lottery placement. 
-
-In years past, many people have been able to get 
-into the conference off the waitlist. Please let us know if you have 
-any concerns or questions. 
+= @lottery_lost_mail_body
 
 We thank you for interest in Bear River.

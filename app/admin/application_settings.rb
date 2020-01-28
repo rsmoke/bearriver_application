@@ -15,6 +15,45 @@ ActiveAdmin.register ApplicationSetting do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  index do 
+    selectable_column
+    column :id do |id|
+      link_to id.id, admin_application_setting_path(id)
+    end
+    column :active_application
+    column :contest_year
+    column :opendate
+    column "# of hours to keep app open", :application_open_period
+    column :application_buffer
+    column :time_zone
+    column :registration_fee
+    column :lottery_buffer
+    column :lottery_run_date
+    column "application_open_directions"  do |open_text|
+      open_text.application_open_directions[0..50] + "..." unless open_text.application_open_directions.nil?
+    end
+    column "application_closed_directions" do |close_text|
+      close_text.application_closed_directions[0..50] + "..." unless close_text.application_closed_directions.nil?
+    end
+    column "registration_acceptance_directions"  do |reg_text|
+      reg_text.registration_acceptance_directions[0..50] + "..." unless reg_text.registration_acceptance_directions.nil?
+    end
+    column "payments_directions" do |pay_text|
+      pay_text.payments_directions[0..50] + "..." unless pay_text.payments_directions.nil?
+    end
+    column "lottery_won_email" do |won_email|
+      won_email.lottery_won_email[0..50] + "..." unless won_email.lottery_won_email.nil?
+    end
+    column "lottery_lost_email" do |lost_email|
+      lost_email.lottery_lost_email[0..50] + "..." unless lost_email.lottery_lost_email.nil?
+    end
+    column :allow_payments
+    column :allow_lottery_winner_emails
+    column :allow_lottery_loser_emails
+    actions
+  end
+
+
   form do |f|
     f.semantic_errors
     f.inputs 'ApplicationSetting' do

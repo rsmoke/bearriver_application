@@ -1,5 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'bearriver-questions@umich.edu',
-          bcc: 'bearriver-communications@umich.edu'
+  default from: 'bearriver-questions@umich.edu'
   layout 'mailer'
 end
