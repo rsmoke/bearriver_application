@@ -14,5 +14,32 @@ ActiveAdmin.register Lodging do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  index do 
+    selectable_column
+    column :id do |id|
+      link_to id.id, admin_lodging_path(id)
+    end
+    column :plan
+    column :description
+    column "cost" do |fee|
+      number_to_currency(fee.cost)
+    end
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :plan
+      row :description
+      row "cost" do |fee|
+        number_to_currency(fee.cost)
+      end
+    row :created_at
+    row :updated_at
+    end
+    active_admin_comments
+  end
+
+
 
 end
