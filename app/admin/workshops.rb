@@ -1,5 +1,5 @@
 ActiveAdmin.register Workshop do
-  menu parent: 'Application Configuration', priority: 5
+  menu parent: "Application Configuration", priority: 5
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

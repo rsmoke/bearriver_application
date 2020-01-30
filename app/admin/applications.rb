@@ -1,5 +1,5 @@
 ActiveAdmin.register Application do
-  menu parent: 'User Mangement', priority: 2
+  menu parent: "User Mangement", priority: 2
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -16,10 +16,10 @@ ActiveAdmin.register Application do
   # end
 
   action_item :send_offer, only: :show do
-      button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
+    button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
   end
 
-  index do 
+  index do
     selectable_column
     column :id do |id|
       link_to id.id, admin_application_path(id)
@@ -63,7 +63,7 @@ ActiveAdmin.register Application do
     column :accessibility_requirements
     column :special_lodging_request
     column :food_restrictions
-    
+
     column :result_email_sent
     column :offer_status_date
     column :conf_year
@@ -119,7 +119,6 @@ ActiveAdmin.register Application do
     active_admin_comments
   end
 
-
   form do |f|
     f.semantic_errors
     f.inputs do
@@ -129,7 +128,7 @@ ActiveAdmin.register Application do
       f.input :offer_status_date
       f.input :first_name
       f.input :last_name
-      f.input :gender, :label => 'Gender', :as => :select, :collection => Gender.all.map{|g| ["#{g.name}", g.id]}
+      f.input :gender, :label => "Gender", :as => :select, :collection => Gender.all.map { |g| ["#{g.name}", g.id] }
       f.input :birth_year
       f.input :street
       f.input :street2
@@ -139,11 +138,11 @@ ActiveAdmin.register Application do
       f.input :country
       f.input :phone
       f.input :email
-      f.input :workshop_selection1, :label => 'Workshop First Choice', :as => :select, :collection => Workshop.all.map{|w| ["#{w.instructor}", w.id]}
-      f.input :workshop_selection2, :label => 'Workshop Second Choice', :as => :select, :collection => Workshop.all.map{|w| ["#{w.instructor}", w.id]}
-      f.input :workshop_selection3, :label => 'Workshop Third Choice', :as => :select, :collection => Workshop.all.map{|w| ["#{w.instructor}", w.id]}
-      f.input :lodging_selection, :label => 'Lodging selection', :as => :select, :collection => Lodging.all.map{|l| ["Plan:#{l.plan} #{l.description} #{number_to_currency(l.cost.to_f)}", l.id]}
-      f.input :partner_registration_selection, :label => 'Partner Registration Selection', :as => :select, :collection => PartnerRegistration.all.map{|p| ["#{p.description} #{number_to_currency(p.cost.to_f)}", p.id]}
+      f.input :workshop_selection1, :label => "Workshop First Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.id] }
+      f.input :workshop_selection2, :label => "Workshop Second Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.id] }
+      f.input :workshop_selection3, :label => "Workshop Third Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.id] }
+      f.input :lodging_selection, :label => "Lodging selection", :as => :select, :collection => Lodging.all.map { |l| ["Plan:#{l.plan} #{l.description} #{number_to_currency(l.cost.to_f)}", l.id] }
+      f.input :partner_registration_selection, :label => "Partner Registration Selection", :as => :select, :collection => PartnerRegistration.all.map { |p| ["#{p.description} #{number_to_currency(p.cost.to_f)}", p.id] }
       f.input :partner_first_name
       f.input :partner_last_name
       f.input :how_did_you_hear

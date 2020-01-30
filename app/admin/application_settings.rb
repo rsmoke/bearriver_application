@@ -1,5 +1,5 @@
 ActiveAdmin.register ApplicationSetting do
-  menu parent: 'Application Configuration', priority: 1
+  menu parent: "Application Configuration", priority: 1
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -15,7 +15,7 @@ ActiveAdmin.register ApplicationSetting do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  index do 
+  index do
     selectable_column
     column :id do |id|
       link_to id.id, admin_application_setting_path(id)
@@ -31,13 +31,13 @@ ActiveAdmin.register ApplicationSetting do
     end
     column :lottery_buffer
     column :lottery_run_date
-    column "application_open_directions"  do |open_text|
+    column "application_open_directions" do |open_text|
       open_text.application_open_directions[0..50] + "..." unless open_text.application_open_directions.nil?
     end
     column "application_closed_directions" do |close_text|
       close_text.application_closed_directions[0..50] + "..." unless close_text.application_closed_directions.nil?
     end
-    column "registration_acceptance_directions"  do |reg_text|
+    column "registration_acceptance_directions" do |reg_text|
       reg_text.registration_acceptance_directions[0..50] + "..." unless reg_text.registration_acceptance_directions.nil?
     end
     column "payments_directions" do |pay_text|
@@ -84,7 +84,7 @@ ActiveAdmin.register ApplicationSetting do
 
   form do |f|
     f.semantic_errors
-    f.inputs 'ApplicationSetting' do
+    f.inputs "ApplicationSetting" do
       f.input :active_application
       f.input :contest_year
       f.input :opendate
@@ -108,5 +108,4 @@ ActiveAdmin.register ApplicationSetting do
     end
     f.actions
   end
-
 end

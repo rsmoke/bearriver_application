@@ -1,5 +1,5 @@
 ActiveAdmin.register Lodging do
-  menu parent: 'Application Configuration', priority: 3
+  menu parent: "Application Configuration", priority: 3
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -14,7 +14,7 @@ ActiveAdmin.register Lodging do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  index do 
+  index do
     selectable_column
     column :id do |id|
       link_to id.id, admin_lodging_path(id)
@@ -34,12 +34,9 @@ ActiveAdmin.register Lodging do
       row "cost" do |fee|
         number_to_currency(fee.cost)
       end
-    row :created_at
-    row :updated_at
+      row :created_at
+      row :updated_at
     end
     active_admin_comments
   end
-
-
-
 end

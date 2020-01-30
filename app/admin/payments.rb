@@ -1,5 +1,5 @@
 ActiveAdmin.register Payment do
-  menu parent: 'User Mangement', priority: 4
+  menu parent: "User Mangement", priority: 4
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -15,7 +15,7 @@ ActiveAdmin.register Payment do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  index do 
+  index do
     selectable_column
     column :id do |id|
       link_to id.id, admin_payment_path(id)
@@ -24,7 +24,7 @@ ActiveAdmin.register Payment do
     column :transaction_status
     column :transaction_id
     column "total_amount" do |amount|
-      number_to_currency(amount.total_amount.to_f / 100 )
+      number_to_currency(amount.total_amount.to_f / 100)
     end
     column :transaction_date
     column :account_type
@@ -46,7 +46,7 @@ ActiveAdmin.register Payment do
       row :transaction_status
       row :transaction_id
       row "total_amount" do |amount|
-        number_to_currency(amount.total_amount.to_f / 100 )
+        number_to_currency(amount.total_amount.to_f / 100)
       end
       row :transaction_date
       row :account_type
@@ -62,5 +62,4 @@ ActiveAdmin.register Payment do
     end
     active_admin_comments
   end
-
 end
