@@ -122,10 +122,9 @@ ActiveAdmin.register Application do
   form do |f|
     f.semantic_errors
     f.inputs do
-      # f.input :lottery_position
       f.input :user
       f.input :lottery_position, input_html: { disabled: true }
-      f.input :offer_status, :label => "Offer status", :as => :select, collection: ApplicationHelper::offer_status
+      f.input :offer_status, :label => "Offer status", :as => :select, :collection => offer_status
       f.input :offer_status_date
       f.input :first_name
       f.input :last_name
@@ -134,7 +133,7 @@ ActiveAdmin.register Application do
       f.input :street
       f.input :street2
       f.input :city
-      f.input :state, :label => "State", :as => :select, collection: ApplicationHelper::us_states
+      f.input :state, :label => "State", :as => :select, :collection => us_states
       f.input :zip
       f.input :country
       f.input :phone
