@@ -2,13 +2,6 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
-      end
-    end
-
     if (current_application_settings.opendate + current_application_settings.application_open_period.hours) < Time.now
       if current_application_settings.lottery_result.nil?
         div do
@@ -19,24 +12,32 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    columns do
+      column do
+        panel "Recent Payments" do
+          table_for Payment.order("id desc").limit(10) do
+            column("User") { |u| link_to(u.user.email, admin_user_path(u.user)) }
+            # column("Customer") { |order| link_to(order.user.email, admin_user_path(order.user)) }
+            column("Amount") { |order| number_to_currency order.total_amount.to_f / 100 }
+          end
+        end
+      end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+      column do
+        panel "Recent Users" do
+          table_for User.order("id desc").limit(10).each do |user|
+            column(:email) { |user| link_to(user.email, admin_user_path(user)) }
+          end
+        end
+      end
+
+      column do
+        panel "Recent Applications" do
+          table_for Application.order("id desc").limit(10).each do |app|
+            column(:id) { |app| link_to(app.name, admin_application_path(app)) }
+          end
+        end
+      end
+    end # columns
   end # content
 end
