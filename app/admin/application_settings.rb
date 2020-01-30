@@ -26,7 +26,9 @@ ActiveAdmin.register ApplicationSetting do
     column "# of hours to keep app open", :application_open_period
     column :application_buffer
     column :time_zone
-    column :registration_fee
+    column "registration_fee" do |reg_fee|
+      number_to_currency(reg_fee.registration_fee)
+    end
     column :lottery_buffer
     column :lottery_run_date
     column "application_open_directions"  do |open_text|
@@ -53,6 +55,30 @@ ActiveAdmin.register ApplicationSetting do
     actions
   end
 
+  show do
+    attributes_table do
+      row :opendate
+      row "# of hours to keep app open", &:application_open_period
+      row :application_buffer
+      row :contest_year
+      row :time_zone
+      row :allow_payments
+      row :active_application
+      row :allow_lottery_winner_emails
+      row :allow_lottery_loser_emails
+      row "registration_fee" do |reg_fee|
+        number_to_currency(reg_fee.registration_fee)
+      end
+      row :lottery_buffer
+      row :application_open_directions
+      row :application_closed_directions
+      row :registration_acceptance_directions
+      row :payments_directions
+      row :lottery_won_email
+      row :lottery_lost_email
+    end
+    active_admin_comments
+  end
 
   form do |f|
     f.semantic_errors
@@ -60,7 +86,11 @@ ActiveAdmin.register ApplicationSetting do
       f.input :active_application
       f.input :contest_year
       f.input :opendate
-      f.input :application_open_period, label: "Length in Hours Application will be Open"
+      f.input :time_zone
+      f.input :application_open_period, label: "# of Hours App is OPEN"
+      f.input :lottery_buffer
+      f.input :application_buffer
+      f.input :registration_fee
 
       f.input :application_open_directions
       f.input :application_closed_directions
@@ -70,13 +100,7 @@ ActiveAdmin.register ApplicationSetting do
       f.input :lottery_won_email
       f.input :lottery_lost_email
 
-      f.input :lottery_buffer
-      f.input :application_buffer
-
-      f.input :time_zone
-      f.input :registration_fee
       f.input :allow_payments
-
       f.input :allow_lottery_winner_emails
       f.input :allow_lottery_loser_emails
     end
