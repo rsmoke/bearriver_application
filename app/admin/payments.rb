@@ -20,6 +20,7 @@ ActiveAdmin.register Payment do
     column :id do |id|
       link_to id.id, admin_payment_path(id)
     end
+    column :user
     column :transaction_type
     column :transaction_status
     column :transaction_id
@@ -34,7 +35,6 @@ ActiveAdmin.register Payment do
     column :payer_identity
     column :timestamp
     column :transaction_hash
-    column :user_id
     column :created_at
     column :updated_at
     actions
@@ -42,6 +42,7 @@ ActiveAdmin.register Payment do
 
   show do
     attributes_table do
+      row :user
       row :transaction_type
       row :transaction_status
       row :transaction_id
