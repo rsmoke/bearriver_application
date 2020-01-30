@@ -76,6 +76,8 @@ ActiveAdmin.register ApplicationSetting do
       row :payments_directions
       row :lottery_won_email
       row :lottery_lost_email
+      row :created_at
+      row :updated_at
     end
     active_admin_comments
   end

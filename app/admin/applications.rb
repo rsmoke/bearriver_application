@@ -113,7 +113,8 @@ ActiveAdmin.register Application do
       row :accessibility_requirements
       row :special_lodging_request
       row :food_restrictions
-
+      row :created_at
+      row :updated_at
     end
     active_admin_comments
   end
