@@ -1,5 +1,4 @@
 class Application < ApplicationRecord
-
   before_create :set_contest_year
 
   validates :first_name, presence: true
@@ -19,7 +18,7 @@ class Application < ApplicationRecord
   validates :lodging_selection, presence: true
   validates :partner_registration_selection, presence: true
 
-  HOW_DID_YOU_HEAR = ['---','Word of Mouth', 'Magazine Advertisement', 'Online Advertisement', 'Newspaper Advertisement', 'Other']
+  HOW_DID_YOU_HEAR = ["---", "Word of Mouth", "Magazine Advertisement", "Online Advertisement", "Newspaper Advertisement", "Other"]
 
   belongs_to :user
 
@@ -62,13 +61,16 @@ class Application < ApplicationRecord
   def partner_registration_description
     PartnerRegistration.find(partner_registration_selection).description
   end
- 
+
   scope :active_conference_applications, -> { where("conf_year = ?", ApplicationSetting.get_current_app_settings.contest_year) }
 
+  scope :application_accepted, -> { where("offer_status = ?", "registration_accepted") }
 
-private
-    def set_contest_year
-      self.conf_year = ApplicationSetting.get_current_app_settings.contest_year
-    end
+  scope :application_offered, -> { where("offer_status = ?", "registration_offered") }
 
+  private
+
+  def set_contest_year
+    self.conf_year = ApplicationSetting.get_current_app_settings.contest_year
+  end
 end
