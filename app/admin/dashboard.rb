@@ -14,6 +14,24 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
+        panel "Applicants who accepted their registration offer" do
+          table_for Application.application_accepted.order("id desc").limit(50) do
+            column("User") { |u| link_to(u.user.email, admin_application_path(u.id)) }
+            column("Offer Date") { |od| od.offer_status_date }
+          end
+        end
+      end
+
+      column do
+        panel "Waiting for responses from these applicants" do
+          table_for Application.application_offered.order("id desc").limit(10) do
+            column("User") { |u| link_to(u.user.email, admin_application_path(u.id)) }
+            column("Offer Date") { |od| od.offer_status_date }
+          end
+        end
+      end
+
+      column do
         panel "Recent Payments" do
           table_for Payment.order("id desc").limit(10) do
             column("User") { |u| link_to(u.user.email, admin_user_path(u.user)) }
@@ -22,7 +40,9 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
+    end # columns
 
+    columns do
       column do
         panel "Recent Users" do
           table_for User.order("id desc").limit(10).each do |user|
@@ -38,6 +58,6 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
-    end # columns
+    end
   end # content
 end

@@ -70,6 +70,8 @@ ActiveAdmin.register ApplicationSetting do
         number_to_currency(reg_fee.registration_fee)
       end
       row :lottery_buffer
+      row :lottery_result
+      row :lottery_run_date
       row :application_open_directions
       row :application_closed_directions
       row :registration_acceptance_directions
