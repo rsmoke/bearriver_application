@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Applicants who accepted their registration offer" do
-          table_for Application.application_accepted.order("id desc").limit(50) do
+          table_for Application.application_accepted.order("id desc").limit(110) do
             column("User") { |u| link_to(u.user.email, admin_application_path(u.id)) }
             column("Offer Date") { |od| od.offer_status_date }
           end
