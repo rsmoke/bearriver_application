@@ -1,4 +1,5 @@
 ActiveAdmin.register Payment do
+  actions :index, :show, :create, :new, :destroy
   menu parent: "User Mangement", priority: 4
 
   # See permitted parameters documentation:
@@ -22,19 +23,20 @@ ActiveAdmin.register Payment do
     end
     column :user
     column :transaction_type
-    column :transaction_status
-    column :transaction_id
     column "total_amount" do |amount|
       number_to_currency(amount.total_amount.to_f / 100)
     end
+    column :transaction_status
+    # column :transaction_id
+
     column :transaction_date
     column :account_type
     column :result_code
     column :result_message
-    column :user_account
-    column :payer_identity
-    column :timestamp
-    column :transaction_hash
+    # column :user_account
+    # column :payer_identity
+    # column :timestamp
+    # column :transaction_hash
     column :created_at
     column :updated_at
     actions
@@ -62,5 +64,25 @@ ActiveAdmin.register Payment do
       row :updated_at
     end
     active_admin_comments
+  end
+
+  form do |f|
+    f.semantic_errors
+    f.inputs "Payment" do
+      f.input :user
+      f.input :transaction_type, as: :hidden, :input_html => { value: "ManuallyEntered" } # ManualEntry
+      f.input :transaction_status, as: :hidden, :input_html => { value: "1" } # 1
+      f.input :transaction_id, as: :hidden, :input_html => { value: DateTime.now.iso8601 + "_" + current_admin_user.email } # DateTime.now.iso8601 + current_admin_user.email
+      f.input :total_amount # 10000 => 100.00
+      f.input :transaction_date, as: :datepicker # DateTime.now.iso8601
+      f.input :account_type, label: "Enter Check# or Transaction#" # 'Check #xxxx'
+      f.input :result_code, as: :hidden, :input_html => { value: "Manually Entered" } # 'Manually Entered'
+      f.input :result_message, as: :hidden, :input_html => { value: "This was manually entered by #{current_admin_user.email}" } # "This was manually entered by #{current_admin_user} for #{:user.email}"
+      #f.input :user_account # :user.email + '-' + :user.id
+      #f.input :payer_identity # :user.email
+      f.input :timestamp, as: :hidden, :input_html => { value: DateTime.now.strftime("%Q").to_i } # DateTime.now.strftime("%Q").to_i
+    end
+    #f.actions
+    f.actions
   end
 end
