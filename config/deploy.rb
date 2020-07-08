@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.7.0'
+set :rbenv_ruby, '2.7.1'
 
 server 'lsa-english-bearriver.miserver.it.umich.edu', roles: [:web, :app, :db], primary: true
 
