@@ -33,6 +33,9 @@ gem 'haml-rails'
 
 gem 'country_select', '~> 4.0'
 
+gem 'newrelic_rpm'
+gem 'newrelic-infinite_tracing'
+
 group :development, :test do
   # gem 'pry-doc'
   gem 'pry-rails'
