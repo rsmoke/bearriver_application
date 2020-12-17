@@ -376,7 +376,7 @@ DEPENDENCIES
   capistrano-postgresql
   capistrano-rails
   capistrano-rbenv
-  capistrano3-puma (~> 5.0, >= 5.0.2)
+  capistrano3-puma
   capybara
   country_select (~> 4.0)
   database_cleaner
