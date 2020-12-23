@@ -63,7 +63,7 @@ group :development do
   gem 'meta_request'
   gem 'capistrano',         require: false
   gem 'capistrano-rbenv',   require: false
-  gem 'capistrano-postgresql'
+  gem 'capistrano-postgresql', require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma', require: false
