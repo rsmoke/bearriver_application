@@ -1,2 +1,13 @@
+# == Schema Information
+#
+# Table name: lodgings
+#
+#  id          :bigint           not null, primary key
+#  plan        :string
+#  description :string
+#  cost        :decimal(, )
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class Lodging < ApplicationRecord
 end

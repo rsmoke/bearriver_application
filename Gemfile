@@ -68,6 +68,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma', require: false
   gem 'letter_opener_web', '~> 1.3', '>= 1.3.1'
+  gem 'annotate'
 end
 
 
