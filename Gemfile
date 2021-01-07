@@ -62,11 +62,12 @@ group :development do
   gem "binding_of_caller"
   gem 'meta_request'
   gem 'capistrano',         require: false
-  gem 'capistrano-rbenv',   require: false
-  gem 'capistrano-postgresql', require: false
+  gem 'capistrano3-puma'
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma', require: false
+  gem 'capistrano-rbenv',   require: false
+  gem 'capistrano-postgresql', require: false
+
   gem 'letter_opener_web', '~> 1.3', '>= 1.3.1'
   gem 'annotate'
 end
