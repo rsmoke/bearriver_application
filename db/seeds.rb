@@ -107,6 +107,18 @@ ApplicationSetting.create!([
     application_buffer: 50,
     contest_year: Time.now.year,
     time_zone: "EST",
+    active_application: true
+  }
+])
+
+Gender.create!([
+  {
+    name: Male,
+    description: dude type
+  },
+  {
+    name: Female,
+    description: dudette type
   }
 ])
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
