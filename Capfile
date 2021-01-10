@@ -39,7 +39,7 @@ require 'capistrano/bundler'
 require "capistrano/rbenv"
 require 'capistrano/puma'
 # https://stackoverflow.com/questions/43014993/dont-know-how-to-build-task-start-when-run-cap-production-deploy-for-capist
-install_plugin Capistrano::Puma # Default puma tasks
+install_plugin Capistrano::Puma::Daemon # Default puma tasks
 install_plugin Capistrano::Puma::Workers
 install_plugin Capistrano::Puma::Nginx # if you want to upload a nginx site template
 
