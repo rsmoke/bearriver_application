@@ -17,6 +17,7 @@ ActiveAdmin.register ApplicationSetting do
   # end
   index do
     selectable_column
+    actions
     column :id do |id|
       link_to id.id, admin_application_setting_path(id)
     end
@@ -52,7 +53,6 @@ ActiveAdmin.register ApplicationSetting do
     column :allow_payments
     column :allow_lottery_winner_emails
     column :allow_lottery_loser_emails
-    actions
   end
 
   show do

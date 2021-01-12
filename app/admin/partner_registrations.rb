@@ -16,6 +16,7 @@ ActiveAdmin.register PartnerRegistration do
   # end
   index do
     selectable_column
+    actions
     column :id do |id|
       link_to id.id, admin_partner_registration_path(id)
     end
@@ -23,7 +24,6 @@ ActiveAdmin.register PartnerRegistration do
     column "cost" do |fee|
       number_to_currency(fee.cost)
     end
-    actions
   end
 
   show do

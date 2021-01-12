@@ -18,6 +18,7 @@ ActiveAdmin.register Payment do
   # end
   index do
     selectable_column
+    actions
     column :id do |id|
       link_to id.id, admin_payment_path(id)
     end
@@ -39,7 +40,6 @@ ActiveAdmin.register Payment do
     # column :transaction_hash
     column :created_at
     column :updated_at
-    actions
   end
 
   show do

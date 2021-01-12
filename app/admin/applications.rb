@@ -15,12 +15,16 @@ ActiveAdmin.register Application do
   #   permitted
   # end
 
+  scope :active_conference_applications, :default => true, label: "Current years Applications"
+  scope :all
+
   action_item :send_offer, only: :show do
     button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
   end
 
   index do
     selectable_column
+    actions
     column :id do |id|
       link_to id.id, admin_application_path(id)
     end
@@ -67,7 +71,6 @@ ActiveAdmin.register Application do
     column :result_email_sent
     column :offer_status_date
     column :conf_year
-    actions
   end
 
   show do

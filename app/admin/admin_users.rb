@@ -4,10 +4,10 @@ ActiveAdmin.register AdminUser do
 
   index do
     selectable_column
+    actions
     id_column
     column :email
     column :created_at
-    actions
   end
 
   filter :email

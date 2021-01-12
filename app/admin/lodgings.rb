@@ -23,6 +23,7 @@ ActiveAdmin.register Lodging do
 
   index do
     selectable_column
+    actions
     column :id do |id|
       link_to id.id, admin_lodging_path(id)
     end
@@ -31,7 +32,6 @@ ActiveAdmin.register Lodging do
     column "cost" do |fee|
       number_to_currency(fee.cost)
     end
-    actions
   end
 
   show do
