@@ -26,7 +26,8 @@
           payer_identity: @current_user.email,
           timestamp: params['timestamp'],
           transaction_hash: params['hash'],
-          user_id: current_user.id
+          user_id: current_user.id,
+          conf_year: ApplicationSetting.get_current_app_year
         )
         current_user.application.update(offer_status: "registration_accepted")
         redirect_to all_payments_path, notice: "Your Payment Was Successfully Recorded"
@@ -40,10 +41,10 @@
 
     def payment_show
       redirect_to root_url unless user_has_payments?(current_user)
-      @users_current_payments = Payment.where(user_id: current_user )
-      @ttl_paid = Payment.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
-      cost_lodging = Lodging.find(current_user.application.lodging_selection).cost.to_f
-      cost_partner = PartnerRegistration.find(current_user.application.partner_registration_selection).cost.to_f
+      @users_current_payments = Payment.current_conference_payments.where(user_id: current_user )
+      @ttl_paid = Payment.current_conference_payments.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
+      cost_lodging = Lodging.find(Application.active_conference_applications.find_by(user_id: current_user).lodging_selection).cost.to_f
+      cost_partner = PartnerRegistration.find(Application.active_conference_applications.find_by(user_id: current_user).partner_registration_selection).cost.to_f
       @total_cost = cost_lodging + cost_partner
       @balance_due = @total_cost - @ttl_paid
     end
@@ -90,6 +91,6 @@
       end
 
       def url_params
-        params.permit(:amount, :transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash)
+        params.permit(:amount, :transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash, :conf_year)
       end
   end
