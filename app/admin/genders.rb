@@ -15,4 +15,14 @@ ActiveAdmin.register Gender do
   #   permitted
   # end
 
+  index do
+    selectable_column
+    actions
+    id_column
+    column :name 
+    column :description
+    column :created_at
+    column :updated_at
+  end
+
 end

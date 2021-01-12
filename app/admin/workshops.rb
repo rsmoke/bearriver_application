@@ -14,5 +14,14 @@ ActiveAdmin.register Workshop do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-
+  index do
+    selectable_column
+    actions
+    id_column
+    column :instructor
+    column :last_name
+    column :first_name
+    column :created_at
+    column :updated_at
+  end
 end
