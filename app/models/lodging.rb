@@ -10,4 +10,7 @@
 #  updated_at  :datetime         not null
 #
 class Lodging < ApplicationRecord
+  def display_name
+    "#{self.plan} - #{self.description}"
+  end
 end

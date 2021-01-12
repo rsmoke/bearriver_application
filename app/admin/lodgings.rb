@@ -14,6 +14,12 @@ ActiveAdmin.register Lodging do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  config.sort_order = 'id_asc'
+
+  filter :id, label: "Lodging Options", as: :select, collection: -> { Lodging.all.map { |lodge| [lodge.display_name, lodge.id]}.sort}
+  filter :cost, as: :select
+
   index do
     selectable_column
     column :id do |id|
