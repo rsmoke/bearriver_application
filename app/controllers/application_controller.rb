@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_application_open?
 
     def user_has_application?(user)
-      if Application.find_by(user_id: user, conf_year: current_application_settings.contest_year).nil?
+      if Application.active_conference_applications.find_by(user_id: user).nil?
         false
       else
         true
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
     def user_has_payments?(user)
       # return true unless Payment.find_by(user_id: user).nil?
-      if Payment.find_by(user_id: user).nil?
+      if Payment.current_conference_payments.find_by(user_id: user).nil?
         false
       else
         true
