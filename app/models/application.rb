@@ -102,9 +102,9 @@ class Application < ApplicationRecord
 
   scope :active_conference_applications, -> { where("conf_year = ?", ApplicationSetting.get_current_app_settings.contest_year) }
 
-  scope :application_accepted, -> { where("offer_status = ?", "registration_accepted") }
+  scope :application_accepted, -> { active_conference_applications.where("offer_status = ?", "registration_accepted") }
 
-  scope :application_offered, -> { where("offer_status = ?", "registration_offered") }
+  scope :application_offered, -> { active_conference_applications.where("offer_status = ?", "registration_offered") }
 
   private
 
