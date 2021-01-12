@@ -18,10 +18,13 @@
 #  user_id            :bigint
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  conf_year          :integer
 #
 class Payment < ApplicationRecord
   validates :transaction_id, presence: true, uniqueness: true
   validates :total_amount, presence: true
   belongs_to :user
+
+  scope :current_conference_payments, -> { where('conf_year = ? ', ApplicationSetting.get_current_app_year) }
 
 end
