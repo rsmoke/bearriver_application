@@ -19,6 +19,7 @@ ActiveAdmin.register Lodging do
 
   filter :id, label: "Lodging Options", as: :select, collection: -> { Lodging.all.map { |lodge| [lodge.display_name, lodge.id]}.sort}
   filter :cost, as: :select
+  filter :plan
 
   index do
     selectable_column
