@@ -5,7 +5,7 @@ ActiveAdmin.register Application do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :first_name, :last_name, :gender, :birth_year, :street, :street2, :city, :state, :zip, :country, :phone, :email, :email_confirmation, :workshop_selection1, :workshop_selection2, :workshop_selection3, :lodging_selection, :partner_registration_selection, :partner_first_name, :partner_last_name, :how_did_you_hear, :accessibility_requirements, :special_lodging_request, :food_restrictions, :user_id, :lottery_position, :offer_status, :result_email_sent, :offer_status_date
+  permit_params :first_name, :last_name, :gender, :birth_year, :street, :street2, :city, :state, :zip, :country, :phone, :email, :email_confirmation, :workshop_selection1, :workshop_selection2, :workshop_selection3, :lodging_selection, :partner_registration_selection, :partner_first_name, :partner_last_name, :how_did_you_hear, :accessibility_requirements, :special_lodging_request, :food_restrictions, :user_id, :lottery_position, :offer_status, :result_email_sent, :offer_status_date, :conf_year
   #
   # or
   #
@@ -30,6 +30,7 @@ ActiveAdmin.register Application do
   filter :workshop_selection3, label: "workshop_selection3", as: :select, collection: -> { Workshop.all.sort }
   filter :lodging_selection, as: :select, collection: -> { Lodging.all.sort }
   filter :country, as: :select
+  filter :conf_year, as: :select
 
   index do
     selectable_column
@@ -38,6 +39,7 @@ ActiveAdmin.register Application do
       link_to id.id, admin_application_path(id)
     end
     column :user
+    column :conf_year
     column :lottery_position
     column :offer_status
     column :first_name
@@ -79,12 +81,13 @@ ActiveAdmin.register Application do
 
     column :result_email_sent
     column :offer_status_date
-    column :conf_year
+
   end
 
   show do
     attributes_table do
       row :user
+      row :conf_year
       row :lottery_position
       row :offer_status
       row :offer_status_date
@@ -135,6 +138,8 @@ ActiveAdmin.register Application do
     f.semantic_errors
     f.inputs do
       f.input :user
+      li "Conf Year #{f.object.conf_year}" unless f.object.new_record?
+      f.input :conf_year, input_html: {value: ApplicationSetting.get_current_app_year} unless f.object.persisted?
       f.input :lottery_position, input_html: { disabled: true }
       f.input :offer_status, :label => "Offer status", :as => :select, :collection => offer_status
       f.input :offer_status_date
