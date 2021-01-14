@@ -64,6 +64,10 @@ class Application < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def display_name
+    "#{name} - #{email}"
+  end
+
   def total_user_has_paid
     user.total_paid
   end

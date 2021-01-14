@@ -1,5 +1,7 @@
 ActiveAdmin.register Lodging do
   menu parent: "Application Configuration", priority: 3
+  config.filters = false
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -16,10 +18,6 @@ ActiveAdmin.register Lodging do
   # end
 
   config.sort_order = 'id_asc'
-
-  filter :id, label: "Lodging Options", as: :select, collection: -> { Lodging.all.map { |lodge| [lodge.display_name, lodge.id]}.sort}
-  filter :cost, as: :select
-  filter :plan
 
   index do
     selectable_column

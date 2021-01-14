@@ -1,5 +1,7 @@
 ActiveAdmin.register PartnerRegistration do
   menu parent: "Application Configuration", priority: 3
+  config.filters = false
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
