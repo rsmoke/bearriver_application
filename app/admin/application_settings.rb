@@ -1,5 +1,6 @@
 ActiveAdmin.register ApplicationSetting do
   menu parent: "Application Configuration", priority: 1
+  config.filters = false
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -15,8 +16,6 @@ ActiveAdmin.register ApplicationSetting do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-
-  filter :application_buffer, as: :select
 
   index do
     selectable_column

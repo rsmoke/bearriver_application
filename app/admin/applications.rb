@@ -25,11 +25,12 @@ ActiveAdmin.register Application do
   filter :user, as: :select, collection: -> { Application.all.map { |appl| [appl.display_name, appl.id]}.sort}
   filter :offer_status, as: :select
   filter :gender, as: :select, collection: -> { Gender.all.map{|a| [a.name, a.id]} }
+  filter :workshop_selection1, label: "workshop_selection1", as: :select, collection: -> { Workshop.all.sort }
+  filter :workshop_selection2, label: "workshop_selection2", as: :select, collection: -> { Workshop.all.sort }
+  filter :workshop_selection3, label: "workshop_selection3", as: :select, collection: -> { Workshop.all.sort }
+  filter :lodging_selection, as: :select, collection: -> { Lodging.all.sort }
   filter :country, as: :select
-  filter :workshop_selection1, label: "workshop_selection1", as: :select, collection: -> { Application.all.map { |appl| [Workshop.find(appl.workshop_selection1).instructor, appl.id]}.sort }
-  filter :workshop_selection2, label: "workshop_selection2", as: :select, collection: -> { Application.all.map { |appl| [Workshop.find(appl.workshop_selection2).instructor, appl.id]}.sort }
-  filter :workshop_selection3, label: "workshop_selection3", as: :select, collection: -> { Application.all.map { |appl| [Workshop.find(appl.workshop_selection3).instructor, appl.id]}.sort }
-  filter :lodging_selection, as: :select, collection: -> { Application.all.map { |appl| [Lodging.find(appl.lodging_selection).description, appl.id]}.sort}
+
   index do
     selectable_column
     actions
@@ -44,16 +45,6 @@ ActiveAdmin.register Application do
     column "gender" do |sex|
       Gender.find(sex.gender).name
     end
-    column :birth_year
-    column :street
-    column :street2
-    column :city
-    column :state
-    column :zip
-    column :country
-    column :phone
-    column :email
-    column :email_confirmation
     column "workshop_selection1" do |w1|
       Workshop.find(w1.workshop_selection1).instructor
     end
@@ -69,6 +60,16 @@ ActiveAdmin.register Application do
     column "partner_registration_selection" do |partner|
       PartnerRegistration.find(partner.partner_registration_selection).description
     end
+    column :birth_year
+    column :street
+    column :street2
+    column :city
+    column :state
+    column :zip
+    column :country
+    column :phone
+    column :email
+    column :email_confirmation
     column :partner_first_name
     column :partner_last_name
     column :how_did_you_hear
