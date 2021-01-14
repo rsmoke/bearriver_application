@@ -22,6 +22,14 @@ ActiveAdmin.register Application do
     button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
   end
 
+  filter :user, as: :select, collection: -> { Application.all.map { |appl| [appl.display_name, appl.id]}.sort}
+  filter :offer_status, as: :select
+  filter :gender, as: :select, collection: -> { Gender.all.map{|a| [a.name, a.id]} }
+  filter :country, as: :select
+  filter :workshop_selection1, label: "workshop_selection1", as: :select, collection: -> { Application.all.map { |appl| [Workshop.find(appl.workshop_selection1).instructor, appl.id]}.sort }
+  filter :workshop_selection2, label: "workshop_selection2", as: :select, collection: -> { Application.all.map { |appl| [Workshop.find(appl.workshop_selection2).instructor, appl.id]}.sort }
+  filter :workshop_selection3, label: "workshop_selection3", as: :select, collection: -> { Application.all.map { |appl| [Workshop.find(appl.workshop_selection3).instructor, appl.id]}.sort }
+  filter :lodging_selection, as: :select, collection: -> { Application.all.map { |appl| [Lodging.find(appl.lodging_selection).description, appl.id]}.sort}
   index do
     selectable_column
     actions

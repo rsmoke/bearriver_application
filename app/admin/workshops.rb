@@ -14,6 +14,9 @@ ActiveAdmin.register Workshop do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  filter :last_name, as: :select
+
   index do
     selectable_column
     actions
