@@ -1,5 +1,5 @@
 ActiveAdmin.register Payment do
-  actions :index, :show, :create, :new, :destroy
+  actions :index, :show, :create, :new, :edit
   menu parent: "User Mangement", priority: 4
 
   # See permitted parameters documentation:
@@ -7,7 +7,7 @@ ActiveAdmin.register Payment do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :transaction_type, :transaction_status, :transaction_id, :total_amount, :transaction_date, :account_type, :result_code, :result_message, :user_account, :payer_identity, :timestamp, :transaction_hash, :user_id
+  permit_params :transaction_type, :transaction_status, :transaction_id, :total_amount, :transaction_date, :account_type, :result_code, :result_message, :user_account, :payer_identity, :timestamp, :transaction_hash, :user_id, :conf_year
   #
   # or
   #
@@ -16,6 +16,8 @@ ActiveAdmin.register Payment do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  filter :user, as: :select
   index do
     selectable_column
     actions
@@ -23,6 +25,7 @@ ActiveAdmin.register Payment do
       link_to id.id, admin_payment_path(id)
     end
     column :user
+    column :conf_year
     column :transaction_type
     column "total_amount" do |amount|
       number_to_currency(amount.total_amount.to_f / 100)
@@ -45,6 +48,7 @@ ActiveAdmin.register Payment do
   show do
     attributes_table do
       row :user
+      row :conf_year
       row :transaction_type
       row :transaction_status
       row :transaction_id
@@ -70,6 +74,8 @@ ActiveAdmin.register Payment do
     f.semantic_errors
     f.inputs "Payment" do
       f.input :user
+      li "Conf Year #{f.object.conf_year}" unless f.object.new_record?
+      f.input :conf_year, input_html: {value: ApplicationSetting.get_current_app_year} unless f.object.persisted?
       f.input :transaction_type, as: :hidden, :input_html => { value: "ManuallyEntered" } # ManualEntry
       f.input :transaction_status, as: :hidden, :input_html => { value: "1" } # 1
       f.input :transaction_id, as: :hidden, :input_html => { value: DateTime.now.iso8601 + "_" + current_admin_user.email } # DateTime.now.iso8601 + current_admin_user.email
