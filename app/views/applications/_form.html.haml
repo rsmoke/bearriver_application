@@ -98,7 +98,7 @@
       = f.text_field :last_name, class: 'form-control'
   .form-group.row
     = f.label :gender, class: 'col-sm-4 col-form-label required'
-    = f.collection_select(:gender, Gender.all, :id, :name, prompt: "Pick one")
+    = f.collection_select(:gender, Gender.all, :name, :name, prompt: "Pick one")
   .form-group.row
     = f.label :birth_year, 'Year of Birth', class: 'col-sm-3 col-form-label required'
     .col-sm-9
