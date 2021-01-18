@@ -25,7 +25,7 @@ class User < ApplicationRecord
          :validatable
 
   has_many :payments, dependent: :destroy
-  has_one :application, dependent: :destroy
+  has_many :applications, dependent: :destroy
 
   def total_paid
     payments.pluck(:total_amount).map{ |v| v.to_f }.sum / 100

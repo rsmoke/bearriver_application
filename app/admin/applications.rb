@@ -22,7 +22,7 @@ ActiveAdmin.register Application do
     button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
   end
 
-  filter :user, as: :select, collection: -> { Application.all.map { |appl| [appl.display_name, appl.id]}.sort}
+  filter :user, as: :select, collection: Application.all.sort
   filter :offer_status, as: :select
   filter :gender, as: :select, collection: -> { Gender.all.map{|a| [a.name, a.id]} }
   filter :workshop_selection1, label: "workshop_selection1", as: :select, collection: -> { Workshop.all.sort }

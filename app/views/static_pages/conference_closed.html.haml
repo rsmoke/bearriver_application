@@ -15,7 +15,7 @@
 
   - else
     -if user_signed_in? && user_has_application?(current_user)
-      - if current_user.application.offer_status == "registration_offered" || current_user.application.offer_status == "registration_accepted"
+      - if ["registration_offered", "registration_accepted"].include? Application.active_conference_applications.find_by(user_id: current_user).offer_status
         - if !user_has_payments?(current_user)
           %p
             To accept your offer  
