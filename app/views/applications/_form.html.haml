@@ -139,15 +139,15 @@
   %hr
   .form-group.row
     = f.label :workshop_selection1, "First Choice", class: 'col-sm-4 col-form-label required'
-    = f.collection_select(:workshop_selection1, Workshop.all.order_by_lastname, :id, :instructor,
+    = f.collection_select(:workshop_selection1, Workshop.all.order_by_lastname, :instructor, :instructor,
                           prompt: "Pick one")
   .form-group.row
     = f.label :workshop_selection2, "Second Choice", class: 'col-sm-4 col-form-label required'
-    = f.collection_select(:workshop_selection2, Workshop.all, :id, :instructor,
+    = f.collection_select(:workshop_selection2, Workshop.all, :instructor, :instructor,
                           prompt: "Pick one")
   .form-group.row
     = f.label :workshop_selection3, "Third Choice", class: 'col-sm-4 col-form-label required'
-    = f.collection_select(:workshop_selection3, Workshop.all, :id, :instructor,
+    = f.collection_select(:workshop_selection3, Workshop.all, :instructor, :instructor,
                           prompt: "Pick one")
 
   %h5 Lodging Selection:
@@ -155,7 +155,7 @@
   .h6
     = f.label 'Please select a room type:', class: 'required'
   .form-group
-    = f.collection_radio_buttons(:lodging_selection, Lodging.all, :id, :description) do |b|
+    = f.collection_radio_buttons(:lodging_selection, Lodging.all, :description, :description) do |b|
       .form-check
       = b.radio_button(class: "form-check-input ml-3")
       = b.label(class: "form-check-label  ml-5")
@@ -163,7 +163,7 @@
   .h6
     = f.label 'Please indicate whether your registration includes a spouse/partner:', class: 'required'
   .form-group
-    = f.collection_radio_buttons(:partner_registration_selection, @partner_registrations.order(cost: :asc), :id, :display_info) do |b|
+    = f.collection_radio_buttons(:partner_registration_selection, @partner_registrations.order(cost: :asc), :description, :description) do |b|
       .form-check
       = b.radio_button(class: "form-check-input ml-3")
       = b.label(class: "form-check-label  ml-5")

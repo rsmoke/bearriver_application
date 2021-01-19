@@ -22,13 +22,14 @@ ActiveAdmin.register Application do
     button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
   end
 
-  filter :user, as: :select, collection: Application.all.sort
+  filter :user_id, label: "User", as: :select, collection: -> { Application.all.map { |app| [app.display_name, app.user_id]}.uniq.sort}
   filter :offer_status, as: :select
-  filter :gender, as: :select, collection: -> { Gender.all.map{|a| [a.name, a.id]} }
-  filter :workshop_selection1, label: "workshop_selection1", as: :select, collection: -> { Workshop.all.sort }
-  filter :workshop_selection2, label: "workshop_selection2", as: :select, collection: -> { Workshop.all.sort }
-  filter :workshop_selection3, label: "workshop_selection3", as: :select, collection: -> { Workshop.all.sort }
-  filter :lodging_selection, as: :select, collection: -> { Lodging.all.sort }
+  filter :gender, as: :select, collection: Gender.all.sort
+  filter :workshop_selection1, label: "workshop_selection1", as: :select, collection: -> { Workshop.all.map { |mapp| [mapp.instructor, mapp.instructor]}.sort }
+  filter :workshop_selection2, label: "workshop_selection2", as: :select, collection: -> { Workshop.all.map { |mapp| [mapp.instructor, mapp.instructor]}.sort }
+  filter :workshop_selection3, label: "workshop_selection3", as: :select, collection: -> { Workshop.all.map { |mapp| [mapp.instructor, mapp.instructor]}.sort }
+  filter :lodging_selection, as: :select, collection: -> { Lodging.all.map { |lapp| [lapp.description, lapp.description]}.sort }
+  filter :partner_registration_selection, as: :select, collection: -> { PartnerRegistration.all.map { |papp| [papp.description, papp.description]}.sort }
   filter :country, as: :select
   filter :conf_year, as: :select
 
@@ -45,21 +46,11 @@ ActiveAdmin.register Application do
     column :first_name
     column :last_name
     column :gender
-    column "workshop_selection1" do |w1|
-      Workshop.find(w1.workshop_selection1).instructor
-    end
-    column "workshop_selection2" do |w2|
-      Workshop.find(w2.workshop_selection2).instructor
-    end
-    column "workshop_selection3" do |w3|
-      Workshop.find(w3.workshop_selection3).instructor
-    end
-    column "lodging_selection" do |lodge|
-      Lodging.find(lodge.lodging_selection).description
-    end
-    column "partner_registration_selection" do |partner|
-      PartnerRegistration.find(partner.partner_registration_selection).description
-    end
+    column :workshop_selection1
+    column :workshop_selection2
+    column :workshop_selection3
+    column :lodging_selection
+    column :partner_registration_selection
     column :birth_year
     column :street
     column :street2
@@ -76,7 +67,6 @@ ActiveAdmin.register Application do
     column :accessibility_requirements
     column :special_lodging_request
     column :food_restrictions
-
     column :result_email_sent
     column :offer_status_date
 
@@ -103,21 +93,11 @@ ActiveAdmin.register Application do
       row :phone
       row :email
       row :email_confirmation
-      row "workshop_selection1" do |w1|
-        Workshop.find(w1.workshop_selection1).instructor
-      end
-      row "workshop_selection2" do |w2|
-        Workshop.find(w2.workshop_selection2).instructor
-      end
-      row "workshop_selection3" do |w3|
-        Workshop.find(w3.workshop_selection3).instructor
-      end
-      row "lodging_selection" do |lodge|
-        Lodging.find(lodge.lodging_selection).description
-      end
-      row "partner_registration_selection" do |partner|
-        PartnerRegistration.find(partner.partner_registration_selection).description
-      end
+      row :workshop_selection1
+      row :workshop_selection2
+      row :workshop_selection3
+      row :lodging_selection
+      row :partner_registration_selection
       row :partner_first_name
       row :partner_last_name
       row :how_did_you_hear
@@ -148,14 +128,14 @@ ActiveAdmin.register Application do
       f.input :city
       f.input :state, :label => "State", :as => :select, :collection => us_states
       f.input :zip
-      f.input :country
+      f.input :country, include_blank: true
       f.input :phone
       f.input :email
-      f.input :workshop_selection1, :label => "Workshop First Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.id] }
-      f.input :workshop_selection2, :label => "Workshop Second Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.id] }
-      f.input :workshop_selection3, :label => "Workshop Third Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.id] }
-      f.input :lodging_selection, :label => "Lodging selection", :as => :select, :collection => Lodging.all.map { |l| ["Plan:#{l.plan} #{l.description} #{number_to_currency(l.cost.to_f)}", l.id] }
-      f.input :partner_registration_selection, :label => "Partner Registration Selection", :as => :select, :collection => PartnerRegistration.all.map { |p| ["#{p.description} #{number_to_currency(p.cost.to_f)}", p.id] }
+      f.input :workshop_selection1, :label => "Workshop First Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.instructor] }
+      f.input :workshop_selection2, :label => "Workshop Second Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.instructor] }
+      f.input :workshop_selection3, :label => "Workshop Third Choice", :as => :select, :collection => Workshop.all.map { |w| ["#{w.instructor}", w.instructor] }
+      f.input :lodging_selection, :label => "Lodging selection", :as => :select, :collection => Lodging.all.map { |l| ["Plan:#{l.plan} #{l.description} #{number_to_currency(l.cost.to_f)}", l.description] }
+      f.input :partner_registration_selection, :label => "Partner Registration Selection", :as => :select, :collection => PartnerRegistration.all.map { |p| ["#{p.description} #{number_to_currency(p.cost.to_f)}", p.description] }
       f.input :partner_first_name
       f.input :partner_last_name
       f.input :how_did_you_hear
