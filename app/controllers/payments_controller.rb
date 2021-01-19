@@ -43,8 +43,8 @@
       redirect_to root_url unless user_has_payments?(current_user)
       @users_current_payments = Payment.current_conference_payments.where(user_id: current_user )
       @ttl_paid = Payment.current_conference_payments.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
-      cost_lodging = Lodging.find(Application.active_conference_applications.find_by(user_id: current_user).lodging_selection).cost.to_f
-      cost_partner = PartnerRegistration.find(Application.active_conference_applications.find_by(user_id: current_user).partner_registration_selection).cost.to_f
+      cost_lodging = Lodging.find_by(description: (Application.active_conference_applications.find_by(user_id: current_user).lodging_selection)).cost.to_f
+      cost_partner = PartnerRegistration.find_by(description: (Application.active_conference_applications.find_by(user_id: current_user).partner_registration_selection)).cost.to_f
       @total_cost = cost_lodging + cost_partner
       @balance_due = @total_cost - @ttl_paid
     end
