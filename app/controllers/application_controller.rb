@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
 
   private
-    def current_application_settings
-      @current_application_settings ||= ApplicationSetting.get_current_app_settings
-    end
+
+  def current_application_settings
+    @current_application_settings ||= ApplicationSetting.get_current_app_settings
+  end
 
     helper_method :current_application_settings
 

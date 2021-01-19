@@ -4,7 +4,7 @@ class UniqapplicationValidator < ActiveModel::EachValidator
     all_apps = Application.active_conference_applications.where.not(id: [record])
 
     all_apps.each do |app|
-      if app.include? value
+      if app.read_attribute("#{attribute}") == value
         record.errors.add(attribute, "You already have completed an application for this year")
       end
     end

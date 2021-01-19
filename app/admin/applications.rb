@@ -22,7 +22,7 @@ ActiveAdmin.register Application do
     button_to "Send Offer", send_offer_path(application) if application.offer_status == "not_offered"
   end
 
-  filter :user, as: :select, collection: -> { Application.all.map { |appl| [appl.display_name, appl.id]}.sort}
+  filter :user, as: :select, collection: Application.all.sort
   filter :offer_status, as: :select
   filter :gender, as: :select, collection: -> { Gender.all.map{|a| [a.name, a.id]} }
   filter :workshop_selection1, label: "workshop_selection1", as: :select, collection: -> { Workshop.all.sort }
@@ -44,9 +44,7 @@ ActiveAdmin.register Application do
     column :offer_status
     column :first_name
     column :last_name
-    column "gender" do |sex|
-      Gender.find(sex.gender).name
-    end
+    column :gender
     column "workshop_selection1" do |w1|
       Workshop.find(w1.workshop_selection1).instructor
     end
@@ -94,9 +92,7 @@ ActiveAdmin.register Application do
       row :result_email_sent
       row :first_name
       row :last_name
-      row "gender" do |sex|
-        Gender.find(sex.gender).name
-      end
+      row :gender
       row :birth_year
       row :street
       row :street2
@@ -145,7 +141,7 @@ ActiveAdmin.register Application do
       f.input :offer_status_date
       f.input :first_name
       f.input :last_name
-      f.input :gender, :label => "Gender", :as => :select, :collection => Gender.all.map { |g| ["#{g.name}", g.id] }
+      f.input :gender, :label => "Gender", :as => :select, :collection => Gender.all.map { |g| ["#{g.name}", g.name] }
       f.input :birth_year
       f.input :street
       f.input :street2
