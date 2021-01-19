@@ -24,7 +24,7 @@ ActiveAdmin.register ApplicationSetting do
       link_to id.id, admin_application_setting_path(id)
     end
     column :active_application
-    column :contest_year
+    column "Conference Year", :contest_year
     column :opendate
     column "# of hours to keep app open", :application_open_period
     column :application_buffer
@@ -62,7 +62,7 @@ ActiveAdmin.register ApplicationSetting do
       row :opendate
       row "# of hours to keep app open", &:application_open_period
       row :application_buffer
-      row :contest_year
+      row "Conference Year", :contest_year
       row :time_zone
       row :allow_payments
       row :active_application
@@ -90,7 +90,7 @@ ActiveAdmin.register ApplicationSetting do
     f.semantic_errors
     f.inputs "ApplicationSetting" do
       f.input :active_application
-      f.input :contest_year
+      f.input :contest_year, label: "Conference Year"
       f.input :opendate
       f.input :time_zone
       f.input :application_open_period, label: "# of Hours App is OPEN"
