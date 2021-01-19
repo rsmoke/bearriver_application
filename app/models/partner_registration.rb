@@ -10,7 +10,7 @@
 #
 class PartnerRegistration < ApplicationRecord
 
-  def display_info
+  def display_name
     "#{ self.description} ( $#{self.cost.to_i} additional fee)"
   end
 end

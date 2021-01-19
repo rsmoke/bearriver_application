@@ -15,13 +15,13 @@ class ApplicationsController < ApplicationController
   # GET /applications/1
   # GET /applications/1.json
   def show
-    @workshop1 = Workshop.find(@application.workshop_selection1).instructor
-    @workshop2 = Workshop.find(@application.workshop_selection2).instructor
-    @workshop3 = Workshop.find(@application.workshop_selection3).instructor
-    @lodging = Lodging.find(@application.lodging_selection).description
-    @partner_description = PartnerRegistration.find(@application.partner_registration_selection).description
-    cost_lodging = Lodging.find(@application.lodging_selection).cost.to_f
-    cost_partner = PartnerRegistration.find(@application.partner_registration_selection).cost.to_f
+    # @workshop1 = Workshop.find(@application.workshop_selection1).instructor
+    # @workshop2 = Workshop.find(@application.workshop_selection2).instructor
+    # @workshop3 = Workshop.find(@application.workshop_selection3).instructor
+    # @lodging = Lodging.find(@application.lodging_selection).description
+    # @partner_description = PartnerRegistration.find(@application.partner_registration_selection).description
+    cost_lodging = Lodging.find_by(description: @application.lodging_selection).cost.to_f
+    cost_partner = PartnerRegistration.find_by(description: @application.partner_registration_selection).cost.to_f
     @total_cost = cost_lodging + cost_partner
   end
 
