@@ -2,6 +2,7 @@
   require 'time'
 
   class PaymentsController < ApplicationController
+    # skip_before_action :verify_authenticity_token, only: [:payment_receipt]
     before_action :authenticate_user!
     before_action :current_user,   only: %i[payment_receipt make_payment payment_show]
 
@@ -29,7 +30,7 @@
           user_id: current_user.id,
           conf_year: ApplicationSetting.get_current_app_year
         )
-        current_user.application.update(offer_status: "registration_accepted")
+        Application.active_conference_applications.find_by(user_id: current_user).update(offer_status: "registration_accepted")
         redirect_to all_payments_path, notice: "Your Payment Was Successfully Recorded"
       end
     end
