@@ -32,6 +32,7 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/1/edit
   def edit
+    redirect_to root_path unless @application.offer_status.blank?
   end
 
   # POST /applications

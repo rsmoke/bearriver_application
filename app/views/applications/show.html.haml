@@ -105,15 +105,15 @@
   = @application.food_restrictions
 
 %hr
-- if @application.offer_status.nil?
+- if @application.offer_status.blank?
   %h6
     NOTE:
     %small.text-muted If you need to make a correction, please use the edit
     button below to return to the form.
   = link_to 'Edit', edit_application_path(@application), class: 'btn btn-sm btn-warning'
 
-  %hr
-  = link_to 'Submit Application', root_path, class: 'btn btn-sm btn-success'
+  -# %hr
+  -# = link_to 'Submit Application', root_path, class: 'btn btn-sm btn-success', notice: 'Application was submitted'
 
   %hr
   %h6
