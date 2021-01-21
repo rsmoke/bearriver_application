@@ -2,7 +2,7 @@
   require 'time'
 
   class PaymentsController < ApplicationController
-    # skip_before_action :verify_authenticity_token, only: [:payment_receipt]
+    skip_before_action :verify_authenticity_token, only: [:payment_receipt]
     before_action :authenticate_user!
     before_action :current_user,   only: %i[payment_receipt make_payment payment_show]
 
