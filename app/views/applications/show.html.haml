@@ -104,6 +104,10 @@
   %b Food restrictions:
   = @application.food_restrictions
 
+  - if @application.subscription
+    %br
+    %b Subscription:
+    = number_to_currency(ApplicationSetting.get_current_app_settings.subscription_cost)
 %hr
 - if @application.offer_status.blank?
   %h6
