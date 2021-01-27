@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/conference_closed', to: 'static_pages#conference_closed'
   get '/conference_full', to: 'static_pages#conference_full'
   get '/accept_offer', to: 'static_pages#accept_offer'
+  get '/subscription', to: 'applications#subscription'
 
   get 'payments', to: 'payments#index'
   get 'payment_receipt', to: 'payments#payment_receipt'
