@@ -4,7 +4,8 @@
   class PaymentsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:payment_receipt]
     before_action :authenticate_user!
-    before_action :current_user,   only: %i[payment_receipt make_payment payment_show]
+    before_action :current_user, only: %i[payment_receipt make_payment payment_show]
+    before_action :current_application, only: %i[payment_receipt payment_show]
 
     def index
       redirect_to root_url
@@ -30,7 +31,7 @@
           user_id: current_user.id,
           conf_year: ApplicationSetting.get_current_app_year
         )
-        Application.active_conference_applications.find_by(user_id: current_user).update(offer_status: "registration_accepted")
+        @current_application.update(offer_status: "registration_accepted")
         redirect_to all_payments_path, notice: "Your Payment Was Successfully Recorded"
       end
     end
@@ -44,10 +45,15 @@
       redirect_to root_url unless user_has_payments?(current_user)
       @users_current_payments = Payment.current_conference_payments.where(user_id: current_user )
       @ttl_paid = Payment.current_conference_payments.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
-      cost_lodging = Lodging.find_by(description: (Application.active_conference_applications.find_by(user_id: current_user).lodging_selection)).cost.to_f
-      cost_partner = PartnerRegistration.find_by(description: (Application.active_conference_applications.find_by(user_id: current_user).partner_registration_selection)).cost.to_f
+      cost_lodging = Lodging.find_by(description: @current_application.lodging_selection).cost.to_f
+      cost_partner = PartnerRegistration.find_by(description: @current_application.partner_registration_selection).cost.to_f
+      if @current_application.subscription
+        @cost_subscription = ApplicationSetting.get_current_app_settings.subscription_cost.to_f
+      else
+        @cost_subscription = 0
+      end
       @total_cost = cost_lodging + cost_partner
-      @balance_due = @total_cost - @ttl_paid
+      @balance_due = @total_cost + @cost_subscription - @ttl_paid
     end
 
     private
@@ -94,5 +100,9 @@
 
       def url_params
         params.permit(:amount, :transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash, :conf_year)
+      end
+
+      def current_application
+        @current_application = Application.active_conference_applications.find_by(user_id: current_user)
       end
   end
