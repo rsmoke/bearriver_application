@@ -25,11 +25,13 @@
 #  lottery_won_email                  :text
 #  lottery_lost_email                 :text
 #  subscription_cost                  :integer          default(0), not null
+#  subscription_directions            :text
 #
 class ApplicationSetting < ApplicationRecord
 
   validates :contest_year, presence: true, uniqueness: true
   validates :opendate, presence: true
+  validates :subscription_cost, presence: { message: "enter 0 or a dollar value" }
   validates :application_buffer, presence: true
   validates :registration_fee, presence: true, numericality: true
   validates :lottery_buffer, presence: true, numericality: true
