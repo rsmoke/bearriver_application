@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_12_203336) do
+ActiveRecord::Schema.define(version: 2021_01_27_193506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 2021_01_12_203336) do
     t.text "payments_directions"
     t.text "lottery_won_email"
     t.text "lottery_lost_email"
+    t.integer "subscription_cost", default: 0, null: false
+    t.text "subscription_directions"
   end
 
   create_table "applications", force: :cascade do |t|
@@ -129,6 +131,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_203336) do
     t.string "offer_status"
     t.boolean "result_email_sent", default: false, null: false
     t.datetime "offer_status_date"
+    t.boolean "subscription", default: false
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 

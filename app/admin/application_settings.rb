@@ -7,7 +7,7 @@ ActiveAdmin.register ApplicationSetting do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :opendate, :application_buffer, :contest_year, :time_zone, :allow_payments, :active_application, :allow_lottery_winner_emails, :allow_lottery_loser_emails, :registration_fee, :lottery_buffer, :application_open_directions, :application_closed_directions, :application_open_period, :registration_acceptance_directions, :payments_directions, :lottery_won_email, :lottery_lost_email
+  permit_params :opendate, :application_buffer, :contest_year, :time_zone, :allow_payments, :active_application, :allow_lottery_winner_emails, :allow_lottery_loser_emails, :registration_fee, :lottery_buffer, :application_open_directions, :application_closed_directions, :application_open_period, :registration_acceptance_directions, :payments_directions, :lottery_won_email, :lottery_lost_email, :subscription_cost, :subscription_directions
   #
   # or
   #
@@ -32,6 +32,9 @@ ActiveAdmin.register ApplicationSetting do
     column "registration_fee" do |reg_fee|
       number_to_currency(reg_fee.registration_fee)
     end
+    column "subscription_cost" do |sub_fee|
+      number_to_currency(sub_fee.subscription_cost)
+    end
     column :lottery_buffer
     column :lottery_run_date
     column "application_open_directions" do |open_text|
@@ -45,6 +48,9 @@ ActiveAdmin.register ApplicationSetting do
     end
     column "payments_directions" do |pay_text|
       pay_text.payments_directions[0..50] + "..." unless pay_text.payments_directions.nil?
+    end
+    column "subscription_directions" do |subs_text|
+      subs_text.subscription_directions[0..50] + "..." unless subs_text.subscription_directions.nil?
     end
     column "lottery_won_email" do |won_email|
       won_email.lottery_won_email[0..50] + "..." unless won_email.lottery_won_email.nil?
@@ -71,6 +77,9 @@ ActiveAdmin.register ApplicationSetting do
       row "registration_fee" do |reg_fee|
         number_to_currency(reg_fee.registration_fee)
       end
+      row "subscription_cost" do |sub_fee|
+        number_to_currency(sub_fee.subscription_cost)
+      end
       row :lottery_buffer
       row :lottery_result
       row :lottery_run_date
@@ -78,6 +87,7 @@ ActiveAdmin.register ApplicationSetting do
       row :application_closed_directions
       row :registration_acceptance_directions
       row :payments_directions
+      row :subscription_directions
       row :lottery_won_email
       row :lottery_lost_email
       row :created_at
@@ -97,11 +107,12 @@ ActiveAdmin.register ApplicationSetting do
       f.input :lottery_buffer
       f.input :application_buffer
       f.input :registration_fee
-
+      f.input :subscription_cost
       f.input :application_open_directions
       f.input :application_closed_directions
       f.input :registration_acceptance_directions
       f.input :payments_directions
+      f.input :subscription_directions
 
       f.input :lottery_won_email
       f.input :lottery_lost_email

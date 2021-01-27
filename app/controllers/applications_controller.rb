@@ -15,11 +15,6 @@ class ApplicationsController < ApplicationController
   # GET /applications/1
   # GET /applications/1.json
   def show
-    # @workshop1 = Workshop.find(@application.workshop_selection1).instructor
-    # @workshop2 = Workshop.find(@application.workshop_selection2).instructor
-    # @workshop3 = Workshop.find(@application.workshop_selection3).instructor
-    # @lodging = Lodging.find(@application.lodging_selection).description
-    # @partner_description = PartnerRegistration.find(@application.partner_registration_selection).description
     cost_lodging = Lodging.find_by(description: @application.lodging_selection).cost.to_f
     cost_partner = PartnerRegistration.find_by(description: @application.partner_registration_selection).cost.to_f
     @total_cost = cost_lodging + cost_partner
@@ -57,8 +52,13 @@ class ApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @application.update(application_params)
-        format.html { redirect_to @application, notice: 'Application was successfully updated.' }
-        format.json { render :show, status: :ok, location: @application }
+        if params[:elephants] == 'subscribe'
+          format.html { redirect_to all_payments_path, notice: 'Subscription was updated.' }
+          format.json { render :show, status: :ok, location: all_payments_path }
+        else
+          format.html { redirect_to @application, notice: 'Application was successfully updated.' }
+          format.json { render :show, status: :ok, location: @application }
+        end
       else
         format.html { render :edit }
         format.json { render json: @application.errors, status: :unprocessable_entity }
@@ -76,6 +76,10 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def subscription 
+    @application = Application.active_conference_applications.find_by(user_id: current_user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_application
@@ -85,7 +89,7 @@ class ApplicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
-      params.require(:application).permit(:first_name, :last_name, :gender, :birth_year, :street, :street2, :city, :state, :zip, :country, :phone, :email, :email_confirmation, :workshop_selection1, :workshop_selection2, :workshop_selection3, :lodging_selection, :partner_registration_selection, :partner_first_name, :partner_last_name, :how_did_you_hear, :accessibility_requirements, :special_lodging_request, :food_restrictions, :user_id)
+      params.require(:application).permit(:first_name, :last_name, :gender, :birth_year, :street, :street2, :city, :state, :zip, :country, :phone, :email, :email_confirmation, :workshop_selection1, :workshop_selection2, :workshop_selection3, :lodging_selection, :partner_registration_selection, :partner_first_name, :partner_last_name, :how_did_you_hear, :accessibility_requirements, :special_lodging_request, :food_restrictions, :user_id, :subscription)
     end
 
     def get_lodgings

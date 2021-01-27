@@ -5,7 +5,7 @@ ActiveAdmin.register Application do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :first_name, :last_name, :gender, :birth_year, :street, :street2, :city, :state, :zip, :country, :phone, :email, :email_confirmation, :workshop_selection1, :workshop_selection2, :workshop_selection3, :lodging_selection, :partner_registration_selection, :partner_first_name, :partner_last_name, :how_did_you_hear, :accessibility_requirements, :special_lodging_request, :food_restrictions, :user_id, :lottery_position, :offer_status, :result_email_sent, :offer_status_date, :conf_year
+  permit_params :first_name, :last_name, :gender, :birth_year, :street, :street2, :city, :state, :zip, :country, :phone, :email, :email_confirmation, :workshop_selection1, :workshop_selection2, :workshop_selection3, :lodging_selection, :partner_registration_selection, :partner_first_name, :partner_last_name, :how_did_you_hear, :accessibility_requirements, :special_lodging_request, :food_restrictions, :user_id, :lottery_position, :offer_status, :result_email_sent, :offer_status_date, :conf_year, :subscription
   #
   # or
   #
@@ -32,6 +32,7 @@ ActiveAdmin.register Application do
   filter :partner_registration_selection, as: :select, collection: -> { PartnerRegistration.all.map { |papp| [papp.description, papp.description]}.sort }
   filter :country, as: :select
   filter :conf_year, as: :select
+  filter :subscription
 
   index do
     selectable_column
@@ -43,6 +44,7 @@ ActiveAdmin.register Application do
     column :conf_year
     column :lottery_position
     column :offer_status
+    column :subscription
     column :first_name
     column :last_name
     column :gender
@@ -69,7 +71,6 @@ ActiveAdmin.register Application do
     column :food_restrictions
     column :result_email_sent
     column :offer_status_date
-
   end
 
   show do
@@ -80,6 +81,7 @@ ActiveAdmin.register Application do
       row :offer_status
       row :offer_status_date
       row :result_email_sent
+      row :subscription
       row :first_name
       row :last_name
       row :gender
@@ -119,6 +121,7 @@ ActiveAdmin.register Application do
       f.input :lottery_position, input_html: { disabled: true }
       f.input :offer_status, :label => "Offer status", :as => :select, :collection => offer_status
       f.input :offer_status_date
+      f.input :subscription
       f.input :first_name
       f.input :last_name
       f.input :gender, :label => "Gender", :as => :select, :collection => Gender.all.map { |g| ["#{g.name}", g.name] }
