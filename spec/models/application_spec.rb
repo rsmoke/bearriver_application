@@ -35,6 +35,7 @@
 #  offer_status                   :string
 #  result_email_sent              :boolean          default(FALSE), not null
 #  offer_status_date              :datetime
+#  subscription                   :boolean          default(FALSE)
 #
 require 'rails_helper'
 

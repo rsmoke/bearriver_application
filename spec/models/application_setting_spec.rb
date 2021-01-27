@@ -24,6 +24,7 @@
 #  payments_directions                :text
 #  lottery_won_email                  :text
 #  lottery_lost_email                 :text
+#  subscription_cost                  :integer          default(0), not null
 #
 require 'rails_helper'
 
