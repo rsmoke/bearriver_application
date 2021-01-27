@@ -4,10 +4,9 @@
 
   = form_for @application do |f|
     .h6
-      = f.label 'Please select if you would like to subscribe:'
-    .form-group
       = f.check_box :subscription
+      = f.label 'Check to add this subscription'
     .actions
-      = f.submit 'Submit', class: 'btn btn-success', name: "elephants", value: "subscribe"
+      = f.submit 'Update', class: 'btn btn-success', name: "update_subscription", value: "update"
 
-= link_to 'Payments', all_payments_path
+= link_to 'Back', all_payments_path, class: "btn btn-sm btn-secondary"

@@ -52,7 +52,7 @@ class ApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @application.update(application_params)
-        if params[:elephants] == 'subscribe'
+        if params[:update_subscription] == 'update'
           format.html { redirect_to all_payments_path, notice: 'Subscription was updated.' }
           format.json { render :show, status: :ok, location: all_payments_path }
         else
