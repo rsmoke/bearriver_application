@@ -13,6 +13,9 @@
       QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
       credit card information is stored on our servers.
   %p 
+    - if current_application_settings.subscription_cost > 0
+      = link_to "Subscribe to Michigan Quarterly Review", subscription_path, class: "btn btn-info"
+  %p 
     You may email any questions to
     = mail_to "bearriver-questions@umich.edu"
   %hr.w-75
@@ -24,6 +27,8 @@
       - if payments_open?
         .h6{:style => "font-family: Lucida Console;"}
           = "#{'total_cost'.humanize.ljust(24, '.')} #{number_to_currency(@total_cost).rjust(12,'.')}"
+          - if @cost_subscription > 0
+            = "#{'subscription_cost'.humanize.ljust(19, '.')} #{number_to_currency(@cost_subscription).rjust(12,'.')}"
       .h6{:style => "font-family: Lucida Console;"}
         = "#{'amount_paid'.humanize.ljust(20, '.')} #{number_to_currency(@ttl_paid).rjust(12,'.')}"
       %hr
