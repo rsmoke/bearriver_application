@@ -53,7 +53,7 @@ class ApplicationsController < ApplicationController
     respond_to do |format|
       if @application.update(application_params)
         if params[:elephants] == 'subscribe'
-          format.html { redirect_to all_payments_path, notice: 'Application was successfully updated.' }
+          format.html { redirect_to all_payments_path, notice: 'Subscription was updated.' }
           format.json { render :show, status: :ok, location: all_payments_path }
         else
           format.html { redirect_to @application, notice: 'Application was successfully updated.' }
