@@ -13,7 +13,7 @@
       QuikPAY is a registered trademark of Nelnet Business Solutions, Inc. No
       credit card information is stored on our servers.
   %p 
-    - if current_application_settings.subscription_cost > 0
+    - if current_application_settings.subscription_cost > 0 && current_application_settings.allow_payments
       = link_to "Subscribe to Michigan Quarterly Review", subscription_path, class: "btn btn-info"
   %p 
     You may email any questions to
