@@ -1,0 +1,13 @@
+%h2 Michigan Quarterly Review Subscription
+%p
+  = current_application_settings.subscription_directions
+
+  = form_for @application do |f|
+    .h6
+      = f.label 'Please select if you would like to subscribe:'
+    .form-group
+      = f.check_box :subscription
+    .actions
+      = f.submit 'Submit', class: 'btn btn-success', name: "elephants", value: "subscribe"
+
+= link_to 'Payments', all_payments_path
