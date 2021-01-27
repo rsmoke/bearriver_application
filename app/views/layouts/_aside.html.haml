@@ -11,6 +11,4 @@
           = link_to 'Manage Login', edit_user_registration_path, :class => 'list-group-item list-group-item-action'
           - if !user_has_application?(current_user)
             = link_to "Submit an Application", new_application_path, :class => 'btn btn-sm btn-outline-success'
-          = link_to "Subscribe to Michigan Quarterly Review", "https://payments.lsa.umich.edu/mqr/subscribe/", target: "_blank", :class => 'list-group-item list-group-item-action'
-
         = content_for :side
