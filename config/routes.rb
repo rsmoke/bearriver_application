@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get 'payments', to: 'payments#index'
   get 'payment_receipt', to: 'payments#payment_receipt'
+  post 'payment_receipt', to: 'payments#payment_receipt' # needed to address PCI gateway rqrmts
   get 'payment_show', to: 'payments#payment_show', as: 'all_payments'
   get 'make_payment', to: 'payments#make_payment'
   post 'make_payment', to: 'payments#make_payment'
