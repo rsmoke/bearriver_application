@@ -51,30 +51,5 @@ We use SemVer for versioning. For the versions available, see the tags on this r
 - Rick Smoke - Initial work
 - Margarita Barvinok - Extremely talented co-developer
 
-License
+## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
-
-Acknowledgments
-Hat tip to anyone whose code was used
-Inspiration
-etc
-
-
-
-=======================================
-
-If your codebase is an app:
-- What role does it play?
-- How is it deployed?
-- Who on the team should people go to with questions?
-- What credentials are needed?
-- How do they install/boot/deploy/develop it?
-- What's the development process?
-​
-For any project:
-- FAQs
-- Where should bugs be filed, and how?
-- Who should be asked for PR reviews? (Are PRs welcome, generally?)
-- How do you run tests?
-- Is there CI?
-- Screenshots
