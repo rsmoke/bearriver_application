@@ -39,6 +39,9 @@ Allows individuals to register for the Bear River Writers conference held at the
 ## Deployment
 - This application uses Capistrano 3 for deploying to a server running Puma and Nginx
 
+## Submitting Issues
+> ToDo - create template
+
 ## Built With love
 
 ## Contributing
