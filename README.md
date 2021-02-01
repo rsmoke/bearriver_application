@@ -52,7 +52,7 @@ We use SemVer for versioning. For the versions available, see the tags on this r
 
 ## Authors
 - Rick Smoke - Initial work
-- Margarita Barvinok - Extremely talented co-developer
+- Margarita Barvinok - Co-developer
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
