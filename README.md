@@ -12,35 +12,16 @@ Allows individuals to register for the Bear River Writers conference held at the
 - postgreql '>= 0.18', '< 2.0'
 
 ### Installing
-- ToDo
-> A step by step series of examples that tell you how to get a development env running
-
-> Say what the step will be
-
-> Give the example
-> And repeat
-
-> until finished
-> End with an example of getting some data out of the system or using it for a little demo
+See issues
 
 ### Running the tests
-- ToDo
-> Explain how to run the automated tests for this system
-
-> Break down into end to end tests
-> Explain what these tests test and why
-
-> Give an example
-> And coding style tests
-> Explain what these tests test and why
-
-- The use of LetterOpener gem to assist with reviewing emails that are generated
+See issues
 
 ## Deployment
 - This application uses Capistrano 3 for deploying to a server running Puma and Nginx
 
 ## Submitting Issues
-> ToDo - create template
+Use the issue tracker in the repository that I spent valuable time setting up... and thank you
 
 ## Built With love
 
