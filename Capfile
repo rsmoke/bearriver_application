@@ -14,6 +14,7 @@ require 'capistrano/bundler'
 require "capistrano/rbenv"
 require 'capistrano/puma'
 
+install_plugin Capistrano::Puma::Systemd
 #https://stackoverflow.com/questions/65359581/capostrano-cap-aborted-dont-know-how-to-build-task-start-see-the-list-of-a
 install_plugin Capistrano::Puma::Daemon # Default puma tasks
 install_plugin Capistrano::Puma::Workers
